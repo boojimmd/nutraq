@@ -1003,6 +1003,52 @@ span[style*="font-size:0"] svg {
 .theme-btn.active { background:var(--s1); color:var(--t1); box-shadow:0 2px 8px rgba(0,0,0,.3); }
 .theme-btn svg { width:18px; height:18px; flex-shrink:0; }
 .theme-btn span[style*="font-size:0"] svg { width:18px !important; height:18px !important; }
+
+/* ── ① Patient card hover actions (desktop) ── */
+@media(min-width:900px){
+  .ptcard{position:relative;transition:background .15s,box-shadow .15s;}
+  .ptcard:hover{background:var(--s2);box-shadow:0 2px 12px rgba(0,0,0,.15);}
+  .ptact{
+    opacity:0;
+    transform:translateX(8px);
+    transition:opacity .15s,transform .15s;
+    pointer-events:none;
+  }
+  .ptcard:hover .ptact{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+  }
+  /* ibtn بزرگ‌تر */
+  .ibtn{
+    width:32px;height:32px;
+    border-radius:8px;
+    border:1px solid var(--b1);
+    background:var(--s1);
+    cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:background .12s;
+  }
+  .ibtn:hover{background:var(--s2);}
+  .ibtn.x:hover{background:var(--redd);}
+  /* quick nav buttons در hover */
+  .pt-hover-nav{
+    display:flex;gap:4px;margin-top:6px;
+  }
+  .pt-qbtn{
+    font-size:.7rem;font-weight:600;
+    padding:4px 8px;
+    border-radius:6px;
+    border:1px solid var(--b1);
+    background:var(--s1);
+    color:var(--t2);
+    cursor:pointer;
+    transition:background .12s,color .12s;
+    white-space:nowrap;
+  }
+  .pt-qbtn:hover{background:var(--gd);color:var(--g);border-color:transparent;}
+  .pt-qbtn.menu-qbtn:hover{background:rgba(245,85,121,.12);color:var(--g);}
+}
 </style>
 </head>
 <body>
@@ -2098,6 +2144,116 @@ function nav(tab){
 }
 
 // ── Dashboard ──
+
+/* ── ① Quick nav از ptcard ── */
+function ptQuickNav(e, tab, pid){
+  e.stopPropagation();
+  nav(tab);
+  setTimeout(function(){
+    var sel=document.getElementById(tab==='menu'?'menu-pt':'az-pt');
+    if(sel){ sel.value=pid; sel.dispatchEvent(new Event('change')); }
+  }, 200);
+}
+
+/* ── ② Favicon badge — ویزیت امروز ── */
+function _updateFaviconBadge(count){
+  try{
+    var canvas=document.createElement('canvas');
+    canvas.width=32;canvas.height=32;
+    var ctx=canvas.getContext('2d');
+    // دایره صورتی NutraQ
+    ctx.beginPath();ctx.arc(16,16,15,0,2*Math.PI);
+    ctx.fillStyle='#f55579';ctx.fill();
+    ctx.fillStyle='#fff';
+    ctx.font='bold 14px sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('N',16,17);
+    if(count>0){
+      ctx.beginPath();ctx.arc(25,7,8,0,2*Math.PI);
+      ctx.fillStyle='#ef4444';ctx.fill();
+      ctx.fillStyle='#fff';ctx.font='bold 8px sans-serif';
+      ctx.fillText(count>9?'9+':String(count),25,7);
+    }
+    var link=document.querySelector('link[rel*="icon"]');
+    if(!link){link=document.createElement('link');link.rel='icon';document.head.appendChild(link);}
+    link.href=canvas.toDataURL('image/png');
+  }catch(e){}
+}
+
+/* ── ③ Right-click context menu روی بیمار ── */
+function initPatientContextMenu(){
+  var list=document.getElementById('pt-list');
+  if(!list) return;
+  list.addEventListener('contextmenu',function(e){
+    var card=e.target.closest('.ptcard');
+    if(!card) return;
+    e.preventDefault();
+    var pid=card.dataset.pid;
+    var pt=getP().find(function(p){return p.id===pid;});
+    if(!pt) return;
+    // حذف منوی قبلی
+    var old=document.getElementById('_ptcm');
+    if(old) old.remove();
+    var m=document.createElement('div');
+    m.id='_ptcm';
+    m.style.cssText=[
+      'position:fixed','z-index:9999',
+      'background:var(--s1)','border:1px solid var(--b1)',
+      'border-radius:12px','padding:4px',
+      'min-width:170px','box-shadow:0 8px 32px rgba(0,0,0,.3)',
+      'font-size:.82rem','direction:rtl'
+    ].join(';');
+    var top=Math.min(e.clientY, window.innerHeight-220);
+    var right=Math.max(0, window.innerWidth-e.clientX);
+    m.style.top=top+'px';
+    m.style.right=right+'px';
+    var name=pt.firstname+' '+pt.lastname;
+    // header بیمار
+    m.innerHTML='<div style="padding:8px 12px 6px;font-weight:700;font-size:.82rem;color:var(--t1);border-bottom:1px solid var(--b2);margin-bottom:4px">'+name+'</div>';
+    var items=[
+      ['منوساز روزانه','<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>','menu'],
+      ['آنالیز ریزمغذی','<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>','analyzer'],
+      ['گزارش بالینی','<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>','reports'],
+      ['ویرایش پرونده','<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>','edit'],
+    ];
+    items.forEach(function(item){
+      var label=item[0],svg=item[1],action=item[2];
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--t1);';
+      row.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+svg+'</svg>'+label;
+      row.onmouseenter=function(){this.style.background='var(--s2)';};
+      row.onmouseleave=function(){this.style.background='';};
+      if(action==='edit'){
+        row.onclick=function(){
+          var btn=document.querySelector('[data-editid="'+pid+'"]');
+          if(btn) btn.click();
+          m.remove();
+        };
+      } else {
+        row.onclick=function(){ptQuickNav({stopPropagation:function(){}},action,pid);m.remove();};
+      }
+      m.appendChild(row);
+    });
+    // خط جداکننده + حذف
+    var sep=document.createElement('div');
+    sep.style.cssText='height:1px;background:var(--b2);margin:4px 8px;';
+    m.appendChild(sep);
+    var delRow=document.createElement('div');
+    delRow.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--red);';
+    delRow.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>حذف بیمار';
+    delRow.onmouseenter=function(){this.style.background='var(--redd)';};
+    delRow.onmouseleave=function(){this.style.background='';};
+    delRow.onclick=function(){
+      var btn=document.querySelector('[data-delid="'+pid+'"]');
+      if(btn) btn.click();
+      m.remove();
+    };
+    m.appendChild(delRow);
+    document.body.appendChild(m);
+    setTimeout(function(){document.addEventListener('click',function rm(){m.remove();document.removeEventListener('click',rm);});},10);
+  });
+}
+
 function updDash(){
   var pts=getP(), menus=getM();
   st("d-pts",pts.length); st("d-menus",Object.keys(menus).length);
@@ -2129,6 +2285,8 @@ function updDash(){
         vh+="</div>";
       });
       q("d-visits").innerHTML=vh;
+  // favicon badge: تعداد ویزیت امروز
+  if(window.innerWidth>=900) _updateFaviconBadge(upcoming.length);
       q("d-visits").querySelectorAll(".ptm").forEach(function(el){
         el.addEventListener("click",function(){openPtDetail(el.dataset.pid);});
       });
@@ -2262,7 +2420,7 @@ function renderPts(list){
     if(tags)h+='<div class="tags">'+tags+"</div>";
     h+="</div>";
     h+='<div class="ptact"><span class="badge bg-g">'+mc+" منو</span>";
-    h+='<div style="display:flex;gap:5px;margin-top:6px">';
+    h+='<div class="pt-hover-nav">';h+='<button class="pt-qbtn" onclick="ptQuickNav(event,\'menu\',\''+p.id+'\')">منوساز</button>';h+='<button class="pt-qbtn" onclick="ptQuickNav(event,\'analyzer\',\''+p.id+'\')">آنالیز</button>';h+='<button class="pt-qbtn" onclick="ptQuickNav(event,\'reports\',\''+p.id+'\')">گزارش</button>';h+='</div>';h+='<div style="display:flex;gap:5px;margin-top:6px">';
     h+='<button class="ibtn" data-editid="'+p.id+'"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span></button>';
     h+='<button class="ibtn x" data-delid="'+p.id+'"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>';
     h+="</div></div></div>";
@@ -2887,6 +3045,7 @@ function clearAll(){if(!confirm("تمام داده‌ها حذف؟"))return;APP=
 
 // ── Init ──
 document.addEventListener("DOMContentLoaded",function(){
+  setTimeout(initPatientContextMenu, 1000);
   var dh=q("hdr-date");if(dh)dh.textContent=new Date().toLocaleDateString("fa-IR",{month:"short",day:"numeric"});
   var sub=q("dash-date-sub");if(sub)sub.textContent=new Date().toLocaleDateString("fa-IR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
   document.addEventListener("click",function(e){if(!e.target.closest("#food-q")&&!e.target.closest("#food-dd")){var dd=q("food-dd");if(dd)dd.style.display="none";}});
