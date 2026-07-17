@@ -649,6 +649,217 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   #pg-settings .fg{margin-bottom:10px;}
   #pg-settings .fi{font-size:.85rem;}
 
+
+
+
+/* ════════════════════════════════════════
+   TABLET LAYOUT — 600px تا 899px
+   sidebar به bottom nav برمی‌گرده
+   content محدود به 600px
+════════════════════════════════════════ */
+@media(min-width:600px) and (max-width:899px){
+  .app{max-width:100%!important;border-radius:0!important;box-shadow:none!important;}
+  .bnav{position:fixed;bottom:0;left:0;right:0;top:auto!important;width:100%!important;height:auto!important;flex-direction:row!important;border-left:none!important;border-top:1px solid var(--b1);padding:8px 12px!important;gap:0!important;}
+  .bnav::before{display:none!important;}
+  .nb{flex-direction:column!important;gap:3px!important;flex:1!important;width:auto!important;padding:6px 4px!important;border-radius:10px!important;font-size:.65rem!important;min-width:0!important;}
+  .nb-lbl{font-size:.65rem!important;}
+  .hdr{position:fixed!important;top:0!important;right:0!important;left:0!important;height:56px!important;}
+  .pwrap{margin-right:0!important;margin-top:56px!important;height:calc(100dvh - 56px - 68px)!important;}
+  .page{padding-bottom:0;}
+  .toast{right:16px!important;left:16px!important;bottom:80px!important;left:50%!important;transform:translateX(-50%)!important;}
+}
+  /* ════════════════════════════════════════════════
+     🔴 CRITICAL FIXES
+  ════════════════════════════════════════════════ */
+
+  /* 1. Buttons: width:auto روی desktop (base CSS دارن width:100%) */
+  .btnp,.btns,.btnd,.btnshr{
+    width:auto!important;
+    min-width:96px;
+    min-height:40px;
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    font-size:.82rem;
+    padding:9px 16px;
+    gap:6px;
+  }
+  /* دکمه‌هایی که باید full-width بمونن */
+  .btnp.full,.btns.full,.btnd.full,
+  #pg-settings .btnp,#pg-settings .btns,#pg-settings .btnd,
+  .modal-sheet .btnp,.modal-sheet .btns,.modal-sheet .btnd{
+    width:100%;
+  }
+
+  /* 2. Typography: line-height برای همه elements کلیدی */
+  .pgtitle{line-height:1.3;}
+  .nb-lbl{line-height:1.2;}
+  .sc-v{line-height:1.1;}
+  .sc-l{line-height:1.4;}
+  .nb{line-height:1.3;}
+  .card-title{line-height:1.4;}
+  .ptn,.fname,.fcn{line-height:1.4;}
+  .ptmt,.fsub,.fcml,.mb-l{line-height:1.5;}
+  body,.nb-lbl,.fi,.fs,.fi *,.fs *{line-height:1.6;}
+
+  /* 3. Tiny text: font-size minimum 11px */
+  .gauge-unit{font-size:.72rem!important;}   /* بود 9px */
+  .fcml{font-size:.72rem!important;}          /* بود 9.5px */
+  .mb-l{font-size:.72rem!important;}
+
+  /* 4. Touch targets: min-height ≥40px */
+  .btnp,.btns,.btnd,.btnshr,.qa-btn{min-height:40px;}
+  .nb{min-height:38px;}
+  .fi,.fs{min-height:40px;}
+  .ptcard{min-height:52px;}
+
+  /* 5. Color tokens: hardcoded رنگ‌ها */
+  /* #1a0008 (متن تیره روی accent) — نگه دار، درسته */
+  /* #fff → var(--t1) در overlay */
+  .modal-sheet .modal-title{color:var(--t1);}
+  /* #14b8a6 teal: برای custom badge */
+  /* نگه دار — مکمل رنگیه */
+
+  /* ════════════════════════════════════════════════
+     🟠 IMPORTANT FIXES
+  ════════════════════════════════════════════════ */
+
+  /* 6. Content max-width برای صفحات wide */
+  #pg-dashboard>.sect,.dash-hero{max-width:1200px;}
+
+  /* 7. Dashboard extra sects padding fix */
+  #pg-dashboard .sect+.sect{padding-top:0;}
+
+  /* 8. Page title در topbar — via JS inject */
+  .hdr-page-title{
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--t1);
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    letter-spacing:-.01em;
+    white-space:nowrap;
+  }
+
+  /* 9. Visual hierarchy: primary vs secondary */
+  .btns{
+    background:var(--s2);
+    border:1px solid var(--b2);
+    color:var(--t1);
+  }
+  .btns:hover{background:var(--s3);}
+  .btnd{
+    background:var(--redd);
+    border:1px solid rgba(239,68,68,.2);
+    color:var(--red);
+  }
+
+  /* ════════════════════════════════════════════════
+     🟡 MEDIUM FIXES
+  ════════════════════════════════════════════════ */
+
+  /* 10. Typography scale — یکپارچه */
+  :root{
+    --dt-2xs:.68rem;
+    --dt-xs:.72rem;
+    --dt-sm:.78rem;
+    --dt-base:.85rem;
+    --dt-md:.92rem;
+    --dt-lg:1.05rem;
+    --dt-xl:1.2rem;
+    --dt-2xl:1.6rem;
+  }
+  .pgtitle{font-size:var(--dt-md);}
+  .nb-lbl{font-size:var(--dt-sm);}
+  .card-title{font-size:var(--dt-xs);letter-spacing:.06em;}
+  .hdr-title{font-size:var(--dt-md);}
+  .fi,.fs{font-size:var(--dt-base);}
+  .sc-v{font-size:var(--dt-2xl)!important;}
+  .sc-l{font-size:var(--dt-xs)!important;}
+
+  /* 11. Border-radius یکپارچه — ۳ اندازه */
+  :root{
+    --dt-r-sm:10px;   /* کوچیک: input، badge */
+    --dt-r-md:14px;   /* متوسط: کارت، button */
+    --dt-r-lg:20px;   /* بزرگ: dialog، hero */
+  }
+  .card,.sc,.ptcard,.fcard,.ansc,.ancard,.plan-day,.rpt{border-radius:var(--dt-r-md);}
+  .btnp,.btns,.btnd,.btnshr,.fi,.fs{border-radius:var(--dt-r-sm);}
+  .modal-sheet,.dash-hero{border-radius:var(--dt-r-lg);}
+  .qa-btn{border-radius:var(--dt-r-md);}
+
+  /* 12. 8pt spacing — مضرب 8 */
+  :root{
+    --dt-sp1:8px;
+    --dt-sp2:16px;
+    --dt-sp3:24px;
+    --dt-sp4:32px;
+  }
+  .card{padding:var(--dt-sp2);margin-bottom:var(--dt-sp1);}
+  .sc{padding:var(--dt-sp2) var(--dt-sp1);}
+  .ptcard{padding:var(--dt-sp1) var(--dt-sp2);gap:var(--dt-sp1);}
+
+  /* 13. Form fields desktop */
+  .fi,.fs{
+    padding:10px var(--dt-sp2);
+    border-radius:var(--dt-r-sm);
+  }
+  .fg{margin-bottom:var(--dt-sp1);}
+  .fg label,.flbl{
+    font-size:var(--dt-xs);
+    font-weight:600;
+    color:var(--t2);
+    margin-bottom:4px;
+    display:block;
+  }
+
+  /* 14. Empty state desktop */
+  .empty{
+    padding:64px 40px;
+    min-height:240px;
+  }
+  .ei{
+    width:56px;height:56px;
+    border-radius:16px;
+    margin-bottom:16px;
+  }
+  .et{font-size:var(--dt-base);font-weight:600;margin-bottom:6px;}
+  .esd{font-size:var(--dt-xs);color:var(--t3);line-height:1.6;}
+
+  /* 15. Badge desktop */
+  .badge{
+    font-size:.68rem;
+    padding:2px 8px;
+    border-radius:20px;
+    font-weight:600;
+    line-height:1.4;
+    min-height:20px;
+  }
+
+  /* ════════════════════════════════════════════════
+     🔵 MINOR FIXES
+  ════════════════════════════════════════════════ */
+
+  /* 16. Section dividers */
+  .sect+.sect{border-top:1px solid var(--b2);}
+  #pg-analyzer .sect+.sect{border:none;}
+
+  /* 17. Focus visible — stronger on desktop */
+  *:focus-visible{
+    outline:2px solid var(--g);
+    outline-offset:2px;
+    border-radius:4px;
+  }
+
+  /* 18. Scrollbar styling on desktop */
+  .page::-webkit-scrollbar,.an-ctrl::-webkit-scrollbar,#pg-analyzer>.sect::-webkit-scrollbar{
+    width:6px;
+  }
+  .page::-webkit-scrollbar-track,.an-ctrl::-webkit-scrollbar-track{background:transparent;}
+  .page::-webkit-scrollbar-thumb,.an-ctrl::-webkit-scrollbar-thumb{
+    background:var(--b2);border-radius:3px;
+  }
+
 }
 @media (min-width:1200px){
   /* wider sidebar on large screens */
@@ -802,7 +1013,7 @@ span[style*="font-size:0"] svg {
     <div class="hdr-logo">N</div>
     <div><div class="hdr-title">NutraQ</div><div class="hdr-sub">سامانه تغذیه بالینی</div></div>
   </div>
-  <div class="hdr-date" id="hdr-date"></div>
+  <span class="hdr-page-title" id="hdrPageTitle"></span>"hdr-date" id="hdr-date"></div>
 </header>
 
 <div class="pwrap">
@@ -1865,6 +2076,7 @@ function om(id){var e=q(id);if(e)e.classList.add("open");}
 function cm(id){var e=q(id);if(e)e.classList.remove("open");}
 
 // ── Nav ──
+var PAGE_TITLES_MAP={dashboard:'خانه',patients:'بیماران',menu:'منوساز',analyzer:'آنالیز ریزمغذی',foods:'بانک غذایی',reports:'گزارش',planner:'برنامه‌ساز',settings:'تنظیمات'};
 function nav(tab){
   curTab=tab;
   document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
@@ -1872,6 +2084,9 @@ function nav(tab){
   var pg=q("pg-"+tab), bn=q("nb-"+tab);
   if(pg)pg.classList.add("active");
   if(bn)bn.classList.add("active");
+  // update topbar page title
+  var titleEl=document.getElementById('hdrPageTitle');
+  if(titleEl) titleEl.textContent=PAGE_TITLES_MAP[tab]||'';
   if(tab==="patients")renderPts();
   if(tab==="menu")initMenu();
   if(tab==="foods"){foodsPage=0;renderFoods();}
@@ -2675,7 +2890,9 @@ document.addEventListener("DOMContentLoaded",function(){
   var sub=q("dash-date-sub");if(sub)sub.textContent=new Date().toLocaleDateString("fa-IR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
   document.addEventListener("click",function(e){if(!e.target.closest("#food-q")&&!e.target.closest("#food-dd")){var dd=q("food-dd");if(dd)dd.style.display="none";}});
   document.querySelectorAll(".modal-ov").forEach(function(o){o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open");});});
-  initTheme(); applyIcons(); initTheme(); applyIcons(); refSel(); filterIrDish(); renderFoods(); updDash();
+  initTheme();
+  var _initTitle=document.getElementById("hdrPageTitle"); if(_initTitle) _initTitle.textContent="خانه"; applyIcons(); initTheme();
+  var _initTitle=document.getElementById("hdrPageTitle"); if(_initTitle) _initTitle.textContent="خانه"; applyIcons(); refSel(); filterIrDish(); renderFoods(); updDash();
 });
 
 document.addEventListener("DOMContentLoaded",function(){
@@ -2687,7 +2904,8 @@ document.addEventListener("DOMContentLoaded",function(){
   document.querySelectorAll(".modal-ov").forEach(function(o){
     o.addEventListener("click",function(e){if(e.target===o)o.classList.remove("open");});
   });
-  initTheme(); applyIcons(); refSel(); filterIrDish(); renderFoods(); updDash();
+  initTheme();
+  var _initTitle=document.getElementById("hdrPageTitle"); if(_initTitle) _initTitle.textContent="خانه"; applyIcons(); refSel(); filterIrDish(); renderFoods(); updDash();
 });
 
 
