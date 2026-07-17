@@ -472,8 +472,10 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   .modal-ov{z-index:200;}
   .modal-sheet{z-index:201;}
   .food-dd,.ddwrap{z-index:150;}
-  .toast{z-index:300;right:auto;left:24px;bottom:24px;max-width:320px;top:auto;transform:none;}
-  .toast.show{transform:none;}
+  .toast{z-index:300;right:auto;left:24px;bottom:24px;max-width:320px;top:auto;
+    transform:translateY(calc(100% + 32px));opacity:0;pointer-events:none;
+    transition:transform .28s cubic-bezier(.32,.72,0,1),opacity .2s;}
+  .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 
   /* ════════════════════════════════════════════════
      SPACING SYSTEM — دقیقاً مثل DayQ
