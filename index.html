@@ -326,9 +326,147 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   .app{max-width:600px;border-radius:0;box-shadow:0 0 60px rgba(0,0,0,.5)}
   body{display:flex;align-items:flex-start;justify-content:center;min-height:100vh;overflow-y:auto}
 }
-@media (min-width:900px){
-  body{align-items:center;background:#060810}
-  .app{max-width:430px;height:92vh;border-radius:24px;overflow:hidden}
+/* ══════════════════════════════════════════════════════
+   DESKTOP LAYOUT ≥900px — NutraQ
+   ══════════════════════════════════════════════════════ */
+@media(min-width:900px){
+
+  /* ── Reset body ── */
+  body{align-items:stretch;background:var(--bg);}
+
+  /* ── App: full screen, no phone frame ── */
+  .app{
+    max-width:none;
+    width:100%;
+    height:100dvh;
+    border-radius:0;
+    overflow:visible;
+    position:relative;
+  }
+
+  /* ── Topbar ── */
+  .hdr{
+    position:fixed;
+    top:0;right:220px;left:0;
+    height:56px;
+    padding:0 24px;
+    z-index:90;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .hdr-sub{display:block;}
+
+  /* ── Sidebar ── */
+  .bnav{
+    position:fixed;
+    right:0;top:0;bottom:0;
+    width:220px;
+    height:100dvh;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    border-top:none;
+    border-left:1px solid var(--b1);
+    padding:0 10px 24px;
+    gap:2px;
+    overflow-y:auto;
+    z-index:100;
+    scrollbar-width:none;
+  }
+  .bnav::-webkit-scrollbar{display:none;}
+
+  /* لوگو در sidebar */
+  .bnav::before{
+    content:'NutraQ';
+    display:block;
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--g);
+    letter-spacing:-.03em;
+    padding:20px 12px 18px;
+    flex-shrink:0;
+    border-bottom:1px solid var(--b1);
+    margin-bottom:8px;
+  }
+
+  /* دکمه nav: افقی → ردیف سمت راست */
+  .nb{
+    flex-direction:row;
+    justify-content:flex-start;
+    text-align:right;
+    gap:10px;
+    padding:9px 12px;
+    border-radius:10px;
+    flex:none;
+    width:100%;
+    min-width:0;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--t2);
+    transition:background .15s,color .15s;
+  }
+  .nb:hover:not(.active){background:var(--s1);color:var(--t1);}
+  .nb.active{background:var(--gd);color:var(--g);}
+
+  /* رنگ آیکون‌ها از CSS — override hardcoded stroke attribute */
+  .nb-ic svg{stroke:var(--t3) !important;transition:stroke .15s;}
+  .nb.active .nb-ic svg{stroke:var(--g) !important;}
+  .nb:hover:not(.active) .nb-ic svg{stroke:var(--t1) !important;}
+  .nb-ic{flex-shrink:0;}
+  .nb-lbl{font-size:.82rem;color:inherit;}
+
+  /* ── Content area ── */
+  .pwrap{
+    position:relative;
+    margin-right:220px;
+    margin-top:56px;
+    height:calc(100dvh - 56px);
+    overflow:hidden;
+  }
+
+  /* صفحات: padding-bottom برای bottom-nav حذف */
+  .page{padding-bottom:32px;}
+
+  /* ── Modal / Toast z-index بالاتر از sidebar ── */
+  .modal-ov{z-index:200;}
+  .modal-sheet{z-index:201;}
+  .food-dd{z-index:150;}
+  .ddwrap{z-index:150;}
+  .toast{
+    z-index:300;
+    right:auto;
+    left:24px;
+    bottom:24px;
+    max-width:320px;
+  }
+
+  /* ── Padding محتوا روی desktop ── */
+  .sect{padding:20px 28px;}
+  .dash-hero{padding:28px 32px 32px;}
+
+  /* ── Dashboard: grid دو ستون ── */
+  #pg-dashboard .sect:first-of-type>div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  /* ── pgtitle spacing ── */
+  .pgtitle{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;}
+
+  /* ── Card padding ── */
+  .card{padding:20px;border-radius:16px;}
+
+  /* ── forms wider ── */
+  .fg{margin-bottom:14px;}
+  .fi{font-size:.9rem;}
+
+  /* ── Analyzer: control + results side by side ── */
+  #pg-analyzer{
+    display:flex;
+    flex-direction:column;
+  }
+  .an-ctrl{padding:20px 28px 0;}
+
 }
 @media (min-width:1200px){
   .app{max-width:440px}
