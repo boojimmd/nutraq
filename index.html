@@ -629,6 +629,7 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   ════════════════════════════════ */
   #pg-foods>.sect{padding:16px 18px;}
   .foods-grid{
+    display:grid!important;
     grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
     gap:8px;    /* مثل DayQ tc-wrap: 3-8px */
   }
@@ -651,7 +652,7 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   /* ════════════════════════════════
      SETTINGS
   ════════════════════════════════ */
-  #pg-settings>.sect{max-width:560px;padding:16px 18px;}
+  #pg-settings>.sect{max-width:560px;padding:16px 18px;margin:0 auto;}
   #pg-settings .card{border-radius:16px;padding:16px;margin-bottom:10px;}
   #pg-settings .fg{margin-bottom:10px;}
   #pg-settings .fi{font-size:.85rem;}
@@ -1103,14 +1104,14 @@ span[style*="font-size:0"] svg {
   #pg-patients.active{overflow:hidden;}
   .pt-layout{
     display:flex;
-    flex-direction:row-reverse; /* راست=لیست، چپ=panel — RTL */
+    flex-direction:row; /* RTL: اول=راست، دوم=چپ */
     height:100%;
     overflow:hidden;
   }
   .pt-list-col{
     width:360px;
     flex-shrink:0;
-    border-left:1px solid var(--b1);
+    border-right:1px solid var(--b1);
     overflow-y:auto;
     height:100%;
   }
@@ -1185,7 +1186,7 @@ span[style*="font-size:0"] svg {
   #pg-menu.active{overflow:hidden;}
   .menu-layout{
     display:flex;
-    flex-direction:row-reverse; /* RTL: sidebar راست، main چپ */
+    flex-direction:row; /* RTL: sidebar راست، main چپ */
     height:100%;
     overflow:hidden;
   }
@@ -1193,7 +1194,7 @@ span[style*="font-size:0"] svg {
   .menu-sidebar{
     width:300px;
     flex-shrink:0;
-    border-left:1px solid var(--b1);
+    border-right:1px solid var(--b1);
     overflow:hidden;
     display:flex;
     flex-direction:column;
@@ -1292,6 +1293,7 @@ span[style*="font-size:0"] svg {
   }
   /* grid دنسرتر */
   .foods-grid{
+    display:grid!important;
     grid-template-columns:repeat(auto-fill,minmax(170px,1fr)) !important;
     gap:7px !important;
   }
