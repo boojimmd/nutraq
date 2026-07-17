@@ -339,6 +339,13 @@ button:disabled,input:disabled,select:disabled,[disabled]{opacity:.45;cursor:not
 .ei{font-size:44px;opacity:.3}
 .et{font-size:15px;font-weight:700;color:var(--t2)}
 .div{height:1px;background:var(--b1);margin:12px 0}
+
+/* Mobile: panel ها مخفی */
+.pt-panel{display:none;}
+.menu-sidebar{display:none;}
+.pt-list-col .sect,.menu-main{width:100%;}
+
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .hdr,.bnav,.btnp,.btns,.btnd,.ibtn,.modal-ov,.toast,#toast-undo,#menu-allergy-banner{display:none!important}
@@ -1451,7 +1458,7 @@ span[style*="font-size:0"] svg {
 
 </div>
 
-id="pg-menu">
+<div class="page" id="pg-menu">
 <div class="menu-layout">
 
   <!-- ── Sidebar: کنترل‌ها + فرم افزودن ── -->
@@ -1570,7 +1577,7 @@ id="pg-menu">
 
 </div>
 
-id="pg-foods">
+<div class="page" id="pg-foods">
     <div class="sect" style="padding-bottom:0">
       <div class="row-sb mb-12">
         <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span> پایگاه غذایی</div>
@@ -1629,7 +1636,7 @@ id="pg-foods">
   </div>
 </div>
 
-id="pg-settings">
+<div class="page" id="pg-settings">
     <div class="sect">
       <div class="pgtitle" style="margin-bottom:16px"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> تنظیمات</div>
       <div class="card" style="margin-bottom:14px">
