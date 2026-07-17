@@ -387,112 +387,267 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
    ══════════════════════════════════════════════════════ */
 @media(min-width:900px){
 
-  /* ── App: full-screen, no phone frame ── */
+  /* ── App ── */
   body{align-items:stretch;background:var(--bg);}
   .app{max-width:none!important;width:100%!important;height:100dvh;border-radius:0!important;overflow:visible;position:relative;margin:0!important;box-shadow:none!important;}
 
   /* ── Topbar ── */
-  .hdr{position:fixed;top:0;right:220px;left:0;height:56px;padding:0 24px;z-index:90;display:flex;align-items:center;justify-content:space-between;}
+  .hdr{
+    position:fixed;top:0;right:220px;left:0;
+    height:60px;
+    padding:0 24px;
+    z-index:90;
+    display:flex;align-items:center;justify-content:space-between;
+  }
   .hdr-sub{display:block;}
-  .hdr-logo{width:30px;height:30px;font-size:.82rem;border-radius:8px;}
-  .hdr-title{font-size:.88rem;font-weight:800;}
-  .hdr-sub{font-size:.68rem;color:var(--t3);}
-  .hdr-date{font-size:.75rem;color:var(--t2);}
+  .hdr-logo{width:32px;height:32px;font-size:.85rem;border-radius:10px;}
+  .hdr-title{font-size:.9rem;font-weight:800;letter-spacing:-.02em;}
+  .hdr-sub{font-size:.68rem;color:var(--t3);margin-top:2px;}
+  .hdr-date{font-size:.76rem;color:var(--t2);}
 
-  /* ── Sidebar ── */
-  .bnav{position:fixed;right:0;top:0;bottom:0;width:220px;height:100dvh;flex-direction:column;justify-content:flex-start;align-items:stretch;border-top:none;border-left:1px solid var(--b1);padding:0 10px 24px;gap:2px;overflow-y:auto;z-index:100;scrollbar-width:none;}
+  /* ── Sidebar — دقیقاً مثل DayQ nav ── */
+  .bnav{
+    position:fixed;right:0;top:0;bottom:0;
+    width:220px;height:100dvh;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    border-top:none;
+    border-left:1px solid var(--b1);
+    padding:0 10px 20px;   /* DayQ: 10px sides, 20px bottom */
+    gap:4px;               /* DayQ: 4px */
+    overflow-y:auto;z-index:100;
+    scrollbar-width:none;
+  }
   .bnav::-webkit-scrollbar{display:none;}
-  .bnav::before{content:'NutraQ';display:block;font-size:1.1rem;font-weight:800;color:var(--g);letter-spacing:-.03em;padding:20px 12px 18px;flex-shrink:0;border-bottom:1px solid var(--b1);margin-bottom:8px;}
-  .nb{flex-direction:row;justify-content:flex-start;text-align:right;gap:10px;padding:9px 12px;border-radius:10px;flex:none;width:100%;min-width:0;font-size:.82rem;font-weight:600;color:var(--t2);transition:background .15s,color .15s;}
+  .bnav::before{
+    content:'NutraQ';
+    display:block;
+    font-size:1.05rem;font-weight:800;color:var(--g);letter-spacing:-.03em;
+    padding:16px 12px 14px;  /* DayQ nav: 16px top */
+    flex-shrink:0;
+    border-bottom:1px solid var(--b1);
+    margin-bottom:4px;
+  }
+  /* nav items — مثل DayQ .ni */
+  .nb{
+    flex-direction:row;justify-content:flex-start;text-align:right;
+    gap:10px;               /* DayQ: 10px */
+    padding:9px 12px;       /* DayQ: 9px/12px */
+    border-radius:12px;     /* DayQ: 12px */
+    flex:none;width:100%;min-width:0;
+    font-size:.78rem;       /* DayQ ni: ~.78rem */
+    font-weight:600;        /* DayQ: 600 */
+    color:var(--t2);
+    transition:background .15s,color .15s;
+  }
   .nb:hover:not(.active){background:var(--s1);color:var(--t1);}
   .nb.active{background:var(--gd);color:var(--g);}
   .nb-ic svg{stroke:var(--t3)!important;transition:stroke .15s;}
   .nb.active .nb-ic svg{stroke:var(--g)!important;}
   .nb:hover:not(.active) .nb-ic svg{stroke:var(--t1)!important;}
-  .nb-ic{flex-shrink:0;}
-  .nb-lbl{font-size:.82rem;color:inherit;}
+  .nb-ic{flex-shrink:0;opacity:.7;}
+  .nb.active .nb-ic{opacity:1;}
+  .nb-lbl{font-size:.78rem;color:inherit;}
   #nb-settings{margin-top:auto;border-top:1px solid var(--b1);padding-top:8px;}
 
   /* ── Content area ── */
-  .pwrap{position:relative;margin-right:220px;margin-top:56px;height:calc(100dvh - 56px);overflow:hidden;}
+  .pwrap{
+    position:relative;
+    margin-right:220px;
+    margin-top:60px;
+    height:calc(100dvh - 60px);
+    overflow:hidden;
+  }
   .page{padding-bottom:32px;}
 
-  /* ── Modals بالاتر از sidebar ── */
+  /* ── Modals ── */
   .modal-ov{z-index:200;}
   .modal-sheet{z-index:201;}
-  .food-dd{z-index:150;}
-  .ddwrap{z-index:150;}
+  .food-dd,.ddwrap{z-index:150;}
   .toast{z-index:300;right:auto;left:24px;bottom:24px;max-width:320px;top:auto;transform:none;}
   .toast.show{transform:none;}
 
-  /* ═══ CONTENT CONTAINER ═══
-     همه محتوا در یه wrapper با max-width مناسب
-  ═════════════════════════════ */
-  .sect{padding:20px 28px;}
-  .dash-hero{padding:24px 28px 28px;}
-  .pgtitle{font-size:.95rem;font-weight:700;letter-spacing:-.02em;}
+  /* ════════════════════════════════════════════════
+     SPACING SYSTEM — دقیقاً مثل DayQ
+     Content padding: 18px چپ/راست
+     بین آیتم‌ها: 3-4px
+     کارت‌ها: 16px padding، 22px border-radius
+  ════════════════════════════════════════════════ */
 
-  /* ═══ STAT CARDS — رنگ border روشن‌تر در light mode ═══ */
-  .sc{border:1.5px solid var(--b2);}
-  [data-theme="light"] .sc{background:var(--bg2)!important;border-color:var(--b2);}
+  /* ── Section: 18px horizontal — مثل DayQ ── */
+  .sect{padding:16px 18px;}     /* DayQ: 18px sides */
+  .dash-hero{padding:20px 18px 24px;}
+  .an-ctrl{padding:16px 12px;}
 
-  /* ═══ DASHBOARD ═══ */
-  #pg-dashboard>.sect{padding:20px 28px;}
-  /* 4-ستون stats */
+  /* ── Page title row ── */
+  .pgtitle{
+    font-size:.88rem;
+    font-weight:700;
+    letter-spacing:-.02em;
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:14px;
+  }
+  .sect-title{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--t3);
+    margin-bottom:10px;
+  }
+
+  /* ── Cards — DayQ: 16px padding، 22px border-radius، 10px margin ── */
+  .card{
+    padding:16px;
+    border-radius:20px;    /* DayQ card: 22px */
+    margin-bottom:10px;    /* DayQ: 10px */
+    border-color:var(--b1);
+  }
+  .card-title{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--t3);
+    margin-bottom:12px;
+  }
+  /* Inputs و selects */
+  .fi,.fs{font-size:.85rem;padding:10px 12px;}
+  .fg{margin-bottom:10px;}
+
+  /* ── Buttons ── */
+  .btnp,.btns,.btnd,.btnshr{
+    font-size:.8rem;
+    padding:9px 14px;
+    gap:6px;
+  }
+
+  /* ── Stat cards (dashboard) ── */
+  .sc{
+    border:1px solid var(--b1);
+    border-radius:16px;    /* DayQ tc: 16px */
+    padding:14px 12px;
+    margin-bottom:0;
+  }
+  [data-theme="light"] .sc{background:var(--s1)!important;}
+  .sc-v{font-size:1.8rem!important;font-weight:800!important;margin-bottom:2px!important;}
+  .sc-l{font-size:.72rem!important;color:var(--t3)!important;}
+
+  /* ════════════════════════════════
+     DASHBOARD
+  ════════════════════════════════ */
+  #pg-dashboard>.sect{padding:16px 18px;}
+  /* 4-ستون stat grid */
   #pg-dashboard div[style*="grid-template-columns:1fr 1fr"]{
     grid-template-columns:repeat(4,1fr)!important;
-    gap:12px!important;
+    gap:10px!important;
+    margin-bottom:10px!important;
   }
-  .sc-v{font-size:2rem!important;}
   /* quick access 4 ستون */
-  .qa-grid{grid-template-columns:repeat(4,1fr)!important;}
-  .qa-btn{padding:16px 12px!important;}
+  .qa-grid{grid-template-columns:repeat(4,1fr)!important;gap:8px!important;}
+  .qa-btn{
+    padding:14px 10px!important;
+    border-radius:14px!important;
+    gap:8px!important;
+  }
+  .qa-txt{font-size:.78rem!important;}
 
-  /* ═══ PATIENTS ═══ */
-  #pg-patients>.sect{padding:20px 28px;max-width:800px;}
-  .ptcard{padding:12px 14px;}
+  /* ════════════════════════════════
+     PATIENTS
+  ════════════════════════════════ */
+  #pg-patients>.sect{padding:16px 18px;max-width:800px;}
+  /* patient list items — مثل DayQ tc-wrap: 3px margin-bottom */
+  .ptcard{
+    padding:11px 14px;   /* DayQ tc: 11px/16px */
+    border-radius:14px;
+    margin-bottom:3px;   /* DayQ tc-wrap: 3px */
+    gap:10px;
+  }
+  .ptmi{width:38px;height:38px;border-radius:50%;}
+  .ptn{font-size:.85rem;font-weight:600;}
+  .ptmt{font-size:.72rem;color:var(--t3);}
 
-  /* ═══ MENU — macrobox horizontal ═══ */
-  #pg-menu>.sect{padding:20px 28px;}
+  /* ════════════════════════════════
+     MENU — macrobox compact
+  ════════════════════════════════ */
+  #pg-menu>.sect{padding:16px 18px;}
   .macrobox{
-    display:flex;flex-direction:row;gap:20px;align-items:center;
-    padding:16px 20px;background:var(--s1);border:1px solid var(--b1);
-    border-radius:14px;margin-bottom:16px;
+    display:flex;flex-direction:row;gap:16px;align-items:center;
+    padding:14px 16px;
+    background:var(--s1);border:1px solid var(--b1);
+    border-radius:16px;margin-bottom:14px;
   }
   .gauge-wrap{flex-shrink:0;}
-  .gauge-info{flex-shrink:0;min-width:110px;}
-  .mb-rows{flex:1;min-width:160px;}
+  .gauge-svg{width:64px!important;height:64px!important;}
+  .gauge-bg,.gauge-arc{r:26!important;cx:32!important;cy:32!important;}
+  .gauge-info{flex-shrink:0;min-width:100px;}
+  .mb-rows{flex:1;min-width:140px;}
+  .mb-r{margin-bottom:4px;}
+  .mb-l{font-size:.72rem;}
+  .mb-bg{height:5px;border-radius:3px;}
 
-  /* ═══ ANALYZER — دو ستون واقعی ═══ */
+  /* food list items */
+  .frow{
+    padding:10px 12px;
+    border-radius:10px;
+    margin-bottom:3px;   /* مثل DayQ tc */
+  }
+  .fname{font-size:.85rem;}
+  .fsub{font-size:.72rem;}
+
+  /* ════════════════════════════════
+     ANALYZER — دو ستون واقعی
+  ════════════════════════════════ */
   #pg-analyzer.active{display:flex!important;flex-direction:row;overflow:hidden;}
   .an-ctrl{
-    width:260px;min-width:240px;flex-shrink:0;
-    border-left:1px solid var(--b1);overflow-y:auto;
-    padding:20px 16px;background:var(--bg2);
+    width:240px;min-width:220px;flex-shrink:0;
+    border-left:1px solid var(--b1);
+    overflow-y:auto;padding:16px 12px;
+    background:var(--bg2);
+    display:flex;flex-direction:column;gap:10px;
   }
-  #pg-analyzer>.sect{flex:1;min-width:0;overflow-y:auto;padding:20px 28px;}
-  .anstats{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-  .ansc{padding:12px 10px;border-radius:10px;}
+  #pg-analyzer>.sect{flex:1;min-width:0;overflow-y:auto;padding:16px 18px;}
+  /* نتایج analyzer */
+  .anstats{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;margin-bottom:14px;
+  }
+  .ansc{padding:12px 10px;border-radius:12px;}
+  .asv{font-size:1.2rem;font-weight:700;}
+  .ancard{border-radius:14px;margin-bottom:8px;}
 
-  /* ═══ FOODS ═══ */
-  #pg-foods>.sect{padding:20px 28px;}
-  .foods-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
-  .fcard{border-radius:12px;padding:14px;}
+  /* ════════════════════════════════
+     FOODS
+  ════════════════════════════════ */
+  #pg-foods>.sect{padding:16px 18px;}
+  .foods-grid{
+    grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+    gap:8px;    /* مثل DayQ tc-wrap: 3-8px */
+  }
+  .fcard{border-radius:14px;padding:12px;}
+  .fcn{font-size:.82rem;font-weight:600;}
+  .fckcal{font-size:.72rem;}
+  .fcmacs{gap:4px;margin-top:6px;}
+  .fcm{font-size:.68rem;}
 
-  /* ═══ REPORTS + PLANNER ═══ */
-  #pg-reports>.sect,#pg-planner>.sect{max-width:860px;padding:24px 28px;}
+  /* ════════════════════════════════
+     REPORTS + PLANNER
+  ════════════════════════════════ */
+  #pg-reports>.sect,#pg-planner>.sect{
+    max-width:840px;
+    padding:16px 18px;
+  }
+  .rpt,.plan-day{border-radius:14px;margin-bottom:8px;}
+  .rpthd{font-size:.82rem;font-weight:700;}
 
-  /* ═══ SETTINGS ═══ */
-  #pg-settings>.sect{max-width:580px;padding:24px 28px;}
-  #pg-settings .card{margin-bottom:14px;}
+  /* ════════════════════════════════
+     SETTINGS
+  ════════════════════════════════ */
+  #pg-settings>.sect{max-width:560px;padding:16px 18px;}
+  #pg-settings .card{border-radius:16px;padding:16px;margin-bottom:10px;}
   #pg-settings .fg{margin-bottom:10px;}
-
-  /* ═══ GLOBAL DESKTOP ═══ */
-  .card{padding:18px 20px;border-radius:14px;margin-bottom:10px;}
-  .card-title{font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
-  .fi,.fs{font-size:.88rem;padding:9px 12px;}
-  .fg{margin-bottom:10px;}
-  .btnp,.btns,.btnd,.btnshr{font-size:.82rem;padding:8px 14px;}
+  #pg-settings .fi{font-size:.85rem;}
 
 }
 @media (min-width:1200px){
