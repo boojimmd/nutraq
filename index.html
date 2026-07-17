@@ -1049,6 +1049,45 @@ span[style*="font-size:0"] svg {
   .pt-qbtn:hover{background:var(--gd);color:var(--g);border-color:transparent;}
   .pt-qbtn.menu-qbtn:hover{background:rgba(245,85,121,.12);color:var(--g);}
 }
+
+@media(min-width:900px){
+  #pg-dashboard{display:flex;flex-direction:column;overflow:hidden;}
+  .db-hero{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--b2);flex-shrink:0;gap:16px;}
+  .db-day{font-size:.65rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;}
+  .db-brand{font-size:.9rem;font-weight:800;color:var(--t1);letter-spacing:-.02em;margin-top:1px;}
+  .db-hero-center{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--t2);}
+  .db-hs span{font-weight:700;color:var(--t1);}
+  .db-sep{color:var(--b2);}
+  .db-hero-right{font-size:.72rem;color:var(--t3);white-space:nowrap;}
+  .db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 18px;border-bottom:1px solid var(--b2);flex-shrink:0;}
+  .db-sc{background:var(--bg2);border:1px solid var(--b1);border-radius:12px;padding:10px 14px;cursor:pointer;transition:background .15s;display:flex;flex-direction:column;gap:1px;}
+  .db-sc:hover{background:var(--s1);}
+  .db-sc-val{font-size:1.5rem;font-weight:800;color:var(--t1);line-height:1.1;}
+  .db-sc-lbl{font-size:.7rem;color:var(--t3);margin-top:2px;}
+  .db-sc-link{font-size:.65rem;color:var(--g);margin-top:3px;opacity:.6;}
+  .db-sc:hover .db-sc-link{opacity:1;}
+  .db-main{display:flex;flex:1;overflow:hidden;}
+  .db-col-main{flex:1;min-width:0;overflow-y:auto;padding:14px 18px;}
+  .db-col-side{width:268px;flex-shrink:0;border-right:1px solid var(--b1);overflow-y:auto;padding:12px 14px;background:var(--bg2);}
+  .db-col-title{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .db-actions{display:flex;flex-direction:column;gap:3px;}
+  .db-act-btn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--b1);background:var(--bg3);color:var(--t1);cursor:pointer;font-size:.78rem;font-weight:600;text-align:right;transition:background .12s,color .12s;font-family:inherit;margin-bottom:0;}
+  .db-act-btn:hover{background:var(--gd);border-color:transparent;color:var(--g);}
+  .db-act-btn svg{flex-shrink:0;opacity:.5;}
+  .db-act-btn:hover svg{opacity:1;}
+  .db-visit-title{font-size:.82rem;font-weight:700;color:var(--t1);margin-bottom:6px;margin-top:2px;display:flex;align-items:center;gap:6px;}
+  .db-vc{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;background:var(--bg2);border:1px solid var(--b1);margin-bottom:4px;cursor:pointer;transition:background .12s;}
+  .db-vc:hover{background:var(--s1);}
+  .db-vc.today{background:rgba(245,85,121,.08);border-color:rgba(245,85,121,.25);}
+  .db-vc-name{font-size:.82rem;font-weight:600;color:var(--t1);}
+  .db-vc-sub{font-size:.7rem;color:var(--t3);margin-top:1px;}
+  .db-section-hdr{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);margin:12px 0 5px;padding-top:10px;border-top:1px solid var(--b2);}
+  .db-rpt{display:flex;align-items:center;gap:8px;padding:6px 6px;border-radius:7px;cursor:pointer;transition:background .12s;margin-bottom:1px;}
+  .db-rpt:hover{background:var(--s1);}
+  .db-rpt-name{font-size:.78rem;font-weight:600;color:var(--t1);}
+  .db-rpt-sub{font-size:.66rem;color:var(--t3);}
+  .db-empty{text-align:center;padding:24px 12px;color:var(--t3);font-size:.8rem;line-height:1.6;}
+}
 </style>
 </head>
 <body>
@@ -1067,63 +1106,66 @@ span[style*="font-size:0"] svg {
 
   <!-- DASHBOARD -->
   <div class="page active" id="pg-dashboard">
-    <div class="dash-hero">
-      <div class="dash-greet">سامانه <span>تغذیه بالینی</span></div>
-      <div class="dash-date" id="dash-date-sub"></div>
+
+  <!-- ── Hero ── -->
+  <div class="db-hero">
+    <div class="db-hero-left">
+      <div class="db-day" id="db-day-label"></div>
+      <div class="db-brand">سامانه تغذیه بالینی</div>
     </div>
-    <div class="sect">
-      <!-- Stats Row 1: Critical — Patients & Menus (large, clickable) -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-        <div class="sc g" style="cursor:pointer;padding:18px 14px" onclick="nav('patients')">
-          <div class="row-sb mb-12">
-            <span style="font-size:11px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.5px">بیماران</span>
-            <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
-          </div>
-          <div class="sc-v" id="d-pts" style="font-size:36px">0</div>
-          <div class="sc-l" style="margin-top:4px">بیمار فعال</div>
-          <div style="font-size:10px;color:var(--g);margin-top:6px;opacity:.7">مشاهده همه ←</div>
-        </div>
-        <div class="sc a" style="cursor:pointer;padding:18px 14px" onclick="nav('menu')">
-          <div class="row-sb mb-12">
-            <span style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.5px">منوها</span>
-            <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f59e0b"/></svg></span>
-          </div>
-          <div class="sc-v" id="d-menus" style="font-size:36px">0</div>
-          <div class="sc-l" style="margin-top:4px">منوی ثبت‌شده</div>
-          <div style="font-size:10px;color:var(--amber);margin-top:6px;opacity:.7">منوساز ←</div>
-        </div>
-      </div>
-      <!-- Stats Row 2: Secondary — DB info (small, non-clickable) -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
-        <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r12);padding:10px 12px;display:flex;align-items:center;gap:10px">
-          <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
-          <div><div style="font-size:18px;font-weight:800">234</div><div style="font-size:10px;color:var(--t3)">ماده غذایی</div></div>
-        </div>
-        <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r12);padding:10px 12px;display:flex;align-items:center;gap:10px">
-          <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>
-          <div><div style="font-size:18px;font-weight:800">44</div><div style="font-size:10px;color:var(--t3)">غذای ایرانی</div></div>
-        </div>
-      </div>
-      <div class="sect-title">دسترسی سریع</div>
-      <div class="qa-grid">
-        <button class="qa-btn" onclick="openAddPt()"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span></div><div><div class="qa-txt">بیمار جدید</div><div class="qa-sub">ثبت اطلاعات</div></div></button>
-        <button class="qa-btn" onclick="nav('menu')"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#7c6fd4"/></svg></span></div><div><div class="qa-txt">منوساز</div><div class="qa-sub">برنامه غذایی</div></div></button>
-        <button class="qa-btn" onclick="openPlannerModal()"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div><div class="qa-txt">برنامه‌ساز</div><div class="qa-sub">خودکار</div></div></button>
-        <button class="qa-btn" onclick="nav('analyzer')"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div><div class="qa-txt">آنالیز</div><div class="qa-sub">ریزمغذی‌ها</div></div></button>
-      </div>
+    <div class="db-hero-center">
+      <span class="db-hs"><span id="db-today-count">۰</span> ویزیت امروز</span>
+      <span class="db-sep">·</span>
+      <span class="db-hs"><span id="db-tmr-count">۰</span> فردا</span>
+      <span class="db-sep">·</span>
+      <span class="db-hs"><span id="d-pts">۰</span> بیمار کل</span>
     </div>
-    <div class="sect" style="padding-top:0" id="visits-section" style="display:none">
-      <div class="sect-title">ویزیت‌های این هفته</div>
-      <div id="d-visits"></div>
+    <div class="db-hero-right" id="db-date-label"></div>
+  </div>
+
+  <!-- ── Stats Row ── -->
+  <div class="db-stats">
+    <div class="db-sc" onclick="nav('patients')">
+      <span class="db-sc-val" id="db-sc-pts">۰</span>
+      <span class="db-sc-lbl">بیمار فعال</span>
+      <span class="db-sc-link">مشاهده همه ←</span>
     </div>
-    <div class="sect" style="padding-top:0">
-      <div class="sect-title">بیماران اخیر</div>
+    <div class="db-sc" onclick="nav('menu')">
+      <span class="db-sc-val" id="d-menus">۰</span>
+      <span class="db-sc-lbl">منو ثبت‌شده</span>
+      <span class="db-sc-link">منوساز ←</span>
+    </div>
+    <div class="db-sc" onclick="nav('foods')">
+      <span class="db-sc-val">۲۳۴</span>
+      <span class="db-sc-lbl">ماده غذایی</span>
+      <span class="db-sc-link">بانک غذایی ←</span>
+    </div>
+    <div class="db-sc">
+      <span class="db-sc-val" id="db-sc-week">۰</span>
+      <span class="db-sc-lbl">ویزیت این هفته</span>
+      <span class="db-sc-link">برنامه‌ریزی‌شده</span>
+    </div>
+  </div>
+
+  <!-- ── Main Two-Column ── -->
+  <div class="db-main">
+    <div class="db-col-main">
+      <div id="db-visits-col"></div>
+    </div>
+    <div class="db-col-side">
+      <div class="db-col-title">دسترسی سریع</div>
+      <div class="db-actions">
+        <button class="db-act-btn" onclick="openAddPt()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>بیمار جدید</button>
+        <button class="db-act-btn" onclick="nav('menu')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>منوساز روزانه</button>
+        <button class="db-act-btn" onclick="nav('analyzer')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>آنالیز ریزمغذی</button>
+        <button class="db-act-btn" onclick="nav('reports')"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>گزارش بالینی</button>
+      </div>
+      <div class="db-col-title" style="margin-top:16px">بیماران اخیر</div>
       <div id="d-recent"></div>
     </div>
   </div>
 
-  <!-- PATIENTS -->
-  <div class="page" id="pg-patients">
+id="pg-patients">
     <div class="sect">
       <div class="row-sb mb-14">
         <div><div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> بیماران</div><div style="font-size:11px;color:var(--t3);margin-top:2px" id="pt-count"></div></div>
@@ -2256,65 +2298,74 @@ function initPatientContextMenu(){
 
 function updDash(){
   var pts=getP(), menus=getM();
-  st("d-pts",pts.length); st("d-menus",Object.keys(menus).length);
-
-  // Upcoming visits (next 7 days)
   var today=new Date(); today.setHours(0,0,0,0);
-  var weekAhead=new Date(today); weekAhead.setDate(weekAhead.getDate()+7);
-  var upcoming=pts.filter(function(p){
-    if(!p.nextVisit)return false;
-    var d=new Date(p.nextVisit);
-    return d>=today && d<=weekAhead;
-  }).sort(function(a,b){return new Date(a.nextVisit)-new Date(b.nextVisit);});
-
-  var visitsSection=q("visits-section");
-  if(visitsSection){
-    if(upcoming.length){
-      visitsSection.style.display="block";
-      var vh="";
-      upcoming.forEach(function(p){
-        var d=new Date(p.nextVisit);
-        var dayLabel=d.toLocaleDateString("fa-IR",{weekday:"long",day:"numeric",month:"short"});
-        var isToday=d.toDateString()===today.toDateString();
-        vh+='<div class="ptm" data-pid="'+p.id+'">';
-        vh+='<div class="av" style="width:40px;height:40px;border-radius:12px;font-size:15px;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||"")+"</div>";
-        vh+='<div class="ptmi"><div class="ptn">'+p.firstname+" "+p.lastname+"</div>";
-        vh+='<div class="ptmt">'+dayLabel+"</div></div>";
-        if(isToday)vh+='<span class="badge bg-r">امروز</span>';
-        else vh+='<span class="badge bg-b">برنامه‌ریزی‌شده</span>';
-        vh+="</div>";
+  var tom=new Date(today); tom.setDate(today.getDate()+1);
+  var weekAhead=new Date(today); weekAhead.setDate(today.getDate()+7);
+  var todayVis=pts.filter(function(p){return p.nextVisit&&new Date(p.nextVisit).toDateString()===today.toDateString();});
+  var tomVis=pts.filter(function(p){return p.nextVisit&&new Date(p.nextVisit).toDateString()===tom.toDateString();});
+  var weekVis=pts.filter(function(p){if(!p.nextVisit)return false;var d=new Date(p.nextVisit);return d>=today&&d<=weekAhead;});
+  // Hero
+  var dl=q('db-day-label'); if(dl)dl.textContent=today.toLocaleDateString('fa-IR',{weekday:'long'});
+  var dr=q('db-date-label'); if(dr)dr.textContent=today.toLocaleDateString('fa-IR',{day:'numeric',month:'long'});
+  st('db-today-count',todayVis.length); st('db-tmr-count',tomVis.length); st('d-pts',pts.length);
+  // Stats
+  st('db-sc-pts',pts.length); st('d-menus',Object.keys(menus).length); st('db-sc-week',weekVis.length);
+  // Favicon
+  if(window.innerWidth>=900) _updateFaviconBadge(todayVis.length);
+  // Visits column
+  var vc=q('db-visits-col'); if(!vc) return;
+  var vh='';
+  if(!pts.length){
+    vh='<div class="db-empty">هنوز بیماری ثبت نشده<br><button class="btnp" style="margin-top:10px" onclick="openAddPt()">+ بیمار جدید</button></div>';
+  } else if(!weekVis.length){
+    vh='<div class="db-empty">هیچ ویزیتی این هفته برنامه‌ریزی نشده</div>';
+  } else {
+    if(todayVis.length){
+      vh+='<div class="db-visit-title">امروز <span class="badge bg-r">'+todayVis.length+'</span></div>';
+      todayVis.forEach(function(p){
+        vh+='<div class="db-vc today" data-pid="'+p.id+'">';
+        vh+='<div class="av" style="width:34px;height:34px;border-radius:9px;font-size:12px;flex-shrink:0;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||'')+'</div>';
+        vh+='<div style="flex:1;min-width:0"><div class="db-vc-name">'+p.firstname+' '+p.lastname+'</div>';
+        vh+='<div class="db-vc-sub">'+p.age+' سال'+(p.weight?' · '+p.weight+'kg':'')+(p.diagnosis?' · '+p.diagnosis.substring(0,20):'')+'</div></div>';
+        vh+='<span class="badge bg-r" style="flex-shrink:0">امروز</span></div>';
       });
-      q("d-visits").innerHTML=vh;
-  // favicon badge: تعداد ویزیت امروز
-  if(window.innerWidth>=900) _updateFaviconBadge(upcoming.length);
-      q("d-visits").querySelectorAll(".ptm").forEach(function(el){
-        el.addEventListener("click",function(){openPtDetail(el.dataset.pid);});
+    }
+    if(tomVis.length){
+      vh+='<div class="db-section-hdr">فردا — '+tomVis.length+' نفر</div>';
+      tomVis.forEach(function(p){
+        vh+='<div class="db-vc" data-pid="'+p.id+'">';
+        vh+='<div class="av" style="width:34px;height:34px;border-radius:9px;font-size:12px;flex-shrink:0;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||'')+'</div>';
+        vh+='<div style="flex:1;min-width:0"><div class="db-vc-name">'+p.firstname+' '+p.lastname+'</div>';
+        vh+='<div class="db-vc-sub">'+p.age+' سال'+(p.weight?' · '+p.weight+'kg':'')+'</div></div>';
+        vh+='<span class="badge bg-b" style="flex-shrink:0">فردا</span></div>';
       });
-    } else {
-      visitsSection.style.display="none";
+    }
+    var rest=weekVis.filter(function(p){var d=new Date(p.nextVisit);return d.toDateString()!==today.toDateString()&&d.toDateString()!==tom.toDateString();});
+    if(rest.length){
+      vh+='<div class="db-section-hdr">بقیه هفته — '+rest.length+' نفر</div>';
+      rest.forEach(function(p){
+        var dl2=new Date(p.nextVisit).toLocaleDateString('fa-IR',{weekday:'long',day:'numeric',month:'short'});
+        vh+='<div class="db-vc" data-pid="'+p.id+'">';
+        vh+='<div class="av" style="width:34px;height:34px;border-radius:9px;font-size:12px;flex-shrink:0;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||'')+'</div>';
+        vh+='<div style="flex:1;min-width:0"><div class="db-vc-name">'+p.firstname+' '+p.lastname+'</div>';
+        vh+='<div class="db-vc-sub">'+dl2+'</div></div></div>';
+      });
     }
   }
-
-  var c=q("d-recent"); if(!c)return;
-  if(!pts.length){
-    c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div><div class="et">هنوز بیماری ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="openAddPt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> افزودن بیمار</button></div>';
-    return;
-  }
-  var h="";
-  pts.slice(0,4).forEach(function(p){
+  vc.innerHTML=vh;
+  vc.querySelectorAll('.db-vc[data-pid]').forEach(function(el){el.addEventListener('click',function(){openPtDetail(el.dataset.pid);});});
+  // Recent patients in sidebar
+  var rc=q('d-recent'); if(!rc) return;
+  var rh='';
+  pts.slice(0,5).forEach(function(p){
     var bc=bmiCat(p.bmi);
-    var mc=Object.values(getM()).filter(function(m){return m.patientId===p.id;}).length;
-    h+='<div class="ptm" data-pid="'+p.id+'">';
-    h+='<div class="av" style="width:40px;height:40px;border-radius:12px;font-size:15px;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||"")+"</div>";
-    h+='<div class="ptmi"><div class="ptn">'+p.firstname+" "+p.lastname+"</div>";
-    h+='<div class="ptmt">'+p.age+" سال · "+p.gender+(p.bmi?" · BMI "+p.bmi:"")+(mc?" · "+mc+" منو":"")+"</div></div>";
-    if(bc.c)h+='<span class="badge bg-'+bc.c+'">'+bc.l+"</span>";
-    h+="</div>";
+    rh+='<div class="db-rpt" data-pid="'+p.id+'">';
+    rh+='<div class="av" style="width:28px;height:28px;border-radius:7px;font-size:10px;flex-shrink:0;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||'')+'</div>';
+    rh+='<div><div class="db-rpt-name">'+p.firstname+' '+p.lastname+'</div>';
+    rh+='<div class="db-rpt-sub">'+p.age+' سال'+(bc.l?' · '+bc.l:'')+'</div></div></div>';
   });
-  c.innerHTML=h;
-  c.querySelectorAll(".ptm").forEach(function(el){
-    el.addEventListener("click",function(){openPtDetail(el.dataset.pid);});
-  });
+  rc.innerHTML=rh;
+  rc.querySelectorAll('.db-rpt[data-pid]').forEach(function(el){el.addEventListener('click',function(){openPtDetail(el.dataset.pid);});});
 }
 
 // ── Patients ──
