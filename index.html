@@ -1058,7 +1058,7 @@ span[style*="font-size:0"] svg {
 }
 
 @media(min-width:900px){
-  #pg-dashboard{display:flex;flex-direction:column;overflow:hidden;}
+  #pg-dashboard.active{display:flex;flex-direction:column;overflow:hidden;}
   .db-hero{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--b2);flex-shrink:0;gap:16px;}
   .db-day{font-size:.65rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;}
   .db-brand{font-size:.9rem;font-weight:800;color:var(--t1);letter-spacing:-.02em;margin-top:1px;}
@@ -1100,7 +1100,7 @@ span[style*="font-size:0"] svg {
    PATIENTS — Two-column layout
 ════════════════════════════════ */
 @media(min-width:900px){
-  #pg-patients{overflow:hidden;}
+  #pg-patients.active{overflow:hidden;}
   .pt-layout{
     display:flex;
     flex-direction:row-reverse; /* راست=لیست، چپ=panel — RTL */
@@ -1182,7 +1182,7 @@ span[style*="font-size:0"] svg {
    MENU — Two-column layout
 ════════════════════════════════ */
 @media(min-width:900px){
-  #pg-menu{overflow:hidden;}
+  #pg-menu.active{overflow:hidden;}
   .menu-layout{
     display:flex;
     flex-direction:row-reverse; /* RTL: sidebar راست، main چپ */
@@ -1278,7 +1278,7 @@ span[style*="font-size:0"] svg {
   .ancard{border-radius:12px;margin-bottom:8px;}
 
   /* ════ FOODS — horizontal search bar ════ */
-  #pg-foods{overflow-y:auto;}
+  #pg-foods.active{overflow-y:auto;}
   #pg-foods>.sect{padding:14px 18px;}
   #pg-foods .row-sb{margin-bottom:8px;}
   /* search + category در یه ردیف */
@@ -1302,7 +1302,7 @@ span[style*="font-size:0"] svg {
   .fcm{font-size:.65rem;}
 
   /* ════ REPORTS — sticky header ════ */
-  #pg-reports{overflow-y:auto;}
+  #pg-reports.active{overflow-y:auto;}
   #pg-reports>.sect{padding:0;}
   .rpt-header{
     position:sticky;
@@ -1321,7 +1321,7 @@ span[style*="font-size:0"] svg {
   .rpt-content{padding:16px 18px;}
 
   /* ════ SETTINGS — two-column ════ */
-  #pg-settings{overflow:hidden;}
+  #pg-settings.active{overflow:hidden;}
   .settings-layout{
     display:flex;
     flex-direction:row-reverse;
