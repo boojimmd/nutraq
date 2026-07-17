@@ -387,275 +387,112 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
    ══════════════════════════════════════════════════════ */
 @media(min-width:900px){
 
-  /* ── Reset body ── */
+  /* ── App: full-screen, no phone frame ── */
   body{align-items:stretch;background:var(--bg);}
-
-  /* ── App: full screen, no phone frame ── */
-  .app{
-    max-width:none !important;
-    width:100% !important;
-    height:100dvh;
-    border-radius:0 !important;
-    overflow:visible;
-    position:relative;
-    margin:0 !important;
-    box-shadow:none !important;
-  }
+  .app{max-width:none!important;width:100%!important;height:100dvh;border-radius:0!important;overflow:visible;position:relative;margin:0!important;box-shadow:none!important;}
 
   /* ── Topbar ── */
-  .hdr{
-    position:fixed;
-    top:0;right:220px;left:0;
-    height:56px;
-    padding:0 24px;
-    z-index:90;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
+  .hdr{position:fixed;top:0;right:220px;left:0;height:56px;padding:0 24px;z-index:90;display:flex;align-items:center;justify-content:space-between;}
   .hdr-sub{display:block;}
-
-  /* ── Sidebar ── */
-  .bnav{
-    position:fixed;
-    right:0;top:0;bottom:0;
-    width:220px;
-    height:100dvh;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:stretch;
-    border-top:none;
-    border-left:1px solid var(--b1);
-    padding:0 10px 24px;
-    gap:2px;
-    overflow-y:auto;
-    z-index:100;
-    scrollbar-width:none;
-  }
-  .bnav::-webkit-scrollbar{display:none;}
-
-  /* لوگو در sidebar */
-  .bnav::before{
-    content:'NutraQ';
-    display:block;
-    font-size:1.1rem;
-    font-weight:800;
-    color:var(--g);
-    letter-spacing:-.03em;
-    padding:20px 12px 18px;
-    flex-shrink:0;
-    border-bottom:1px solid var(--b1);
-    margin-bottom:8px;
-  }
-
-  /* دکمه nav: افقی → ردیف سمت راست */
-  .nb{
-    flex-direction:row;
-    justify-content:flex-start;
-    text-align:right;
-    gap:10px;
-    padding:9px 12px;
-    border-radius:10px;
-    flex:none;
-    width:100%;
-    min-width:0;
-    font-size:.82rem;
-    font-weight:600;
-    color:var(--t2);
-    transition:background .15s,color .15s;
-  }
-  .nb:hover:not(.active){background:var(--s1);color:var(--t1);}
-  .nb.active{background:var(--gd);color:var(--g);}
-
-  /* رنگ آیکون‌ها از CSS — override hardcoded stroke attribute */
-  .nb-ic svg{stroke:var(--t3) !important;transition:stroke .15s;}
-  .nb.active .nb-ic svg{stroke:var(--g) !important;}
-  .nb:hover:not(.active) .nb-ic svg{stroke:var(--t1) !important;}
-  .nb-ic{flex-shrink:0;}
-  .nb-lbl{font-size:.82rem;color:inherit;}
-
-  /* ── Content area ── */
-  .pwrap{
-    position:relative;
-    margin-right:220px;
-    margin-top:56px;
-    height:calc(100dvh - 56px);
-    overflow:hidden;
-  }
-
-  /* صفحات: padding-bottom برای bottom-nav حذف */
-  .page{padding-bottom:32px;}
-
-  /* ── Modal / Toast z-index بالاتر از sidebar ── */
-  .modal-ov{z-index:200;}
-  .modal-sheet{z-index:201;}
-  .food-dd{z-index:150;}
-  .ddwrap{z-index:150;}
-  .toast{
-    z-index:300;
-    right:auto;
-    left:24px;
-    bottom:24px;
-    max-width:320px;
-  }
-
-  /* ── Padding محتوا روی desktop ── */
-  .sect{padding:20px 28px;}
-  .dash-hero{padding:24px 28px 28px;}
-
-  /* ── Page titles ── */
-  .pgtitle{font-size:.95rem;font-weight:700;letter-spacing:-.02em;}
-
-  /* ═══════════════════════════════════════
-     DASHBOARD
-  ═══════════════════════════════════════ */
-  /* ═══════════════════════════════════════
-     DASHBOARD — 4 ستون
-  ═══════════════════════════════════════ */
-  #pg-dashboard>.sect{padding:20px 28px;}
-  #pg-dashboard div[style*="grid-template-columns:1fr 1fr"]{
-    grid-template-columns:repeat(4,1fr) !important;
-  }
-  /* quick access 4 ستون */
-  .qa-grid{grid-template-columns:repeat(4,1fr)!important;}
-  /* hero */
-  .dash-hero{min-height:90px;}
-
-  /* ═══════════════════════════════════════
-     PATIENTS — لیست محدود، modal برای جزئیات
-  ═══════════════════════════════════════ */
-  /* ═══════════════════════════════════════
-     PATIENTS
-  ═══════════════════════════════════════ */
-  #pg-patients>.sect{
-    max-width:640px;
-  }
-  .ptcard{padding:12px 14px;}
-
-  /* ═══════════════════════════════════════
-     MENU — macrobox horizontal compact
-  ═══════════════════════════════════════ */
-  #pg-menu>.sect{padding:20px 28px;}
-  .macrobox{
-    display:flex;
-    flex-direction:row;
-    gap:20px;
-    align-items:flex-start;
-    padding:16px 20px;
-    background:var(--s1);
-    border:1px solid var(--b1);
-    border-radius:14px;
-    margin-bottom:16px;
-  }
-  .gauge-wrap{flex-shrink:0;}
-  .gauge-info{flex-shrink:0;min-width:120px;}
-  .mb-rows{flex:1;min-width:180px;}
-
-  /* ═══════════════════════════════════════
-     ANALYZER — an-ctrl sidebar + sect نتایج
-  ═══════════════════════════════════════ */
-  #pg-analyzer.active{
-    display:flex !important;
-    flex-direction:row;
-    overflow:hidden;
-  }
-  .an-ctrl{
-    width:260px;
-    min-width:240px;
-    flex-shrink:0;
-    border-left:1px solid var(--b1);
-    overflow-y:auto;
-    padding:20px 16px;
-    height:100%;
-    background:var(--bg2);
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  #pg-analyzer>.sect{
-    flex:1;
-    min-width:0;
-    overflow-y:auto;
-    height:100%;
-    padding:20px 28px;
-  }
-  .an-ctrl .pgtitle{font-size:.85rem;margin-bottom:0;}
-  .an-ctrl .fs{font-size:.82rem;}
-  /* نتایج analyzer */
-  .anstats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin-bottom:16px;
-  }
-  .ansc{padding:12px 10px;}
-  .asv{font-size:1.1rem;}
-  .ancard{margin-bottom:10px;}
-
-  /* ═══════════════════════════════════════
-     FOODS — grid بهتر
-  ═══════════════════════════════════════ */
-  #pg-foods>.sect{padding:20px 28px;}
-  .foods-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-    gap:10px;
-  }
-  .fcard{border-radius:12px;padding:14px;}
-
-  /* ═══════════════════════════════════════
-     REPORTS
-  ═══════════════════════════════════════ */
-  #pg-reports>.sect{max-width:860px;padding:24px 28px;}
-  .rpt{border-radius:12px;}
-
-  /* ═══════════════════════════════════════
-     PLANNER
-  ═══════════════════════════════════════ */
-  #pg-planner>.sect{max-width:860px;padding:24px 28px;}
-  .plan-day{border-radius:12px;margin-bottom:12px;}
-
-  /* ═══════════════════════════════════════
-     SETTINGS — فرم محدود
-  ═══════════════════════════════════════ */
-  #pg-settings>.sect{max-width:600px;padding:24px 28px;}
-  #pg-settings .card{margin-bottom:14px;}
-  #pg-settings .fi{font-size:.88rem;}
-  #pg-settings .fg{margin-bottom:12px;}
-
-  /* ═══════════════════════════════════════
-     CARD — desktop
-  ═══════════════════════════════════════ */
-  .card{padding:18px 20px;border-radius:14px;margin-bottom:10px;}
-  .card-title{
-    font-size:.75rem;
-    font-weight:700;
-    letter-spacing:.05em;
-    text-transform:uppercase;
-    color:var(--t3);
-    margin-bottom:12px;
-  }
-  .fi,.fs{font-size:.88rem;padding:9px 12px;}
-  .fg{margin-bottom:10px;}
-
-  /* ═══════════════════════════════════════
-     BUTTONS
-  ═══════════════════════════════════════ */
-  .btnp,.btns,.btnd,.btnshr{font-size:.82rem;padding:8px 14px;}
-
-  /* ═══════════════════════════════════════
-     TOPBAR
-  ═══════════════════════════════════════ */
   .hdr-logo{width:30px;height:30px;font-size:.82rem;border-radius:8px;}
   .hdr-title{font-size:.88rem;font-weight:800;}
   .hdr-sub{font-size:.68rem;color:var(--t3);}
   .hdr-date{font-size:.75rem;color:var(--t2);}
 
-  /* ═══════════════════════════════════════
-     SIDEBAR
-  ═══════════════════════════════════════ */
-  /* settings در پایین sidebar */
+  /* ── Sidebar ── */
+  .bnav{position:fixed;right:0;top:0;bottom:0;width:220px;height:100dvh;flex-direction:column;justify-content:flex-start;align-items:stretch;border-top:none;border-left:1px solid var(--b1);padding:0 10px 24px;gap:2px;overflow-y:auto;z-index:100;scrollbar-width:none;}
+  .bnav::-webkit-scrollbar{display:none;}
+  .bnav::before{content:'NutraQ';display:block;font-size:1.1rem;font-weight:800;color:var(--g);letter-spacing:-.03em;padding:20px 12px 18px;flex-shrink:0;border-bottom:1px solid var(--b1);margin-bottom:8px;}
+  .nb{flex-direction:row;justify-content:flex-start;text-align:right;gap:10px;padding:9px 12px;border-radius:10px;flex:none;width:100%;min-width:0;font-size:.82rem;font-weight:600;color:var(--t2);transition:background .15s,color .15s;}
+  .nb:hover:not(.active){background:var(--s1);color:var(--t1);}
+  .nb.active{background:var(--gd);color:var(--g);}
+  .nb-ic svg{stroke:var(--t3)!important;transition:stroke .15s;}
+  .nb.active .nb-ic svg{stroke:var(--g)!important;}
+  .nb:hover:not(.active) .nb-ic svg{stroke:var(--t1)!important;}
+  .nb-ic{flex-shrink:0;}
+  .nb-lbl{font-size:.82rem;color:inherit;}
   #nb-settings{margin-top:auto;border-top:1px solid var(--b1);padding-top:8px;}
+
+  /* ── Content area ── */
+  .pwrap{position:relative;margin-right:220px;margin-top:56px;height:calc(100dvh - 56px);overflow:hidden;}
+  .page{padding-bottom:32px;}
+
+  /* ── Modals بالاتر از sidebar ── */
+  .modal-ov{z-index:200;}
+  .modal-sheet{z-index:201;}
+  .food-dd{z-index:150;}
+  .ddwrap{z-index:150;}
+  .toast{z-index:300;right:auto;left:24px;bottom:24px;max-width:320px;top:auto;transform:none;}
+  .toast.show{transform:none;}
+
+  /* ═══ CONTENT CONTAINER ═══
+     همه محتوا در یه wrapper با max-width مناسب
+  ═════════════════════════════ */
+  .sect{padding:20px 28px;}
+  .dash-hero{padding:24px 28px 28px;}
+  .pgtitle{font-size:.95rem;font-weight:700;letter-spacing:-.02em;}
+
+  /* ═══ STAT CARDS — رنگ border روشن‌تر در light mode ═══ */
+  .sc{border:1.5px solid var(--b2);}
+  [data-theme="light"] .sc{background:var(--bg2)!important;border-color:var(--b2);}
+
+  /* ═══ DASHBOARD ═══ */
+  #pg-dashboard>.sect{padding:20px 28px;}
+  /* 4-ستون stats */
+  #pg-dashboard div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:repeat(4,1fr)!important;
+    gap:12px!important;
+  }
+  .sc-v{font-size:2rem!important;}
+  /* quick access 4 ستون */
+  .qa-grid{grid-template-columns:repeat(4,1fr)!important;}
+  .qa-btn{padding:16px 12px!important;}
+
+  /* ═══ PATIENTS ═══ */
+  #pg-patients>.sect{padding:20px 28px;max-width:800px;}
+  .ptcard{padding:12px 14px;}
+
+  /* ═══ MENU — macrobox horizontal ═══ */
+  #pg-menu>.sect{padding:20px 28px;}
+  .macrobox{
+    display:flex;flex-direction:row;gap:20px;align-items:center;
+    padding:16px 20px;background:var(--s1);border:1px solid var(--b1);
+    border-radius:14px;margin-bottom:16px;
+  }
+  .gauge-wrap{flex-shrink:0;}
+  .gauge-info{flex-shrink:0;min-width:110px;}
+  .mb-rows{flex:1;min-width:160px;}
+
+  /* ═══ ANALYZER — دو ستون واقعی ═══ */
+  #pg-analyzer.active{display:flex!important;flex-direction:row;overflow:hidden;}
+  .an-ctrl{
+    width:260px;min-width:240px;flex-shrink:0;
+    border-left:1px solid var(--b1);overflow-y:auto;
+    padding:20px 16px;background:var(--bg2);
+  }
+  #pg-analyzer>.sect{flex:1;min-width:0;overflow-y:auto;padding:20px 28px;}
+  .anstats{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+  .ansc{padding:12px 10px;border-radius:10px;}
+
+  /* ═══ FOODS ═══ */
+  #pg-foods>.sect{padding:20px 28px;}
+  .foods-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+  .fcard{border-radius:12px;padding:14px;}
+
+  /* ═══ REPORTS + PLANNER ═══ */
+  #pg-reports>.sect,#pg-planner>.sect{max-width:860px;padding:24px 28px;}
+
+  /* ═══ SETTINGS ═══ */
+  #pg-settings>.sect{max-width:580px;padding:24px 28px;}
+  #pg-settings .card{margin-bottom:14px;}
+  #pg-settings .fg{margin-bottom:10px;}
+
+  /* ═══ GLOBAL DESKTOP ═══ */
+  .card{padding:18px 20px;border-radius:14px;margin-bottom:10px;}
+  .card-title{font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
+  .fi,.fs{font-size:.88rem;padding:9px 12px;}
+  .fg{margin-bottom:10px;}
+  .btnp,.btns,.btnd,.btnshr{font-size:.82rem;padding:8px 14px;}
 
 }
 @media (min-width:1200px){
