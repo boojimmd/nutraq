@@ -1170,6 +1170,182 @@ span[style*="font-size:0"] svg {
   }
   .pt-actions .btnp,.pt-actions .btns{flex:1;justify-content:center;}
 }
+
+/* ════════════════════════════════
+   MENU — Two-column layout
+════════════════════════════════ */
+@media(min-width:900px){
+  #pg-menu{overflow:hidden;}
+  .menu-layout{
+    display:flex;
+    flex-direction:row-reverse; /* RTL: sidebar راست، main چپ */
+    height:100%;
+    overflow:hidden;
+  }
+  /* sidebar راست: فرم افزودن */
+  .menu-sidebar{
+    width:300px;
+    flex-shrink:0;
+    border-left:1px solid var(--b1);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .menu-sidebar-inner{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    padding:14px 12px;
+    overflow-y:auto;
+    gap:0;
+  }
+  .menu-sidebar .card{
+    border-radius:10px;
+    padding:12px;
+    flex:1;
+    overflow-y:auto;
+    margin-bottom:0;
+  }
+  .menu-sidebar .date-nav{
+    background:var(--bg2);
+    border:1px solid var(--b1);
+    border-radius:8px;
+    padding:4px 8px;
+    font-size:.78rem;
+  }
+  /* main چپ: macrobox + meals */
+  .menu-main{
+    flex:1;
+    min-width:0;
+    overflow-y:auto;
+    padding:14px 16px;
+  }
+  .menu-main .macrobox{
+    border-radius:12px;
+    margin-bottom:14px;
+    padding:12px 16px;
+  }
+  /* meal items */
+  .meal-grp{margin-bottom:14px;}
+  .meal-cat-hdr{
+    font-size:.72rem;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--t3);
+    margin-bottom:6px;padding-bottom:4px;
+    border-bottom:1px solid var(--b2);
+  }
+  .frow{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;
+    border-radius:8px;
+    background:var(--bg2);
+    border:1px solid var(--b1);
+    margin-bottom:4px;
+  }
+  .frow:hover{background:var(--s1);}
+}
+
+/* ════ ANALYZER — patient summary در sidebar ════ */
+@media(min-width:900px){
+  .an-ctrl{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .an-ctrl .fs{font-size:.8rem;}
+  /* وقتی بیمار انتخاب شه، summary نشون بده */
+  #az-patient-summary{
+    margin-top:4px;
+    padding:10px 10px;
+    background:var(--bg3);
+    border:1px solid var(--b1);
+    border-radius:10px;
+    font-size:.75rem;
+    display:none;
+  }
+  #az-patient-summary.visible{display:block;}
+  .az-pt-name{font-size:.85rem;font-weight:700;color:var(--t1);margin-bottom:6px;}
+  .az-pt-row{display:flex;justify-content:space-between;padding:3px 0;color:var(--t2);}
+  .az-pt-lbl{color:var(--t3);}
+  /* نتایج: بهتر */
+  #pg-analyzer>.sect{padding:16px 20px;}
+  .ancard{border-radius:12px;margin-bottom:8px;}
+
+  /* ════ FOODS — horizontal search bar ════ */
+  #pg-foods{overflow-y:auto;}
+  #pg-foods>.sect{padding:14px 18px;}
+  #pg-foods .row-sb{margin-bottom:8px;}
+  /* search + category در یه ردیف */
+  #pg-foods .sw{
+    display:flex;gap:8px;align-items:center;
+    margin-bottom:10px;
+  }
+  #pg-foods #foods-cat{
+    width:140px;flex-shrink:0;
+    font-size:.78rem;
+  }
+  /* grid دنسرتر */
+  .foods-grid{
+    grid-template-columns:repeat(auto-fill,minmax(170px,1fr)) !important;
+    gap:7px !important;
+  }
+  .fcard{padding:10px 12px;border-radius:11px;}
+  .fcn{font-size:.8rem;font-weight:600;line-height:1.3;}
+  .fckcal{font-size:.7rem;}
+  .fcmacs{gap:3px;margin-top:5px;}
+  .fcm{font-size:.65rem;}
+
+  /* ════ REPORTS — sticky header ════ */
+  #pg-reports{overflow-y:auto;}
+  #pg-reports>.sect{padding:0;}
+  .rpt-header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--bg0);
+    backdrop-filter:blur(16px);
+    padding:12px 18px;
+    border-bottom:1px solid var(--b2);
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .rpt-header select{width:200px;flex-shrink:0;font-size:.82rem;}
+  .rpt-header-actions{display:flex;gap:6px;margin-right:auto;}
+  .rpt-content{padding:16px 18px;}
+
+  /* ════ SETTINGS — two-column ════ */
+  #pg-settings{overflow:hidden;}
+  .settings-layout{
+    display:flex;
+    flex-direction:row-reverse;
+    height:100%;
+  }
+  .settings-nav{
+    width:200px;
+    flex-shrink:0;
+    border-left:1px solid var(--b1);
+    padding:14px 10px;
+    overflow-y:auto;
+  }
+  .settings-nav-item{
+    display:flex;align-items:center;gap:8px;
+    padding:8px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:.8rem;font-weight:600;
+    color:var(--t2);
+    transition:background .12s,color .12s;
+    margin-bottom:2px;
+  }
+  .settings-nav-item:hover{background:var(--s1);color:var(--t1);}
+  .settings-nav-item.active{background:var(--gd);color:var(--g);}
+  .settings-content{
+    flex:1;min-width:0;
+    overflow-y:auto;
+    padding:16px 18px;
+    max-width:560px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1274,131 +1450,125 @@ span[style*="font-size:0"] svg {
 </div>
 
 id="pg-menu">
-    <div class="sect">
-      <div class="row-sb mb-12">
-        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f55579"/></svg></span> منوساز</div>
-        <div style="display:flex;gap:7px;align-items:center">
-          <button class="btnshr" onclick="shareMenu()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span> ارسال</button>
-          <button class="btns" style="width:auto;padding:9px 12px" onclick="clearMenu()"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>
-          <button class="btnp" style="width:auto;padding:9px 14px;font-size:13px" onclick="saveMenu()"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span></button>
+<div class="menu-layout">
+
+  <!-- ── Sidebar: کنترل‌ها + فرم افزودن ── -->
+  <div class="menu-sidebar">
+    <div class="menu-sidebar-inner">
+      <!-- عنوان + دکمه‌ها -->
+      <div class="row-sb" style="margin-bottom:10px">
+        <div class="pgtitle" style="font-size:.82rem">منوساز</div>
+        <div style="display:flex;gap:5px">
+          <button class="btnshr" onclick="shareMenu()" style="padding:6px 8px"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></span></button>
+          <button class="btns" onclick="clearMenu()" style="padding:6px 8px;font-size:.72rem">پاک</button>
+          <button class="btnp" onclick="saveMenu()" style="padding:6px 10px;font-size:.72rem"><span class="ico ico-13"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>
         </div>
       </div>
-      <select class="fs" id="menu-pt" onchange="loadPtMenu()" style="margin-bottom:10px"><option value="">انتخاب بیمار</option></select>
-      <div id="menu-allergy-banner"></div>
-      <div class="date-nav">
+      <!-- انتخاب بیمار -->
+      <select class="fs" id="menu-pt" onchange="loadPtMenu()" style="margin-bottom:8px;font-size:.8rem"><option value="">انتخاب بیمار...</option></select>
+      <!-- date nav -->
+      <div class="date-nav" style="margin-bottom:10px">
         <button class="dnbtn" onclick="chDateOff(-1)">›</button>
         <div class="dnlbl" id="menu-date">امروز</div>
         <button class="dnbtn" onclick="chDateOff(1)">‹</button>
       </div>
-      <div class="macrobox">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-          <div class="gauge-wrap">
-            <svg class="gauge-svg" viewBox="0 0 76 76" width="76" height="76">
-              <circle class="gauge-bg" cx="38" cy="38" r="31"/>
-              <circle class="gauge-arc" id="gauge-arc" cx="38" cy="38" r="31"/>
-            </svg>
-            <div class="gauge-center">
-              <span class="gauge-val" id="m-kcal">0</span>
-              <span class="gauge-unit">kcal</span>
-            </div>
-          </div>
-          <div class="gauge-info">
-            <div class="gauge-deficit" id="m-deficit"></div>
-            <div style="font-size:11px;color:var(--t3)" id="menu-target">هدف: -- kcal</div>
-            <div id="menu-kcal-warn" style="display:none;font-size:10px;color:var(--amber);margin-top:5px;font-weight:600"></div>
-          </div>
-        </div>
-        <div class="mb-rows">
-          <div class="mb-r"><div class="mb-l">کربوهیدرات</div><div class="mb-bg"><div class="mb-f" id="pb-carb" style="width:0%;background:var(--amber)"></div></div><div class="mb-v" id="m-carb" style="color:var(--amber)">0g</div></div>
-          <div class="mb-r"><div class="mb-l">پروتئین</div><div class="mb-bg"><div class="mb-f" id="pb-prot" style="width:0%;background:var(--blue)"></div></div><div class="mb-v" id="m-prot" style="color:var(--blue)">0g</div></div>
-          <div class="mb-r"><div class="mb-l">چربی</div><div class="mb-bg"><div class="mb-f" id="pb-fat" style="width:0%;background:var(--orange)"></div></div><div class="mb-v" id="m-fat" style="color:var(--orange)">0g</div></div>
-          <div class="mb-r"><div class="mb-l">فیبر</div><div class="mb-bg"><div class="mb-f" id="pb-fib" style="width:0%;background:var(--purple)"></div></div><div class="mb-v" id="m-fib" style="color:var(--purple)">0g</div></div>
-        </div>
-      </div>
-      <div class="card" style="margin-bottom:12px">
+      <!-- فرم افزودن غذا -->
+      <div class="card" style="margin-bottom:0;flex:1;overflow-y:auto">
         <div class="card-title">افزودن ماده غذایی</div>
-        <div id="recent-chips" style="margin-bottom:10px"></div>
+        <div id="recent-chips" style="margin-bottom:8px"></div>
         <div class="tabs" id="food-tabs">
-          <button class="tab-btn active" onclick="switchTab('raw',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> جستجو</button>
-          <button class="tab-btn" onclick="switchTab('ir',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span> ایرانی</button>
-          <button class="tab-btn" onclick="switchTab('fav',this)">★ علاقه‌مندی</button>
+          <button class="tab-btn active" onclick="switchTab('raw',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>جهانی</button>
+          <button class="tab-btn" onclick="switchTab('ir',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>ایرانی</button>
+          <button class="tab-btn" onclick="switchTab('fav',this)">★</button>
         </div>
         <div id="tab-raw">
-          <div class="ddwrap" style="margin-bottom:10px">
-            <input type="text" class="fi" id="food-q" placeholder="نام ماده غذایی..." oninput="searchFood()" autocomplete="off">
+          <div class="ddwrap" style="margin-bottom:8px">
+            <input type="text" class="fi" id="food-q" placeholder="نام ماده غذایی..." oninput="searchFood()" autocomplete="off" style="font-size:.8rem">
             <div class="food-dd" id="food-dd"></div>
           </div>
-          <div class="fg" style="margin-bottom:10px"><label class="fl">وعده</label>
-            <select class="fs" id="food-meal">
-              <option value="صبحانه">صبحانه</option>
-              <option value="میان‌وعده">میان‌وعده</option>
-              <option value="ناهار" selected>ناهار</option>
-              <option value="عصرانه">عصرانه</option>
-              <option value="شام">شام</option>
-              <option value="بعد از شام">بعد از شام</option>
+          <div class="fg" style="margin-bottom:8px"><label class="fl">وعده</label>
+            <select class="fs" id="food-meal" style="font-size:.8rem">
+              <option value="صبحانه">صبحانه</option><option value="میان‌وعده">میان‌وعده</option>
+              <option value="ناهار" selected>ناهار</option><option value="عصرانه">عصرانه</option>
+              <option value="شام">شام</option><option value="بعد از شام">بعد از شام</option>
             </select>
           </div>
-          <div class="fr2" style="margin-bottom:10px">
+          <div class="fr2" style="margin-bottom:8px">
             <div class="fg" style="margin-bottom:0"><label class="fl">مقدار</label>
-              <div class="qtyg">
-                <button class="qtybtn" onclick="chQty(-0.5)" type="button">−</button>
-                <div class="qtysep"></div>
-                <input type="number" class="qtyin" id="food-qty" value="1" min="0.1" max="50" step="0.5">
-                <div class="qtysep"></div>
-                <button class="qtybtn" onclick="chQty(0.5)" type="button">+</button>
-              </div>
+              <div class="qtyg"><button class="qtybtn" onclick="chQty(-0.5)" type="button">−</button><div class="qtysep"></div><input type="number" class="qtyin" id="food-qty" value="1" min="0.1" max="50" step="0.5"><div class="qtysep"></div><button class="qtybtn" onclick="chQty(0.5)" type="button">+</button></div>
             </div>
-            <div class="fg" style="margin-bottom:0"><label class="fl">سایز / واحد</label>
-              <select class="fs" id="food-size"><option>ق.غ (قاشق غذاخوری)</option><option>فنجان</option><option>عدد متوسط</option><option>اسلایس</option><option>گرم</option></select>
+            <div class="fg" style="margin-bottom:0"><label class="fl">واحد</label>
+              <select class="fs" id="food-size" style="font-size:.78rem"><option>ق.غ</option><option>فنجان</option><option>عدد</option><option>گرم</option><option>میلی‌لیتر</option><option>لیوان</option></select>
             </div>
           </div>
-          <div class="fg" style="margin-bottom:10px"><label class="fl">روش پخت</label>
-            <select class="fs" id="food-cook"><option>خام</option><option>پخته</option><option>کبابی</option><option>سرخ کرده</option><option>سرخ و آبپز شده</option></select>
+          <div class="fg" style="margin-bottom:8px"><label class="fl">روش پخت</label>
+            <select class="fs" id="food-cook" style="font-size:.8rem"><option>خام</option><option>پخته</option><option>کبابی</option><option>آب‌پز</option><option>بخارپز</option><option>سرخ‌شده</option></select>
           </div>
-          <button class="btnp" onclick="addFood()" type="button"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>
+          <button class="btnp" onclick="addFood()" type="button" style="width:100%;font-size:.8rem"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> افزودن به منو</button>
         </div>
         <div id="tab-ir" style="display:none">
           <div class="fg"><label class="fl">دسته‌بندی</label>
-            <select class="fs" id="ir-cat" onchange="filterIrDish()">
-              <option value="">همه دسته‌ها</option>
-              <option value="انواع پلوهای مخلوط ایرانی">پلوهای ایرانی</option>
-              <option value="انواع خورشت ها">خورشت‌ها</option>
-              <option value="انواع آش ها و آبگوشت ها">آش و آبگوشت</option>
-              <option value="انواع کتلت ها و کوفته ها">کتلت و کوفته</option>
-              <option value="سایر غذاها">سایر</option>
+            <select class="fs" id="ir-cat" onchange="filterIrDish()" style="font-size:.78rem">
+              <option value="">همه</option><option value="انواع پلوهای مخلوط ایرانی">پلوهای ایرانی</option>
+              <option value="انواع خورشت ها">خورشت‌ها</option><option value="انواع آش ها و آبگوشت ها">آش</option>
+              <option value="انواع کتلت ها و کوفته ها">کتلت</option><option value="سایر غذاها">سایر</option>
             </select>
           </div>
-          <div class="ddwrap" style="margin-bottom:10px">
-            <input type="text" class="fi" id="ir-q" placeholder="نام غذا را تایپ کنید..." oninput="searchIrDish()" autocomplete="off">
+          <div class="ddwrap" style="margin-bottom:8px">
+            <input type="text" class="fi" id="ir-q" placeholder="نام غذا..." oninput="searchIrDish()" autocomplete="off" style="font-size:.8rem">
             <div class="food-dd" id="ir-dd"></div>
           </div>
           <div class="fg"><label class="fl">غذا</label>
-            <select class="fs" id="ir-dish" size="6" style="height:140px"></select>
+            <select class="fs" id="ir-dish" size="5" style="height:110px;font-size:.78rem"></select>
           </div>
-          <div class="fr2" style="margin-bottom:10px">
+          <div class="fr2" style="margin-bottom:8px">
             <div class="fg" style="margin-bottom:0"><label class="fl">وعده</label>
-              <select class="fs" id="ir-meal"><option value="ناهار">ناهار</option><option value="شام">شام</option><option value="صبحانه">صبحانه</option></select>
+              <select class="fs" id="ir-meal" style="font-size:.78rem"><option value="ناهار">ناهار</option><option value="شام">شام</option><option value="صبحانه">صبحانه</option></select>
             </div>
-            <div class="fg" style="margin-bottom:0"><label class="fl">تعداد نفر</label>
-              <div class="qtyg">
-                <button class="qtybtn" onclick="chIrQty(-0.5)" type="button">−</button>
-                <div class="qtysep"></div>
-                <input type="number" class="qtyin" id="ir-qty" value="1" min="0.5" step="0.5">
-                <div class="qtysep"></div>
-                <button class="qtybtn" onclick="chIrQty(0.5)" type="button">+</button>
-              </div>
+            <div class="fg" style="margin-bottom:0"><label class="fl">نفر</label>
+              <div class="qtyg"><button class="qtybtn" onclick="chIrQty(-0.5)" type="button">−</button><div class="qtysep"></div><input type="number" class="qtyin" id="ir-qty" value="1" min="0.5" step="0.5"><div class="qtysep"></div><button class="qtybtn" onclick="chIrQty(0.5)" type="button">+</button></div>
             </div>
           </div>
-          <button class="btnp" onclick="addIrDish()" type="button"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن غذا</button>
+          <button class="btnp" onclick="addIrDish()" type="button" style="width:100%;font-size:.8rem"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> افزودن</button>
         </div>
         <div id="tab-fav" style="display:none"></div>
       </div>
-      <div id="menu-meals"></div>
     </div>
   </div>
 
-  <!-- FOODS -->
-  <div class="page" id="pg-foods">
+  <!-- ── Main: macrobox + meals ── -->
+  <div class="menu-main">
+    <div id="menu-allergy-banner"></div>
+    <!-- macrobox -->
+    <div class="macrobox">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div class="gauge-wrap">
+          <svg class="gauge-svg" viewBox="0 0 76 76" width="76" height="76">
+            <circle class="gauge-bg" cx="38" cy="38" r="31"/>
+            <circle class="gauge-arc" id="gauge-arc" cx="38" cy="38" r="31"/>
+          </svg>
+          <div class="gauge-center"><span class="gauge-val" id="m-kcal">0</span><span class="gauge-unit">kcal</span></div>
+        </div>
+        <div class="gauge-info">
+          <div class="gauge-deficit" id="m-deficit"></div>
+          <div style="font-size:.7rem;color:var(--t3)" id="menu-target">هدف: -- kcal</div>
+          <div id="menu-kcal-warn" style="display:none;font-size:.68rem;color:var(--amber);margin-top:4px;font-weight:600"></div>
+        </div>
+      </div>
+      <div class="mb-rows">
+        <div class="mb-r"><div class="mb-l">کربوهیدرات <span id="m-carb" style="font-weight:700;color:var(--t1)">0g</span></div><div class="mb-bg"><div class="mb-f" id="pb-carb" style="width:0%;background:var(--amber)"></div></div></div>
+        <div class="mb-r"><div class="mb-l">پروتئین <span id="m-prot" style="font-weight:700;color:var(--t1)">0g</span></div><div class="mb-bg"><div class="mb-f" id="pb-prot" style="width:0%;background:var(--blue)"></div></div></div>
+        <div class="mb-r"><div class="mb-l">چربی <span id="m-fat" style="font-weight:700;color:var(--t1)">0g</span></div><div class="mb-bg"><div class="mb-f" id="pb-fat" style="width:0%;background:var(--orange)"></div></div></div>
+        <div class="mb-r"><div class="mb-l">فیبر <span id="m-fib" style="font-weight:700;color:var(--t1)">0g</span></div><div class="mb-bg"><div class="mb-f" id="pb-fib" style="width:0%;background:var(--g)"></div></div></div>
+      </div>
+    </div>
+    <!-- لیست وعده‌ها -->
+    <div id="menu-meals"></div>
+  </div>
+
+</div>
+
+id="pg-foods">
     <div class="sect" style="padding-bottom:0">
       <div class="row-sb mb-12">
         <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span> پایگاه غذایی</div>
@@ -1428,7 +1598,7 @@ id="pg-menu">
     <div class="an-ctrl">
       <div class="pgtitle" style="margin-bottom:12px">آنالیز ریزمغذی</div>
       <select class="fs" id="az-pt" onchange="runAnalyzer()"><option value="">انتخاب بیمار</option></select>
-      <select class="fs" style="margin-top:8px" id="az-dri" onchange="runAnalyzer()"><option value="">پروفایل DRI</option></select>
+      <select class="fs" style="margin-top:6px" id="az-dri" onchange="runAnalyzer()"><option value="">پروفایل DRI</option></select>
     </div>
     <div class="sect">
       <div id="az-body"><div class="empty"><div class="ei"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">آنالیز ریزمغذی</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
@@ -1437,22 +1607,27 @@ id="pg-menu">
 
   <!-- REPORTS -->
   <div class="page" id="pg-reports">
-    <div class="sect">
-      <div class="row-sb mb-14">
-        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span> گزارش</div>
-        <div style="display:flex;gap:7px">
-          <button class="btns" style="width:auto;padding:8px 12px;font-size:12px" onclick="printRpt()" title="چاپ / ذخیره به PDF"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span></button>
-          <button class="btns" style="width:auto;padding:9px 12px;font-size:12px" onclick="exportCSV()" title="خروجی CSV">CSV</button>
-          <button class="btnp" style="width:auto;padding:9px 14px;font-size:12px" onclick="exportXLSX()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Excel</button>
-        </div>
-      </div>
-      <select class="fs" style="margin-bottom:14px" id="rpt-pt" onchange="loadReport()"><option value="">انتخاب بیمار</option></select>
-      <div id="rpt-body"><div class="empty"><div class="ei"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">گزارش بیمار</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
+<div class="rpt-header">
+  <span style="font-size:.8rem;font-weight:700;color:var(--t1)">گزارش بالینی</span>
+  <select class="fs" id="rpt-pt" onchange="loadReport()" style="font-size:.82rem">
+    <option value="">انتخاب بیمار...</option>
+  </select>
+  <div class="rpt-header-actions">
+    <button class="btns" onclick="printRpt()" style="font-size:.75rem;padding:6px 10px">🖨 چاپ</button>
+    <button class="btns" onclick="exportCSV()" style="font-size:.75rem;padding:6px 10px">CSV</button>
+    <button class="btnp" onclick="exportXLSX()" style="font-size:.75rem;padding:6px 12px">Excel</button>
+  </div>
+</div>
+<div class="rpt-content">
+  <div id="rpt-body">
+    <div class="empty" style="padding:60px 40px">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".3"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <div style="margin-top:10px;font-size:.82rem">یک بیمار را انتخاب کنید</div>
     </div>
   </div>
+</div>
 
-  <!-- SETTINGS -->
-  <div class="page" id="pg-settings">
+id="pg-settings">
     <div class="sect">
       <div class="pgtitle" style="margin-bottom:16px"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> تنظیمات</div>
       <div class="card" style="margin-bottom:14px">
@@ -3102,6 +3277,22 @@ function initAnalyzer(){
   sel.innerHTML=h;
 }
 function runAnalyzer(){
+  // patient summary در sidebar
+  if(window.innerWidth>=900){
+    var pid2=gv("az-pt");
+    var sumEl=document.getElementById('az-patient-summary');
+    var nameEl=document.getElementById('az-pt-name');
+    var rowsEl=document.getElementById('az-pt-rows');
+    if(sumEl&&nameEl&&rowsEl&&pid2){
+      var pt2=getP().find(function(x){return x.id===pid2;});
+      if(pt2){
+        nameEl.textContent=pt2.firstname+' '+pt2.lastname;
+        var rows=[['سن',pt2.age+' سال'],['وزن',pt2.weight+'kg'],['قد',pt2.height+'cm'],['BMI',pt2.bmi]];
+        rowsEl.innerHTML=rows.map(function(r){return '<div class="az-pt-row"><span class="az-pt-lbl">'+r[0]+'</span><span>'+r[1]+'</span></div>';}).join('');
+        sumEl.classList.add('visible');
+      }
+    }
+  }
   var pid=gv("az-pt"), dk=gv("az-dri"), c=q("az-body"); if(!c)return;
   if(!pid){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">یک بیمار انتخاب کنید</div></div>';return;}
   if(!dk){var pt=getP().filter(function(p){return p.id===pid;})[0];if(pt){dk=pt.driProfile;sv("az-dri",dk);}}
