@@ -500,30 +500,204 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
   }
 
   /* ── Padding محتوا روی desktop ── */
-  .sect{padding:20px 28px;}
+  .sect{padding:20px 32px;}
   .dash-hero{padding:28px 32px 32px;}
+  .an-ctrl{padding:20px 32px 0;}
 
-  /* ── Dashboard: grid دو ستون ── */
-  #pg-dashboard .sect:first-of-type>div[style*="grid-template-columns:1fr 1fr"]{
+  /* ── همه صفحات flex column ── */
+  .page{display:flex;flex-direction:column;}
+
+  /* ── Page titles ── */
+  .pgtitle{font-size:.95rem;font-weight:700;letter-spacing:-.02em;margin-bottom:0;}
+
+  /* ═══════════════════════════════════════
+     DASHBOARD
+  ═══════════════════════════════════════ */
+  #pg-dashboard{overflow-y:auto;}
+  #pg-dashboard>.sect{max-width:1100px;}
+  /* stat cards 4 ستون */
+  #pg-dashboard .sect>div[style*="grid-template-columns:1fr 1fr"]:first-of-type{
     grid-template-columns:repeat(4,1fr);
   }
+  /* quick access 4 ستون */
+  .qa-grid{grid-template-columns:repeat(4,1fr)!important;}
+  /* hero */
+  .dash-hero{min-height:90px;}
 
-  /* ── pgtitle spacing ── */
-  .pgtitle{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;}
+  /* ═══════════════════════════════════════
+     PATIENTS — لیست محدود، modal برای جزئیات
+  ═══════════════════════════════════════ */
+  #pg-patients{overflow-y:auto;}
+  #pg-patients>.sect{
+    max-width:640px;
+  }
+  /* کارت بیمار در desktop */
+  .ptcard{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:12px;
+    align-items:center;
+    padding:12px 16px;
+  }
+  .ptact{flex-direction:row;gap:8px;}
 
-  /* ── Card padding ── */
-  .card{padding:20px;border-radius:16px;}
+  /* ═══════════════════════════════════════
+     MENU — macrobox sidebar از sect جدا
+  ═══════════════════════════════════════ */
+  #pg-menu{overflow:hidden;}
+  #pg-menu>.sect{
+    display:flex;
+    flex-direction:row;
+    gap:0;
+    padding:0;
+    height:100%;
+    overflow:hidden;
+  }
+  /* ستون اصلی (غذاها) */
+  #pg-menu>.sect>.date-nav,
+  #pg-menu>.sect>#menu-items,
+  #pg-menu>.sect>.card,
+  #pg-menu>.sect>.row-sb,
+  #pg-menu>.sect>select,
+  #pg-menu>.sect>#menu-allergy-banner{
+    padding-right:24px;
+    padding-left:0;
+  }
+  /* macrobox به sidebar تبدیل */
+  #pg-menu .macrobox{
+    width:260px;
+    min-width:240px;
+    flex-shrink:0;
+    border-right:1px solid var(--b1);
+    padding:20px 16px;
+    overflow-y:auto;
+    height:100%;
+    background:var(--bg2);
+    order:-1; /* به راست برو (RTL) */
+  }
+  /* محتوای بقیه sect */
+  #pg-menu>.sect>*:not(.macrobox){
+    max-width:none;
+  }
+  /* ستون محتوا */
+  #menu-main-col{flex:1;overflow-y:auto;padding:20px 24px;}
 
-  /* ── forms wider ── */
-  .fg{margin-bottom:14px;}
-  .fi{font-size:.9rem;}
-
-  /* ── Analyzer: control + results side by side ── */
+  /* ═══════════════════════════════════════
+     ANALYZER — an-ctrl sidebar + sect نتایج
+  ═══════════════════════════════════════ */
   #pg-analyzer{
+    flex-direction:row !important;
+    overflow:hidden;
+  }
+  .an-ctrl{
+    width:260px;
+    min-width:240px;
+    flex-shrink:0;
+    border-left:1px solid var(--b1);
+    overflow-y:auto;
+    padding:20px 16px;
+    height:100%;
+    background:var(--bg2);
     display:flex;
     flex-direction:column;
+    gap:10px;
   }
-  .an-ctrl{padding:20px 28px 0;}
+  #pg-analyzer>.sect{
+    flex:1;
+    min-width:0;
+    overflow-y:auto;
+    height:100%;
+    padding:20px 28px;
+  }
+  .an-ctrl .pgtitle{font-size:.85rem;margin-bottom:0;}
+  .an-ctrl .fs{font-size:.82rem;}
+  /* نتایج analyzer */
+  .anstats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .ansc{padding:12px 10px;}
+  .asv{font-size:1.1rem;}
+  .ancard{margin-bottom:10px;}
+
+  /* ═══════════════════════════════════════
+     FOODS — grid بهتر
+  ═══════════════════════════════════════ */
+  #pg-foods{overflow-y:auto;}
+  #pg-foods>.sect{padding:20px 28px;}
+  .foods-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+    gap:10px;
+  }
+  .fcard{border-radius:12px;padding:14px;}
+
+  /* ═══════════════════════════════════════
+     REPORTS
+  ═══════════════════════════════════════ */
+  #pg-reports{overflow-y:auto;}
+  #pg-reports>.sect{max-width:900px;padding:24px 32px;}
+  .rpt{border-radius:12px;}
+
+  /* ═══════════════════════════════════════
+     PLANNER
+  ═══════════════════════════════════════ */
+  #pg-planner{overflow-y:auto;}
+  #pg-planner>.sect{max-width:900px;padding:24px 32px;}
+  .plan-day{border-radius:12px;margin-bottom:12px;}
+
+  /* ═══════════════════════════════════════
+     SETTINGS — فرم محدود
+  ═══════════════════════════════════════ */
+  #pg-settings{overflow-y:auto;}
+  #pg-settings>.sect{max-width:620px;padding:24px 32px;}
+  #pg-settings .card{margin-bottom:14px;}
+  #pg-settings .fi{font-size:.88rem;}
+  #pg-settings .fg{margin-bottom:12px;}
+
+  /* ═══════════════════════════════════════
+     CARD — desktop
+  ═══════════════════════════════════════ */
+  .card{padding:18px 20px;border-radius:14px;margin-bottom:10px;}
+  .card-title{
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--t3);
+    margin-bottom:12px;
+  }
+  .fi,.fs{font-size:.88rem;padding:9px 12px;}
+  .fg{margin-bottom:10px;}
+
+  /* ═══════════════════════════════════════
+     BUTTONS
+  ═══════════════════════════════════════ */
+  .btnp,.btns,.btnd,.btnshr{font-size:.82rem;padding:8px 14px;}
+
+  /* ═══════════════════════════════════════
+     TOPBAR
+  ═══════════════════════════════════════ */
+  .hdr-logo{width:30px;height:30px;font-size:.82rem;border-radius:8px;}
+  .hdr-title{font-size:.88rem;font-weight:800;}
+  .hdr-sub{font-size:.68rem;color:var(--t3);}
+  .hdr-date{font-size:.75rem;color:var(--t2);}
+
+  /* ═══════════════════════════════════════
+     SIDEBAR
+  ═══════════════════════════════════════ */
+  /* settings در پایین sidebar */
+  #nb-settings{
+    margin-top:auto;
+    border-top:1px solid var(--b1);
+    padding-top:8px;
+    margin-right:-10px;
+    margin-left:-10px;
+    padding-right:10px;
+    padding-left:10px;
+  }
 
 }
 @media (min-width:1200px){
