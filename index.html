@@ -20,6 +20,25 @@
   --blue:#3e3d9a;--blued:rgba(62,61,154,.12);
   --orange:#f97316;--oranged:rgba(249,115,22,.12);
   --purple:#a855f7;--purpled:rgba(168,85,247,.12);
+
+  /* ── spacing scale (4px grid) ── */
+  --sp1:4px;
+  --sp2:8px;
+  --sp3:12px;
+  --sp4:16px;
+  --sp5:20px;
+  --sp6:24px;
+  --sp7:32px;
+
+  /* ── typography scale ── */
+  --fs-2xs:.72rem;
+  --fs-xs:.78rem;
+  --fs-sm:.82rem;
+  --fs-base:.88rem;
+  --fs-md:1rem;
+  --fs-lg:1.1rem;
+  --fs-xl:1.35rem;
+  --fs-2xl:1.6rem;
   --bg:#0d0a16;--bg2:#120e1f;--bg3:#171225;
   --s1:#1c1730;--s2:#221c3a;--s3:#2a2247;
   --b1:#2c2347;--b2:#382c5a;
@@ -273,6 +292,40 @@ textarea.fi{resize:none;line-height:1.5}
 .modal-x{width:30px;height:30px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r8);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--t2);font-size:15px;transition:all .15s;touch-action:manipulation}
 .modal-x:active{background:var(--redd);color:var(--red)}
 /* Toast */
+/* ══ Utility classes — جایگزین inline styles تکراری ══ */
+
+/* icon wrapper — جایگزین display:inline-flex;align-items:center;... */
+.ico{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0;}
+.ico-12{width:12px;height:12px;}
+.ico-14{width:14px;height:14px;}
+.ico-15{width:15px;height:15px;}
+.ico-16{width:16px;height:16px;}
+.ico-20{width:20px;height:20px;}
+.ico-24{width:24px;height:24px;}
+.ico-28{width:28px;height:28px;}
+.ico-44{width:44px;height:44px;border-radius:var(--r12);}
+
+/* row helpers */
+.row-sb{display:flex;align-items:center;justify-content:space-between;}
+.row-start{display:flex;align-items:center;gap:var(--sp2);}
+.mb-8{margin-bottom:var(--sp2);}
+.mb-12{margin-bottom:var(--sp3);}
+.mb-14{margin-bottom:14px;}
+.mb-16{margin-bottom:var(--sp4);}
+
+/* text helpers */
+.txt-xs{font-size:var(--fs-xs);}
+.txt-sm{font-size:var(--fs-sm);}
+.txt-base{font-size:var(--fs-base);}
+.txt-accent{color:var(--g);}
+.txt-muted{color:var(--t3);}
+.txt-upper{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.fw-700{font-weight:700;}
+.fw-800{font-weight:800;}
+
+/* card variant */
+.card-sm{background:var(--bg3);border-radius:var(--r12);padding:var(--sp4);margin-bottom:var(--sp4);}
+
 .toast{position:fixed;top:calc(14px + var(--st));left:50%;transform:translateX(-50%) translateY(-70px);background:var(--s2);border:1px solid var(--b2);border-radius:22px;padding:10px 20px;font-size:13px;font-weight:600;color:var(--t1);box-shadow:0 4px 20px rgba(0,0,0,.4);z-index:500;transition:transform .28s cubic-bezier(.32,.72,0,1);white-space:nowrap;max-width:90%;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast.ok{border-color:var(--gd)}.toast.err{border-color:rgba(239,68,68,.3);color:var(--red)}
@@ -632,18 +685,18 @@ span[style*="font-size:0"] svg {
       <!-- Stats Row 1: Critical — Patients & Menus (large, clickable) -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
         <div class="sc g" style="cursor:pointer;padding:18px 14px" onclick="nav('patients')">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="row-sb mb-12">
             <span style="font-size:11px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.5px">بیماران</span>
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+            <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
           </div>
           <div class="sc-v" id="d-pts" style="font-size:36px">0</div>
           <div class="sc-l" style="margin-top:4px">بیمار فعال</div>
           <div style="font-size:10px;color:var(--g);margin-top:6px;opacity:.7">مشاهده همه ←</div>
         </div>
         <div class="sc a" style="cursor:pointer;padding:18px 14px" onclick="nav('menu')">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="row-sb mb-12">
             <span style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.5px">منوها</span>
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f59e0b"/></svg></span>
+            <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f59e0b"/></svg></span>
           </div>
           <div class="sc-v" id="d-menus" style="font-size:36px">0</div>
           <div class="sc-l" style="margin-top:4px">منوی ثبت‌شده</div>
@@ -653,20 +706,20 @@ span[style*="font-size:0"] svg {
       <!-- Stats Row 2: Secondary — DB info (small, non-clickable) -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
         <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r12);padding:10px 12px;display:flex;align-items:center;gap:10px">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+          <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
           <div><div style="font-size:18px;font-weight:800">234</div><div style="font-size:10px;color:var(--t3)">ماده غذایی</div></div>
         </div>
         <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--r12);padding:10px 12px;display:flex;align-items:center;gap:10px">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>
+          <span class="ico ico-28"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>
           <div><div style="font-size:18px;font-weight:800">44</div><div style="font-size:10px;color:var(--t3)">غذای ایرانی</div></div>
         </div>
       </div>
       <div class="sect-title">دسترسی سریع</div>
       <div class="qa-grid">
-        <button class="qa-btn" onclick="openAddPt()"><div class="qa-ic"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span></div><div><div class="qa-txt">بیمار جدید</div><div class="qa-sub">ثبت اطلاعات</div></div></button>
-        <button class="qa-btn" onclick="nav('menu')"><div class="qa-ic"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#7c6fd4"/></svg></span></div><div><div class="qa-txt">منوساز</div><div class="qa-sub">برنامه غذایی</div></div></button>
-        <button class="qa-btn" onclick="openPlannerModal()"><div class="qa-ic"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div><div class="qa-txt">برنامه‌ساز</div><div class="qa-sub">خودکار</div></div></button>
-        <button class="qa-btn" onclick="nav('analyzer')"><div class="qa-ic"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div><div class="qa-txt">آنالیز</div><div class="qa-sub">ریزمغذی‌ها</div></div></button>
+        <button class="qa-btn" onclick="openAddPt()"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span></div><div><div class="qa-txt">بیمار جدید</div><div class="qa-sub">ثبت اطلاعات</div></div></button>
+        <button class="qa-btn" onclick="nav('menu')"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#7c6fd4"/></svg></span></div><div><div class="qa-txt">منوساز</div><div class="qa-sub">برنامه غذایی</div></div></button>
+        <button class="qa-btn" onclick="openPlannerModal()"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div><div class="qa-txt">برنامه‌ساز</div><div class="qa-sub">خودکار</div></div></button>
+        <button class="qa-btn" onclick="nav('analyzer')"><div class="qa-ic"><span class="ico ico-24"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div><div class="qa-txt">آنالیز</div><div class="qa-sub">ریزمغذی‌ها</div></div></button>
       </div>
     </div>
     <div class="sect" style="padding-top:0" id="visits-section" style="display:none">
@@ -682,11 +735,11 @@ span[style*="font-size:0"] svg {
   <!-- PATIENTS -->
   <div class="page" id="pg-patients">
     <div class="sect">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div><div class="pgtitle"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> بیماران</div><div style="font-size:11px;color:var(--t3);margin-top:2px" id="pt-count"></div></div>
-        <button class="btnp" style="width:auto;padding:10px 16px;font-size:13px" onclick="openAddPt()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> جدید</button>
+      <div class="row-sb mb-14">
+        <div><div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> بیماران</div><div style="font-size:11px;color:var(--t3);margin-top:2px" id="pt-count"></div></div>
+        <button class="btnp" style="width:auto;padding:10px 16px;font-size:13px" onclick="openAddPt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> جدید</button>
       </div>
-      <div class="sw"><input type="text" class="fi sw-i" id="pt-search" placeholder="جستجوی بیمار..." oninput="filterPts()"><span class="sw-ic" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></span></div>
+      <div class="sw"><input type="text" class="fi sw-i" id="pt-search" placeholder="جستجوی بیمار..." oninput="filterPts()"><span class="sw-ic" style="font-size:0"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></span></div>
       <div id="pt-list"></div>
     </div>
   </div>
@@ -694,12 +747,12 @@ span[style*="font-size:0"] svg {
   <!-- MENU -->
   <div class="page" id="pg-menu">
     <div class="sect">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <div class="pgtitle"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f55579"/></svg></span> منوساز</div>
+      <div class="row-sb mb-12">
+        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f55579"/></svg></span> منوساز</div>
         <div style="display:flex;gap:7px;align-items:center">
-          <button class="btnshr" onclick="shareMenu()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span> ارسال</button>
-          <button class="btns" style="width:auto;padding:9px 12px" onclick="clearMenu()"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>
-          <button class="btnp" style="width:auto;padding:9px 14px;font-size:13px" onclick="saveMenu()"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span></button>
+          <button class="btnshr" onclick="shareMenu()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span> ارسال</button>
+          <button class="btns" style="width:auto;padding:9px 12px" onclick="clearMenu()"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>
+          <button class="btnp" style="width:auto;padding:9px 14px;font-size:13px" onclick="saveMenu()"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span></button>
         </div>
       </div>
       <select class="fs" id="menu-pt" onchange="loadPtMenu()" style="margin-bottom:10px"><option value="">انتخاب بیمار</option></select>
@@ -738,8 +791,8 @@ span[style*="font-size:0"] svg {
         <div class="card-title">افزودن ماده غذایی</div>
         <div id="recent-chips" style="margin-bottom:10px"></div>
         <div class="tabs" id="food-tabs">
-          <button class="tab-btn active" onclick="switchTab('raw',this)"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> جستجو</button>
-          <button class="tab-btn" onclick="switchTab('ir',this)"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span> ایرانی</button>
+          <button class="tab-btn active" onclick="switchTab('raw',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> جستجو</button>
+          <button class="tab-btn" onclick="switchTab('ir',this)"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span> ایرانی</button>
           <button class="tab-btn" onclick="switchTab('fav',this)">★ علاقه‌مندی</button>
         </div>
         <div id="tab-raw">
@@ -774,7 +827,7 @@ span[style*="font-size:0"] svg {
           <div class="fg" style="margin-bottom:10px"><label class="fl">روش پخت</label>
             <select class="fs" id="food-cook"><option>خام</option><option>پخته</option><option>کبابی</option><option>سرخ کرده</option><option>سرخ و آبپز شده</option></select>
           </div>
-          <button class="btnp" onclick="addFood()" type="button"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>
+          <button class="btnp" onclick="addFood()" type="button"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>
         </div>
         <div id="tab-ir" style="display:none">
           <div class="fg"><label class="fl">دسته‌بندی</label>
@@ -808,7 +861,7 @@ span[style*="font-size:0"] svg {
               </div>
             </div>
           </div>
-          <button class="btnp" onclick="addIrDish()" type="button"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن غذا</button>
+          <button class="btnp" onclick="addIrDish()" type="button"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن غذا</button>
         </div>
         <div id="tab-fav" style="display:none"></div>
       </div>
@@ -819,11 +872,11 @@ span[style*="font-size:0"] svg {
   <!-- FOODS -->
   <div class="page" id="pg-foods">
     <div class="sect" style="padding-bottom:0">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <div class="pgtitle"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span> پایگاه غذایی</div>
-        <button class="btnp" style="width:auto;padding:8px 14px;font-size:12px" onclick="openAddCustomFood()"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> ماده سفارشی</button>
+      <div class="row-sb mb-12">
+        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span> پایگاه غذایی</div>
+        <button class="btnp" style="width:auto;padding:8px 14px;font-size:12px" onclick="openAddCustomFood()"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> ماده سفارشی</button>
       </div>
-      <div class="sw"><input type="text" class="fi sw-i" id="foods-q" placeholder="جستجو: مرغ، اسفناج..." oninput="filterFoods()"><span class="sw-ic" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></span></div>
+      <div class="sw"><input type="text" class="fi sw-i" id="foods-q" placeholder="جستجو: مرغ، اسفناج..." oninput="filterFoods()"><span class="sw-ic" style="font-size:0"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></span></div>
       <select class="fs" id="foods-cat" onchange="filterFoods()">
         <option value="">همه دسته‌ها</option>
         <option value="لبنیات"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:#60a5fa22;border-radius:7px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l2 6H5L7 3z"/><rect x="4" y="9" width="16" height="12" rx="2"/><path d="M9 15h6"/></svg></span> لبنیات</option>
@@ -839,7 +892,7 @@ span[style*="font-size:0"] svg {
       </select>
     </div>
     <div class="foods-grid" id="foods-grid"></div>
-    <div id="foods-lm" onclick="loadMore()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> بارگذاری بیشتر</div>
+    <div id="foods-lm" onclick="loadMore()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> بارگذاری بیشتر</div>
   </div>
 
   <!-- ANALYZER -->
@@ -850,30 +903,30 @@ span[style*="font-size:0"] svg {
       <select class="fs" style="margin-top:8px" id="az-dri" onchange="runAnalyzer()"><option value="">پروفایل DRI</option></select>
     </div>
     <div class="sect">
-      <div id="az-body"><div class="empty"><div class="ei"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">آنالیز ریزمغذی</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
+      <div id="az-body"><div class="empty"><div class="ei"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">آنالیز ریزمغذی</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
     </div>
   </div>
 
   <!-- REPORTS -->
   <div class="page" id="pg-reports">
     <div class="sect">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div class="pgtitle"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span> گزارش</div>
+      <div class="row-sb mb-14">
+        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span> گزارش</div>
         <div style="display:flex;gap:7px">
-          <button class="btns" style="width:auto;padding:8px 12px;font-size:12px" onclick="printRpt()" title="چاپ / ذخیره به PDF"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span></button>
+          <button class="btns" style="width:auto;padding:8px 12px;font-size:12px" onclick="printRpt()" title="چاپ / ذخیره به PDF"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span></button>
           <button class="btns" style="width:auto;padding:9px 12px;font-size:12px" onclick="exportCSV()" title="خروجی CSV">CSV</button>
-          <button class="btnp" style="width:auto;padding:9px 14px;font-size:12px" onclick="exportXLSX()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Excel</button>
+          <button class="btnp" style="width:auto;padding:9px 14px;font-size:12px" onclick="exportXLSX()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Excel</button>
         </div>
       </div>
       <select class="fs" style="margin-bottom:14px" id="rpt-pt" onchange="loadReport()"><option value="">انتخاب بیمار</option></select>
-      <div id="rpt-body"><div class="empty"><div class="ei"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">گزارش بیمار</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
+      <div id="rpt-body"><div class="empty"><div class="ei"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">گزارش بیمار</div><div style="font-size:12px;margin-top:6px">یک بیمار انتخاب کنید</div></div></div>
     </div>
   </div>
 
   <!-- SETTINGS -->
   <div class="page" id="pg-settings">
     <div class="sect">
-      <div class="pgtitle" style="margin-bottom:16px"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> تنظیمات</div>
+      <div class="pgtitle" style="margin-bottom:16px"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> تنظیمات</div>
       <div class="card" style="margin-bottom:14px">
         <div class="card-title">ظاهر برنامه</div>
         <div id="theme-toggle" style="min-height:44px"></div>
@@ -885,24 +938,24 @@ span[style*="font-size:0"] svg {
         <div class="fg"><label class="fl">نام کلینیک</label><input type="text" class="fi" id="s-clinic" placeholder="کلینیک تغذیه..."></div>
         <div class="fg"><label class="fl">نام دکتر/متخصص</label><input type="text" class="fi" id="s-doctor" placeholder="دکتر ..."></div>
         <div class="fg"><label class="fl">شماره تماس</label><input type="text" class="fi" id="s-phone" placeholder="021-..."></div>
-        <button class="btnp" onclick="saveSettings()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>
+        <button class="btnp" onclick="saveSettings()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>
       </div>
       <div class="card">
         <div class="card-title">مدیریت داده</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <button class="btns" onclick="exportData()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> خروجی پشتیبان</button>
-          <button class="btns" onclick="importData()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> بازیابی پشتیبان</button>
+          <button class="btns" onclick="exportData()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> خروجی پشتیبان</button>
+          <button class="btns" onclick="importData()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> بازیابی پشتیبان</button>
           <input type="file" id="import-f" accept=".json" style="display:none" onchange="doImport(event)">
           <div class="div"></div>
-          <button class="btnd" onclick="clearAll()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> حذف تمام داده‌ها</button>
+          <button class="btnd" onclick="clearAll()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> حذف تمام داده‌ها</button>
         </div>
       </div>
       <div class="card">
         <div class="card-title">درباره NutraQ v4</div>
-        <div class="about-row"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span> <span>234</span> ماده غذایی + <span>44</span> غذای ایرانی</div>
-        <div class="about-row"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> <span>22</span> پروفایل DRI کامل (نوزاد تا +70)</div>
-        <div class="about-row"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> <span>46</span> ریزمغذی + ضریب پخت اختصاصی</div>
-        <div class="about-row"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره آفلاین — بدون نیاز به اینترنت</div>
+        <div class="about-row"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span> <span>234</span> ماده غذایی + <span>44</span> غذای ایرانی</div>
+        <div class="about-row"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> <span>22</span> پروفایل DRI کامل (نوزاد تا +70)</div>
+        <div class="about-row"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> <span>46</span> ریزمغذی + ضریب پخت اختصاصی</div>
+        <div class="about-row"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره آفلاین — بدون نیاز به اینترنت</div>
         <div class="about-row" style="margin-top:6px;color:var(--g)">© NutraQ Clinical v4.0</div>
       </div>
     </div>
@@ -912,17 +965,17 @@ span[style*="font-size:0"] svg {
   <!-- PLANNER -->
   <div class="page" id="pg-planner">
     <div class="sect">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div class="pgtitle"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> برنامه‌ساز خودکار</div>
+      <div class="row-sb mb-14">
+        <div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> برنامه‌ساز خودکار</div>
         <div style="display:flex;gap:7px">
-          <button class="btns" style="width:auto;padding:8px 12px;font-size:12px" onclick="printPlan()" title="چاپ / ذخیره به PDF"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span></button>
+          <button class="btns" style="width:auto;padding:8px 12px;font-size:12px" onclick="printPlan()" title="چاپ / ذخیره به PDF"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span></button>
           <button class="btns" style="width:auto;padding:9px 10px;font-size:11px" onclick="exportPlanToCSV()" title="خروجی CSV">CSV</button>
-          <button class="btnshr" onclick="exportPlanToXLSX()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Excel</button>
-          <button class="btnp" style="width:auto;padding:9px 14px;font-size:13px" onclick="openPlannerModal()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> تولید</button>
+          <button class="btnshr" onclick="exportPlanToXLSX()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Excel</button>
+          <button class="btnp" style="width:auto;padding:9px 14px;font-size:13px" onclick="openPlannerModal()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> تولید</button>
         </div>
       </div>
       <div id="planner-body">
-        <div class="empty"><div class="ei"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div class="et">برنامه‌ساز خودکار</div><div style="font-size:12px;margin-top:6px;max-width:240px">برنامه غذایی خودکار بر اساس کالری هدف، با قابلیت ویرایش و ذخیره</div><button class="btnp mt12" onclick="openPlannerModal()">+ تولید برنامه هفتگی</button></div>
+        <div class="empty"><div class="ei"><span class="ico ico-16"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div class="et">برنامه‌ساز خودکار</div><div style="font-size:12px;margin-top:6px;max-width:240px">برنامه غذایی خودکار بر اساس کالری هدف، با قابلیت ویرایش و ذخیره</div><button class="btnp mt12" onclick="openPlannerModal()">+ تولید برنامه هفتگی</button></div>
       </div>
     </div>
   </div>
@@ -1001,7 +1054,7 @@ span[style*="font-size:0"] svg {
     <div class="fg"><label class="fl">یادداشت بالینی</label><textarea class="fi" id="pt-notes" rows="2" placeholder="یادداشت..."></textarea></div>
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btns" style="flex:1" onclick="cm('modal-pt')">انصراف</button>
-      <button class="btnp" style="flex:2" onclick="savePt()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره بیمار</button>
+      <button class="btnp" style="flex:2" onclick="savePt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره بیمار</button>
     </div>
   </div>
 </div>
@@ -1049,7 +1102,7 @@ span[style*="font-size:0"] svg {
         <option value="سایر">سایر</option>
       </select>
     </div>
-    <div style="background:var(--bg3);border-radius:var(--r12);padding:14px;margin-bottom:14px">
+    <div class="card-sm">
       <div style="font-size:12px;font-weight:700;color:var(--g);margin-bottom:12px">ارزش غذایی در ۱۰۰ گرم</div>
       <div class="fr2">
         <div class="fg"><label class="fl">کالری (kcal) *</label><input type="number" class="fi" id="cf-kcal" placeholder="0" min="0"></div>
@@ -1064,7 +1117,7 @@ span[style*="font-size:0"] svg {
         <div class="fg" style="margin-bottom:0"><label class="fl">سدیم (mg)</label><input type="number" class="fi" id="cf-sod" placeholder="0" min="0"></div>
       </div>
     </div>
-    <div style="background:var(--bg3);border-radius:var(--r12);padding:14px;margin-bottom:14px">
+    <div class="card-sm">
       <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:12px">سایزهای استاندارد (اختیاری)</div>
       <div class="fr3">
         <div class="fg" style="margin-bottom:0"><label class="fl">فنجان (g)</label><input type="number" class="fi" id="cf-cup" placeholder="240"></div>
@@ -1074,7 +1127,7 @@ span[style*="font-size:0"] svg {
     </div>
     <div style="display:flex;gap:8px">
       <button class="btns" style="flex:1" onclick="cm('modal-custom-food')">انصراف</button>
-      <button class="btnp" style="flex:2" onclick="saveCustomFood()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#0d0a16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>
+      <button class="btnp" style="flex:2" onclick="saveCustomFood()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#0d0a16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>
     </div>
   </div>
 </div>
@@ -1106,7 +1159,7 @@ span[style*="font-size:0"] svg {
         <option value="5" selected>۵ وعده</option>
       </select>
     </div>
-    <div style="background:var(--bg3);border-radius:var(--r12);padding:14px;margin-bottom:14px">
+    <div class="card-sm">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
         <div style="font-size:12px;font-weight:700;color:var(--t2)">توزیع ماکروها</div>
         <div id="macro-sum" style="font-size:13px;font-weight:700;color:var(--g)">100%</div>
@@ -1130,7 +1183,7 @@ span[style*="font-size:0"] svg {
     </div>
     <div style="display:flex;gap:8px">
       <button class="btns" style="flex:1" onclick="cm('modal-planner')">انصراف</button>
-      <button class="btnp" style="flex:2" onclick="generateWeeklyPlan()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#0d0a16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> تولید برنامه</button>
+      <button class="btnp" style="flex:2" onclick="generateWeeklyPlan()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#0d0a16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> تولید برنامه</button>
     </div>
   </div>
 </div>
@@ -1388,13 +1441,13 @@ function applyTheme(name) {
     var sysSvg = (ICONS.system_t||'').replace(/C/g, '#9c8fc0');
     btn.innerHTML =
       '<button class="theme-btn'+(name==='dark'?' active':'')+'" onclick="applyTheme(\'dark\')">'+
-        '<span style="display:inline-flex;font-size:0">'+moonSvg+'</span>'+
+        '<span class="ico">'+moonSvg+'</span>'+
         '<span>تاریک</span></button>'+
       '<button class="theme-btn'+(name==='light'?' active':'')+'" onclick="applyTheme(\'light\')">'+
-        '<span style="display:inline-flex;font-size:0">'+sunSvg+'</span>'+
+        '<span class="ico">'+sunSvg+'</span>'+
         '<span>روشن</span></button>'+
       '<button class="theme-btn" id="auto-btn" onclick="applyThemeAuto()">'+
-        '<span style="display:inline-flex;font-size:0">'+sysSvg+'</span>'+
+        '<span class="ico">'+sysSvg+'</span>'+
         '<span>خودکار</span></button>';
     // Fix svg sizes
     btn.querySelectorAll('svg').forEach(function(s){s.setAttribute('width','16');s.setAttribute('height','16');});
@@ -1738,7 +1791,7 @@ function updDash(){
 
   var c=q("d-recent"); if(!c)return;
   if(!pts.length){
-    c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div><div class="et">هنوز بیماری ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="openAddPt()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> افزودن بیمار</button></div>';
+    c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div><div class="et">هنوز بیماری ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="openAddPt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> افزودن بیمار</button></div>';
     return;
   }
   var h="";
@@ -1840,7 +1893,7 @@ function renderPts(list){
   st("pt-count",list.length+" بیمار");
   var c=q("pt-list"); if(!c)return;
   if(!list.length){
-    c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span></div><div class="et">هنوز بیماری ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="openAddPt()"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> بیمار جدید</button></div>';
+    c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span></div><div class="et">هنوز بیماری ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="openAddPt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> بیمار جدید</button></div>';
     return;
   }
   var h="";
@@ -1862,8 +1915,8 @@ function renderPts(list){
     h+="</div>";
     h+='<div class="ptact"><span class="badge bg-g">'+mc+" منو</span>";
     h+='<div style="display:flex;gap:5px;margin-top:6px">';
-    h+='<button class="ibtn" data-editid="'+p.id+'"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span></button>';
-    h+='<button class="ibtn x" data-delid="'+p.id+'"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>';
+    h+='<button class="ibtn" data-editid="'+p.id+'"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span></button>';
+    h+='<button class="ibtn x" data-delid="'+p.id+'"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span></button>';
     h+="</div></div></div>";
   });
   c.innerHTML=h;
@@ -1910,7 +1963,7 @@ function openPtDetail(id){
   h+='<div class="irow"><span class="ilbl">DRI</span><span style="font-size:11px">'+p.driProfile+"</span></div>";
   h+='<div class="irow"><span class="ilbl">منوها</span><span>'+ms.length+" منو ثبت‌شده</span></div>";
   h+='<div style="display:flex;gap:6px;margin-top:18px">';
-  h+='<button class="btns" style="flex:1" data-editid="'+id+'"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> ویرایش</button>';
+  h+='<button class="btns" style="flex:1" data-editid="'+id+'"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> ویرایش</button>';
   h+='<button class="btnp" style="flex:1" data-menupt="'+id+'">منو</button>';
   h+='<button class="btns" style="flex:1;background:var(--purpled);color:var(--purple);border-color:rgba(168,85,247,.2)" data-planpt="'+id+'">برنامه</button>';
   h+="</div>";
@@ -2199,7 +2252,7 @@ function renderMenu(){
   ss("pb-fat","width",Math.min(kcal>0?fat/(kcal/9*0.25)*100:0,100)+"%");
   ss("pb-fib","width",Math.min(fib/38*100,100)+"%");
   var c=q("menu-meals"); if(!c)return;
-  if(!items.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#5d4f80"/></svg></span></div><div class="et">منو خالی است</div><div style="font-size:12px;margin-top:4px">از بالا ماده غذایی اضافه کنید</div></div>';return;}
+  if(!items.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#5d4f80"/></svg></span></div><div class="et">منو خالی است</div><div style="font-size:12px;margin-top:4px">از بالا ماده غذایی اضافه کنید</div></div>';return;}
   var grps={};MEALS.forEach(function(m){grps[m]=[];});
   items.forEach(function(it){if(!grps[it.meal])grps[it.meal]=[];grps[it.meal].push(it);});
   var h="";
@@ -2289,7 +2342,7 @@ function renderFoods(append){
   });
   var grid=q("foods-grid"); if(!grid)return;
   if(append)grid.innerHTML+=h;
-  else grid.innerHTML=h||(fil.length===0?'<div class="empty" style="padding:40px"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div><div class="et">نتیجه‌ای یافت نشد</div></div>':"");
+  else grid.innerHTML=h||(fil.length===0?'<div class="empty" style="padding:40px"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div><div class="et">نتیجه‌ای یافت نشد</div></div>':"");
   var lm=q("foods-lm"); if(lm)lm.style.display=(pg+1)*FPP<fil.length?"flex":"none";
   foodsPage=pg+1;
   grid.querySelectorAll(".fcard[data-fid]").forEach(function(el){
@@ -2326,7 +2379,7 @@ function showFoodDetail(id){
     items.forEach(function(k){var v=food.nu[k];h+='<div class="nrow"><span class="nl">'+(NL[k]||k)+"</span><span class=\"nv\">"+v.toFixed(v<1?3:1)+"</span></div>";});
     h+="</div>";
   });
-  h+='<button class="btnp" style="margin-top:12px" id="fd-add"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>';
+  h+='<button class="btnp" style="margin-top:12px" id="fd-add"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>';
   sh("food-detail-body",h);
   q("fd-fav").addEventListener("click",function(){togFav(id);q("fd-fav").textContent=isFav(id)?"★":"☆";});
   q("fd-add").addEventListener("click",function(){quickAdd(id);cm("modal-fd");});
@@ -2343,10 +2396,10 @@ function initAnalyzer(){
 }
 function runAnalyzer(){
   var pid=gv("az-pt"), dk=gv("az-dri"), c=q("az-body"); if(!c)return;
-  if(!pid){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">یک بیمار انتخاب کنید</div></div>';return;}
+  if(!pid){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span></div><div class="et">یک بیمار انتخاب کنید</div></div>';return;}
   if(!dk){var pt=getP().filter(function(p){return p.id===pid;})[0];if(pt){dk=pt.driProfile;sv("az-dri",dk);}}
   var ms=Object.values(getM()).filter(function(m){return m.patientId===pid;});
-  if(!ms.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">هنوز منویی ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="nav(\'menu\')">برو به منوساز</button></div>';return;}
+  if(!ms.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">هنوز منویی ثبت نشده</div><button class="btnp" style="margin-top:12px" onclick="nav(\'menu\')">برو به منوساز</button></div>';return;}
   var avg={};
   ms.forEach(function(menu){menu.items.forEach(function(it){Object.keys(it.nutr).forEach(function(k){avg[k]=(avg[k]||0)+it.nutr[k];});});});
   Object.keys(avg).forEach(function(k){avg[k]/=ms.length;});
@@ -2382,10 +2435,10 @@ function runAnalyzer(){
 function initReports(){refSel();}
 function loadReport(){
   var pid=gv("rpt-pt"), c=q("rpt-body"); if(!c)return;
-  if(!pid){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">یک بیمار انتخاب کنید</div></div>';return;}
+  if(!pid){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">یک بیمار انتخاب کنید</div></div>';return;}
   var pt=getP().filter(function(p){return p.id===pid;})[0]; if(!pt)return;
   var ams=Object.values(getM()).filter(function(m){return m.patientId===pid;});
-  if(!ams.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">هنوز منویی ثبت نشده</div></div>';return;}
+  if(!ams.length){c.innerHTML='<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span></div><div class="et">هنوز منویی ثبت نشده</div></div>';return;}
   var s=getS(), lm=ams.sort(function(a,b){return new Date(b.savedAt||0)-new Date(a.savedAt||0);})[0];
   var kcal=Math.round(tot(lm.items,"انرژی(Kcal)"));
   var carb=tot(lm.items,"کربوهیدرات(g)").toFixed(1), prot=tot(lm.items,"پروتئین(g)").toFixed(1);
@@ -2738,7 +2791,7 @@ function renderFoodsWithCustom(append) {
   var grid = q('foods-grid');
   if (!grid) return;
   if (append) grid.innerHTML += h;
-  else grid.innerHTML = h || (fil.length === 0 ? '<div class="empty" style="padding:40px"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div><div class="et">نتیجه‌ای یافت نشد</div></div>' : '');
+  else grid.innerHTML = h || (fil.length === 0 ? '<div class="empty" style="padding:40px"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div><div class="et">نتیجه‌ای یافت نشد</div></div>' : '');
   var lm = q('foods-lm');
   if (lm) lm.style.display = (pg + 1) * FPP < fil.length ? 'flex' : 'none';
   foodsPage = pg + 1;
@@ -2779,10 +2832,10 @@ function showCustomFoodDetail(id) {
     h += '</div>';
   }
   h += '<div style="display:flex;gap:8px;margin-top:14px">';
-  h += '<button class="btns" style="flex:1" id="cf-edit-btn"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> ویرایش</button>';
-  h += '<button class="btnd" style="flex:1" id="cf-del-btn"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span> حذف</button>';
+  h += '<button class="btns" style="flex:1" id="cf-edit-btn"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#9c8fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> ویرایش</button>';
+  h += '<button class="btnd" style="flex:1" id="cf-del-btn"><span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span> حذف</button>';
   h += '</div>';
-  h += '<button class="btnp" style="margin-top:10px" id="cf-add-menu-btn"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>';
+  h += '<button class="btnp" style="margin-top:10px" id="cf-add-menu-btn"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن به منو</button>';
   sh('food-detail-body', h);
   q('cf-edit-btn').addEventListener('click', function() { cm('modal-fd'); openAddCustomFood(id); });
   q('cf-del-btn').addEventListener('click', function() { cm('modal-fd'); delCustomFood(id); });
@@ -2972,7 +3025,7 @@ function generateWeeklyPlan() {
 function renderGeneratedPlan(plan) {
   plan = plan || (APP._generatedPlan || {}).plan;
   if (!plan) {
-    sh('planner-body', '<div class="empty"><div class="ei" style="font-size:0"><span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div class="et">هنوز برنامه‌ای تولید نشده</div><button class="btnp" style="margin-top:12px" onclick="openPlannerModal()">+ تولید برنامه هفتگی</button></div>');
+    sh('planner-body', '<div class="empty"><div class="ei" style="font-size:0"><span class="ico ico-44"><svg viewBox="0 0 24 24" fill="none" stroke="#5d4f80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span></div><div class="et">هنوز برنامه‌ای تولید نشده</div><button class="btnp" style="margin-top:12px" onclick="openPlannerModal()">+ تولید برنامه هفتگی</button></div>');
     return;
   }
   var h = '';
@@ -2981,7 +3034,7 @@ function renderGeneratedPlan(plan) {
     h += '<div class="plan-day-hd">';
     h += '<span>' + day.day + ' — ' + day.totalKcal + ' kcal</span>';
     h += '<div style="display:flex;gap:6px">';
-    h += '<button class="btnshr" onclick="saveDayToMenu(' + di + ')" style="font-size:11px;padding:6px 10px"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>';
+    h += '<button class="btnshr" onclick="saveDayToMenu(' + di + ')" style="font-size:11px;padding:6px 10px"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span> ذخیره</button>';
     h += '</div></div>';
     day.meals.forEach(function(meal, mi) {
       h += '<div class="plan-meal">';
@@ -2989,7 +3042,7 @@ function renderGeneratedPlan(plan) {
       meal.items.forEach(function(item, ii) {
         h += '<div class="plan-item" data-day="' + di + '" data-meal="' + mi + '" data-item="' + ii + '">';
         h += '<div class="plan-item-inf">';
-        h += '<div class="fname">' + (item.isDish ? '<span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>' : '') + item.foodName + '</div>';
+        h += '<div class="fname">' + (item.isDish ? '<span class="ico ico-14"><svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M3 20a9 9 0 1118 0"/><path d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>' : '') + item.foodName + '</div>';
         h += '<div class="fsub">' + item.qty + ' ' + item.size + ' · ' + Math.round(item.grams) + 'g · ' + Math.round(item.nutr['انرژی(Kcal)'] || 0) + ' kcal</div>';
         h += '</div>';
         h += '<button class="delbtn" onclick="removePlanItem(' + di + ',' + mi + ',' + ii + ')">✕</button>';
@@ -3254,7 +3307,7 @@ function selectFoodForPlan(food) {
   h += '<div class="qtysep"></div><button class="qtybtn" type="button" id="atp-inc">+</button></div></div>';
   h += '<div class="fg" style="margin-bottom:0"><label class="fl">سایز</label>';
   h += '<select class="fs" id="atp-size">' + opts + '</select></div></div>';
-  h += '<button class="btnp" style="margin-top:10px" id="atp-confirm"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن</button></div>';
+  h += '<button class="btnp" style="margin-top:10px" id="atp-confirm"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> افزودن</button></div>';
   sh('atp-selected', h);
   // events
   var dec = q('atp-dec'); if(dec) dec.addEventListener('click',function(){var e=q('atp-qty');if(e)e.value=Math.max(0.1,parseFloat(e.value||1)-0.5);});
