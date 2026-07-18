@@ -573,7 +573,7 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
     margin-bottom:3px;   /* DayQ tc-wrap: 3px */
     gap:10px;
   }
-  .ptmi{width:38px;height:38px;border-radius:50%;}
+  .ptmi{width:38px;height:40px;border-radius:50%;}
   .ptn{font-size:.85rem;font-weight:600;}
   .ptmt{font-size:.72rem;color:var(--t3);}
 
@@ -718,7 +718,7 @@ input[type=range]{flex:1;accent-color:var(--g);height:4px}
 
   /* 4. Touch targets: min-height ≥40px */
   .btnp,.btns,.btnd,.btnshr,.qa-btn{min-height:40px;}
-  .nb{min-height:38px;}
+  .nb{min-height:40px;}
   .fi,.fs{min-height:40px;}
   .ptcard{min-height:52px;}
 
@@ -1465,7 +1465,7 @@ span[style*="font-size:0"] svg {
   flex-direction:row;
   align-items:center;
   gap:10px;
-  height:42px;
+  height:40px;
   padding:0 16px;
   margin:2px 8px;
   border-radius:10px;
@@ -1489,7 +1489,7 @@ span[style*="font-size:0"] svg {
   background:rgba(245,85,121,.08);
   color:var(--g);
   font-weight:600;
-  box-shadow:inset -3px 0 0 var(--g); /* RTL: right edge highlight */
+  box-shadow:inset 3px 0 0 var(--g); /* RTL: right edge highlight */
 }
 
 /* Nav icon */
@@ -1576,7 +1576,7 @@ span[style*="font-size:0"] svg {
 ───────────────────────────────────────── */
 .btnp{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  height:38px;
+  height:40px;
   padding:0 18px;
   background:linear-gradient(135deg,#F55579 0%,#C8335C 100%);
   color:#1a0008;
@@ -1600,7 +1600,7 @@ span[style*="font-size:0"] svg {
 
 .btns{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  height:38px;
+  height:40px;
   padding:0 16px;
   background:var(--s1);
   color:var(--t2);
@@ -1618,7 +1618,7 @@ span[style*="font-size:0"] svg {
 
 .btnd{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  height:38px;
+  height:40px;
   padding:0 16px;
   background:rgba(239,68,68,.08);
   color:var(--red);
@@ -1781,7 +1781,7 @@ span[style*="font-size:0"] svg {
 /* Hero strip */
 .db-hero{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;
+  padding:10px 20px;
   border-bottom:1px solid var(--b1);
   flex-shrink:0;
   background:linear-gradient(180deg,rgba(22,17,37,.6) 0%,transparent 100%);
@@ -1873,7 +1873,7 @@ span[style*="font-size:0"] svg {
 .db-act-btn{
   display:flex;align-items:center;gap:8px;
   width:100%;height:36px;
-  padding:0 10px;
+  padding:0 12px;
   border-radius:9px;
   border:1px solid var(--b1);
   background:var(--s1);
@@ -1900,7 +1900,7 @@ span[style*="font-size:0"] svg {
 }
 .db-vc{
   display:flex;align-items:center;gap:10px;
-  padding:10px 12px;
+  padding:11px 12px;
   border-radius:10px;
   background:var(--bg2);
   border:1px solid var(--b1);
@@ -1959,8 +1959,8 @@ span[style*="font-size:0"] svg {
 /* Individual patient card */
 .ptcard{
   display:flex;align-items:flex-start;gap:10px;
-  padding:10px 12px;
-  margin-bottom:2px;
+  padding:12px 16px;
+  margin-bottom:4px;
   border-radius:10px;
   cursor:pointer;
   border:1px solid transparent;
@@ -1971,7 +1971,7 @@ span[style*="font-size:0"] svg {
 .ptcard.selected{
   background:rgba(245,85,121,.08);
   border-color:rgba(245,85,121,.25);
-  box-shadow:inset -3px 0 0 var(--g);
+  box-shadow:inset 3px 0 0 var(--g);
 }
 
 /* Patient card info */
@@ -2640,6 +2640,262 @@ span[style*="font-size:0"] svg {
    PRINT — Clinical document output
 ───────────────────────────────────────── */
 
+
+/* ════════════════════════════════════
+   POLISH PASS — Pixel-level refinements
+════════════════════════════════════ */
+
+@media(min-width:900px){
+
+/* ── Topbar: Center zone with patient chip ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;}
+.hdr-center{
+  display:flex;align-items:center;gap:10px;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.hdr-patient-chip{
+  display:flex;align-items:center;gap:6px;
+  height:28px;
+  padding:0 10px;
+  background:rgba(245,85,121,.08);
+  border:1px solid rgba(245,85,121,.18);
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .14s,border-color .14s;
+}
+.hdr-patient-chip:hover{background:rgba(245,85,121,.14);border-color:rgba(245,85,121,.3);}
+.hdr-patient-name{
+  font-size:12px;font-weight:700;
+  color:var(--t1);
+}
+.hdr-patient-cond{
+  font-size:10px;font-weight:500;
+  color:var(--t3);
+  padding-right:6px;
+  border-right:1px solid var(--b2);
+}
+
+/* ── Focus States — Accessibility ── */
+*:focus-visible{
+  outline:2px solid var(--g);
+  outline-offset:2px;
+  border-radius:inherit;
+}
+.nb:focus-visible{border-radius:10px;}
+.btnp:focus-visible,.btns:focus-visible,.btnd:focus-visible{border-radius:10px;}
+.fi:focus-visible,.fs:focus-visible{
+  outline:none;
+  border-color:var(--g);
+  box-shadow:0 0 0 3px rgba(245,85,121,.14);
+}
+
+/* ── Loading Skeleton ── */
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+.skeleton{
+  background:linear-gradient(90deg,var(--s1) 25%,var(--s2) 50%,var(--s1) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.6s infinite;
+  border-radius:6px;
+}
+.skeleton-text{height:12px;width:60%;}
+.skeleton-title{height:14px;width:40%;}
+.skeleton-card{height:62px;width:100%;border-radius:10px;}
+.skeleton-row{height:44px;width:100%;border-radius:6px;margin-bottom:4px;}
+
+/* ── Empty States — Clinical voice ── */
+.empty-title{
+  font-size:13px;font-weight:700;
+  color:var(--t2);letter-spacing:-.01em;
+}
+.empty-sub{
+  font-size:12px;color:var(--t3);
+  line-height:1.7;max-width:240px;
+}
+
+/* ── Patient card: urgency dot ── */
+.ptcard-urgency{
+  width:7px;height:7px;
+  border-radius:50%;
+  flex-shrink:0;
+  margin-top:4px;
+  transition:transform .2s;
+}
+.ptcard:hover .ptcard-urgency{transform:scale(1.4);}
+.urgency-today{background:var(--g);box-shadow:0 0 6px rgba(245,85,121,.5);}
+.urgency-soon{background:var(--amber);}
+.urgency-ok{background:var(--success,#10B981);}
+.urgency-none{background:var(--t3);opacity:.5;}
+
+/* ── Patient card: visit timing badge ── */
+.pt-visit-badge{
+  font-size:10px;font-weight:700;
+  padding:2px 6px;border-radius:4px;
+  flex-shrink:0;white-space:nowrap;
+  margin-right:auto;
+}
+
+/* ── Macrobox states ── */
+.macrobox.state-low{border-color:rgba(245,158,11,.25);}
+.macrobox.state-low .gauge-arc{stroke:var(--amber)!important;}
+.macrobox.state-excess{border-color:rgba(249,115,22,.25);}
+.macrobox.state-excess .gauge-arc{stroke:var(--orange)!important;}
+
+/* ── Allergy in menu rows ── */
+.frow.frow-allergen{
+  background:rgba(239,68,68,.04)!important;
+  border-color:rgba(239,68,68,.2)!important;
+}
+.frow.frow-allergen:hover{background:rgba(239,68,68,.08)!important;}
+
+/* ── Visit card: max-width discipline ── */
+.db-col-main>.db-vc{
+  max-width:700px;
+}
+
+/* ── Nav items: correct width in RTL ── */
+.nb{
+  width:calc(100% - 16px);
+  box-sizing:border-box;
+}
+
+/* ── Topbar brand logo proper gradient ── */
+.hdr-logo{
+  background:linear-gradient(135deg,#F55579 0%,#8B1F3F 100%);
+  box-shadow:0 1px 8px rgba(245,85,121,.3);
+}
+
+/* ── Stat card: hover reveals arrow ── */
+.db-sc::after{
+  content:'←';
+  font-size:11px;color:var(--g);opacity:0;
+  position:absolute;bottom:10px;left:12px;
+  transition:opacity .15s,transform .15s;
+  transform:translateX(-3px);
+}
+.db-sc{position:relative;}
+.db-sc:hover::after{opacity:.7;transform:translateX(0);}
+
+/* ── Consistent icon sizing in nav ── */
+.nb svg,.nb .ico svg{
+  width:16px!important;height:16px!important;
+}
+
+/* ── Better tab bar ── */
+.tab-btn.active{
+  background:var(--bg3);
+  color:var(--t1);
+  box-shadow:0 1px 4px rgba(0,0,0,.2);
+}
+
+/* ── Form labels consistent ── */
+.fl{
+  font-size:10px!important;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+/* ── Section titles uniform ── */
+.sect-title,.db-col-title,.meal-cat-hdr,.an-title{
+  font-size:10px!important;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--t3);
+}
+
+/* ── Modal polish ── */
+.msheet{
+  animation:modalIn .26s cubic-bezier(.32,.72,0,1) both;
+}
+.modal-ov{
+  animation:overlayIn .2s ease both;
+}
+@keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
+
+/* ── Stat card value: tabular nums ── */
+.db-sc-val{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum";
+}
+
+/* ── Visit card name: tabular nums for sub info ── */
+.db-vc-sub{
+  font-variant-numeric:tabular-nums;
+}
+
+/* ── Hover transition precision ── */
+.ptcard,.fcard,.db-sc,.db-vc{
+  will-change:transform;
+}
+
+/* ── Settings: section grouping ── */
+#pg-settings .card{
+  background:var(--bg2);
+  border:1px solid var(--b1);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:10px;
+}
+#pg-settings .card:first-child{
+  border-top:2px solid var(--g);
+}
+
+/* ── Report header backdrop ── */
+.rpt-header{
+  background:rgba(13,10,22,.92)!important;
+  border-bottom:1px solid var(--b1);
+}
+
+/* ── Breadth of hover: action button micro ── */
+.db-act-btn:active{transform:scale(.98);}
+.btns:active{transform:scale(.98);}
+
+/* ── Better gauge center alignment ── */
+.gauge-center{
+  pointer-events:none;
+  user-select:none;
+}
+
+/* ── food dropdown scroll ── */
+.food-dd{
+  max-height:240px;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--b2) transparent;
+}
+
+/* ── Allergy banner in menu ── */
+#menu-allergy-banner{
+  font-size:12px;font-weight:600;
+  color:var(--red);
+  padding:6px 12px;
+  margin-bottom:8px;
+  background:rgba(239,68,68,.06);
+  border:1px solid rgba(239,68,68,.15);
+  border-radius:8px;
+  display:flex;align-items:center;gap:6px;
+}
+#menu-allergy-banner:empty{display:none;}
+
+/* ── Analysis rows: clinical significance ── */
+.an-row.clinical-flag{
+  background:rgba(245,85,121,.04);
+}
+.an-row.clinical-flag .an-name{
+  font-weight:700;color:var(--t1);
+}
+
+/* ── Responsive: 1600px fine-tuning ── */
+}
+
+@media(min-width:1600px){
+  .db-col-main>.db-vc{max-width:780px;}
+  .hdr-center{gap:12px;}
+}
 </style>
 </head>
 <body>
@@ -2650,7 +2906,13 @@ span[style*="font-size:0"] svg {
     <div class="hdr-logo">N</div>
     <div><div class="hdr-title">NutraQ</div><div class="hdr-sub">سامانه تغذیه بالینی</div></div>
   </div>
-  <span class="hdr-page-title" id="hdrPageTitle"></span>
+  <div class="hdr-center">
+    <div class="hdr-patient-chip" id="hdrPatientChip" style="display:none">
+      <span class="hdr-patient-name" id="hdrPatientName"></span>
+      <span class="hdr-patient-cond" id="hdrPatientCond"></span>
+    </div>
+    <span class="hdr-page-title" id="hdrPageTitle"></span>
+  </div>
   <div class="hdr-date" id="hdr-date"></div>
 </header>
 
@@ -3316,6 +3578,67 @@ var ICO_QA = [
   {k:'autoplan', c:'#a855f7'},
   {k:'analyze',  c:'#a855f7'}
 ];
+
+
+/* ─── Avatar Color System ─── */
+var NQ_AVATAR_PALETTE=[
+  '#3D5470','#2E5C44','#4A3875','#5C3D6B',
+  '#6B4226','#4D4028','#2D5A8E','#1B6B5A'
+];
+function getAvatarColor(id){
+  if(!id)return NQ_AVATAR_PALETTE[0];
+  var hash=id.split('').reduce(function(acc,c){return acc+c.charCodeAt(0);},0);
+  return NQ_AVATAR_PALETTE[hash % NQ_AVATAR_PALETTE.length];
+}
+
+/* ─── Topbar Patient Context ─── */
+function updateTopbarPatient(pt){
+  var chip=document.getElementById('hdrPatientChip');
+  var nameEl=document.getElementById('hdrPatientName');
+  var condEl=document.getElementById('hdrPatientCond');
+  if(!chip||!nameEl||!condEl) return;
+  if(!pt){chip.style.display='none';return;}
+  nameEl.textContent=pt.firstname+' '+pt.lastname;
+  var cond=(pt.conditions&&pt.conditions[0])||
+           (pt.allergyCats&&pt.allergyCats.length?'آلرژی: '+pt.allergyCats[0]:'')||
+           (pt.goal||'');
+  condEl.textContent=cond;
+  condEl.style.display=cond?'':'none';
+  chip.style.display='flex';
+  chip.onclick=function(){if(window.nav)nav('patients');};
+}
+
+/* ─── Macrobox State Manager ─── */
+function updateMacroboxState(kcal,target){
+  var box=document.querySelector('.macrobox');
+  if(!box||!target)return;
+  var pct=kcal/target;
+  box.classList.remove('state-low','state-excess','state-ok');
+  if(pct<0.70) box.classList.add('state-low');
+  else if(pct>1.10) box.classList.add('state-excess');
+  else box.classList.add('state-ok');
+}
+
+/* ─── Urgency Dot for Patient Cards ─── */
+function getPtUrgencyClass(pt){
+  if(!pt.nextVisit)return 'urgency-none';
+  var today=new Date();today.setHours(0,0,0,0);
+  var visit=new Date(pt.nextVisit);visit.setHours(0,0,0,0);
+  var diff=(visit-today)/(1000*60*60*24);
+  if(diff===0)return 'urgency-today';
+  if(diff===1)return 'urgency-soon';
+  if(diff>0&&diff<=7)return 'urgency-ok';
+  return 'urgency-none';
+}
+function getPtVisitBadge(pt){
+  if(!pt.nextVisit)return '';
+  var today=new Date();today.setHours(0,0,0,0);
+  var visit=new Date(pt.nextVisit);visit.setHours(0,0,0,0);
+  var diff=(visit-today)/(1000*60*60*24);
+  if(diff===0)return '<span class="pt-visit-badge badge bg-r">امروز</span>';
+  if(diff===1)return '<span class="pt-visit-badge badge bg-a">فردا</span>';
+  return '';
+}
 
 function mkIc(key, col, w, h) {
   var svg = ICONS[key]; if (!svg) return '';
@@ -4027,7 +4350,9 @@ function renderPts(list){
   list.forEach(function(p){
     var bc=bmiCat(p.bmi);
     var mc=Object.values(getM()).filter(function(m){return m.patientId===p.id;}).length;
+    var _urgCls=getPtUrgencyClass(p);var _vBadge=getPtVisitBadge(p);
     h+='<div class="ptcard" data-pid="'+p.id+'">';
+    h+='<div class="ptcard-urgency '+_urgCls+'"></div>';
     h+='<div class="av" style="width:42px;height:42px;border-radius:13px;font-size:16px;background:'+p.avatar+'22;color:'+p.avatar+'">'+p.firstname[0]+(p.lastname[0]||"")+"</div>";
     h+='<div class="ptinf">';
     h+='<div class="ptn">'+p.firstname+" "+p.lastname+"</div>";
@@ -4063,6 +4388,7 @@ function filterPts(){
 }
 function openPtDetail(id){
   var p=getP().filter(function(x){return x.id===id;})[0]; if(!p)return;
+  updateTopbarPatient(p);
   var ms=Object.values(getM()).filter(function(m){return m.patientId===id;});
   var bc=bmiCat(p.bmi);
   var h='<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">';
