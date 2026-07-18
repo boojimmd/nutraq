@@ -4047,6 +4047,706 @@ span[style*="font-size:0"] svg {
 
 }
 
+
+/* ══════════════════════════════════════════════════════════
+   NUTRAQ — BOLD VISUAL EXECUTION
+   Every pixel deliberate. Nothing generic survives.
+══════════════════════════════════════════════════════════ */
+
+@media(min-width:900px){
+
+/* ─── ROOT: Tighten the surface palette ─── */
+:root{
+  --bg:   #080611;
+  --bg2:  #0e0b1a;
+  --bg3:  #131020;
+  --s1:   #181428;
+  --s2:   #1e1932;
+  --b1:   rgba(255,255,255,.07);
+  --b2:   rgba(255,255,255,.11);
+  --t1:   #f0eaff;
+  --t2:   #8a7db0;
+  --t3:   #4a4070;
+  --g:    #f55579;
+  --gd:   rgba(245,85,121,.08);
+}
+
+/* ─── SIDEBAR: Stop looking like a sidebar ─── */
+.bnav{
+  width:52px !important;
+  background:var(--bg2) !important;
+  border-left:1px solid var(--b1) !important;
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 !important;
+  transition:width .22s cubic-bezier(.32,.72,0,1) !important;
+  overflow:hidden !important;
+}
+.bnav:hover{
+  width:220px !important;
+}
+.bnav::before{
+  content:'';
+  width:32px;height:32px;
+  background:linear-gradient(135deg,#f55579,#8B1F3F);
+  border-radius:8px;
+  display:flex !important;
+  align-items:center;justify-content:center;
+  flex-shrink:0;
+  margin:11px auto;
+  font-size:0 !important;
+  letter-spacing:0 !important;
+  border-bottom:none !important;
+  height:32px !important;
+  padding:0 !important;
+}
+.bnav::after{
+  content:'N';
+  position:absolute;
+  top:11px;right:10px;
+  width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:900;color:#fff;
+  pointer-events:none;
+}
+
+/* nav items: icon only, label appears on hover */
+.nb{
+  width:52px !important;
+  height:44px !important;
+  padding:0 !important;
+  margin:1px 0 !important;
+  border-radius:0 !important;
+  display:flex;align-items:center;justify-content:center;
+  gap:0 !important;
+  overflow:hidden;
+  position:relative;
+  transition:background .12s,width .22s cubic-bezier(.32,.72,0,1),justify-content .22s !important;
+}
+.bnav:hover .nb{
+  width:220px !important;
+  justify-content:flex-end !important;
+  padding:0 14px 0 0 !important;
+  gap:10px !important;
+}
+.nb svg,.nb .ico svg{
+  width:16px !important;height:16px !important;
+  flex-shrink:0;
+  position:absolute;right:18px;
+  transition:right .22s cubic-bezier(.32,.72,0,1);
+}
+.bnav:hover .nb svg,.bnav:hover .nb .ico svg{
+  position:static !important;
+  right:auto !important;
+}
+.nb-lbl,.nb span:not(.ico):not(.nic):not(.nb-kbd-hint){
+  font-size:12px !important;
+  opacity:0;
+  white-space:nowrap;
+  transition:opacity .15s .05s;
+  pointer-events:none;
+}
+.bnav:hover .nb-lbl,.bnav:hover .nb span:not(.ico):not(.nic):not(.nb-kbd-hint){
+  opacity:1 !important;
+  pointer-events:auto;
+}
+.nb-kbd-hint{display:none !important;}
+.nic{display:none;}
+.bnav:hover .nic{display:inline-flex;}
+
+#nb-settings{
+  height:44px !important;
+  margin-top:auto !important;
+  width:52px !important;
+  border-radius:0 !important;
+  border-top:1px solid var(--b1) !important;
+  padding:0 !important;
+  display:flex;align-items:center;justify-content:center !important;
+}
+.bnav:hover #nb-settings{
+  width:220px !important;
+  justify-content:flex-end !important;
+  padding:0 14px 0 0 !important;
+  gap:10px !important;
+}
+
+/* Content: adjust for 52px sidebar */
+.pwrap{
+  margin-right:52px !important;
+}
+.hdr{
+  right:52px !important;
+}
+
+/* ─── TOPBAR: Sharper, clinical ─── */
+.hdr{
+  height:44px !important;
+  background:var(--bg) !important;
+  border-bottom:1px solid var(--b1) !important;
+  padding:0 16px !important;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+}
+.hdr-logo{
+  width:22px !important;height:22px !important;
+  border-radius:6px !important;
+  background:linear-gradient(135deg,#f55579,#8B1F3F) !important;
+  font-size:0 !important;
+  box-shadow:none !important;
+  flex-shrink:0;
+}
+.hdr-logo svg{display:none;}
+.hdr-logo::after{
+  content:'N';
+  font-size:10px;font-weight:900;color:#fff;
+  position:static;width:auto;height:auto;
+}
+.hdr-title{
+  font-size:11px !important;
+  font-weight:800 !important;
+  letter-spacing:.1em !important;
+  text-transform:uppercase !important;
+  color:var(--t2) !important;
+}
+.hdr-sub{display:none !important;}
+.hdr-date{
+  font-size:10px !important;
+  color:var(--t3) !important;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+}
+.hdr-center{
+  position:absolute;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:8px;
+}
+.hdr-patient-chip{
+  height:24px !important;
+  border-radius:3px !important;
+  padding:0 8px !important;
+  background:rgba(245,85,121,.07) !important;
+  border:1px solid rgba(245,85,121,.15) !important;
+}
+.hdr-patient-name{font-size:11px !important;font-weight:700 !important;}
+.hdr-patient-cond{font-size:9px !important;}
+.hdr-page-title{
+  font-size:9px !important;
+  color:var(--t3) !important;
+  letter-spacing:.1em !important;
+  text-transform:uppercase !important;
+}
+
+/* ─── DASHBOARD: Clinical monitor feel ─── */
+#pg-dashboard.active{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--bg);
+}
+.db-hero{
+  height:40px !important;
+  padding:0 20px !important;
+  background:transparent !important;
+  border-bottom:1px solid var(--b1) !important;
+  display:flex;align-items:center;gap:20px;
+  flex-shrink:0;
+}
+.db-day{font-size:9px !important;color:var(--t3) !important;letter-spacing:.1em !important;text-transform:uppercase;}
+.db-brand{font-size:11px !important;font-weight:800 !important;color:var(--t2) !important;letter-spacing:.04em;margin-top:0 !important;}
+.db-hero-center{font-size:11px !important;gap:14px !important;}
+.db-hs span{font-size:14px !important;font-weight:800 !important;color:var(--t1) !important;font-variant-numeric:tabular-nums;}
+.db-sep{background:var(--b2);width:1px;height:14px;display:inline-block;vertical-align:middle;}
+.db-hero-right{font-size:10px !important;color:var(--t3) !important;}
+
+/* Status bar: make numbers the star */
+.db-stats{
+  display:flex !important;
+  height:56px !important;
+  padding:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  flex-shrink:0;
+  background:var(--bg2);
+}
+.db-sc{
+  flex:1 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  padding:0 20px !important;
+  border-left:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  gap:1px !important;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:background .12s !important;
+  transform:none !important;
+}
+.db-sc:first-child{border-left:none !important;}
+.db-sc:hover{background:rgba(245,85,121,.04) !important;transform:none !important;}
+.db-sc::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;background:transparent;
+  transition:background .2s;
+}
+.db-sc:hover::before{background:var(--g);}
+.db-sc::after{display:none !important;}
+.db-sc-val{
+  font-size:24px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  color:var(--t1) !important;
+  letter-spacing:-.04em !important;
+  font-variant-numeric:tabular-nums !important;
+}
+.db-sc-lbl{
+  font-size:9px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.09em !important;
+  color:var(--t3) !important;
+  margin-top:0 !important;
+}
+.db-sc-link{display:none !important;}
+
+/* Main: refined column ratio */
+.db-main{display:flex;flex:1;overflow:hidden;}
+.db-col-main{
+  flex:1;min-width:0;
+  overflow-y:auto;
+  padding:0 !important;
+}
+.db-col-side{
+  width:240px !important;
+  flex-shrink:0;
+  border-right:1px solid var(--b1) !important;
+  overflow-y:auto;
+  padding:0 !important;
+  background:var(--bg2) !important;
+}
+
+/* Section header in sidebar */
+.db-col-title{
+  font-size:9px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.1em !important;
+  color:var(--t3) !important;
+  padding:12px 16px 6px !important;
+  margin:0 !important;
+  border-bottom:none !important;
+}
+
+/* Quick actions: text-only, clinical */
+.db-actions{gap:0 !important;}
+.db-act-btn{
+  height:36px !important;
+  padding:0 16px !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-top:none !important;border-left:none !important;border-right:none !important;
+  background:transparent !important;
+  color:var(--t2) !important;
+  font-size:11px !important;
+  border-radius:0 !important;
+  display:flex;align-items:center;gap:8px;
+  width:100%;cursor:pointer;font-family:inherit;
+}
+.db-act-btn:hover{
+  background:rgba(245,85,121,.05) !important;
+  color:var(--t1) !important;
+  transform:none !important;
+}
+.db-act-btn::after{display:none !important;}
+.db-act-btn svg{opacity:.4;flex-shrink:0;width:13px !important;height:13px !important;}
+.db-act-btn:hover svg{opacity:.8;}
+
+/* Visit strips: lean and clinical */
+.db-visit-title{
+  font-size:9px !important;
+  font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--t3) !important;
+  padding:12px 20px 6px !important;
+  margin:0 !important;
+  border-bottom:none !important;
+  display:flex;align-items:center;gap:8px;
+}
+.db-section-hdr{
+  font-size:9px !important;
+  padding:10px 20px 4px !important;
+  margin:0 !important;
+  border-top:1px solid var(--b1) !important;
+  border-bottom:none !important;
+  letter-spacing:.1em !important;
+}
+.db-vc{
+  height:48px !important;
+  padding:0 0 0 0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border-left:none !important;border-right:none !important;border-top:none !important;
+  margin:0 !important;
+  cursor:pointer;
+  transition:background .1s !important;
+  display:flex;align-items:center;gap:0;
+}
+.db-vc::before{
+  content:'';
+  width:3px;height:100%;
+  flex-shrink:0;
+  background:transparent;
+}
+.db-vc.today::before{background:var(--g);}
+.db-vc:hover{background:rgba(255,255,255,.025) !important;transform:none !important;}
+.db-vc.today{background:transparent !important;}
+.db-vc .av{
+  width:26px !important;height:26px !important;
+  font-size:9px !important;
+  border-radius:6px !important;
+  margin:0 10px 0 10px;
+  flex-shrink:0;
+}
+.db-vc-name{font-size:12px !important;font-weight:700 !important;color:var(--t1) !important;}
+.db-vc-sub{font-size:10px !important;color:var(--t3) !important;margin-top:1px !important;font-variant-numeric:tabular-nums;}
+.db-vc .badge{display:none !important;}
+
+/* Recent patients in sidebar */
+.db-rpt{
+  height:44px !important;
+  padding:0 16px !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;transition:background .1s;
+}
+.db-rpt:hover{background:rgba(255,255,255,.025) !important;border-radius:0 !important;}
+.db-rpt .av{width:24px !important;height:24px !important;font-size:9px !important;border-radius:5px !important;flex-shrink:0;}
+.db-rpt-name{font-size:12px !important;font-weight:600 !important;}
+.db-rpt-sub{font-size:9px !important;}
+
+/* ─── PATIENT LIST: Medical records register ─── */
+.pt-list-col{
+  width:300px !important;
+  background:var(--bg2) !important;
+}
+.pt-list-col .sect{padding:0 !important;}
+.pt-list-col .row-sb{
+  padding:10px 14px !important;
+  border-bottom:1px solid var(--b1) !important;
+  height:44px !important;
+}
+.pt-list-col .pgtitle{font-size:10px !important;font-weight:800 !important;letter-spacing:.08em !important;text-transform:uppercase !important;color:var(--t3) !important;}
+.pt-list-col .sw{
+  margin:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+}
+.pt-list-col .sw input{
+  border:none !important;border-radius:0 !important;
+  background:transparent !important;
+  padding:10px 14px !important;
+  font-size:12px !important;height:38px !important;
+  box-shadow:none !important;
+}
+.pt-list-col .sw input:focus{border-bottom:1px solid var(--g) !important;box-shadow:none !important;}
+
+/* Patient cards: register entries */
+.ptcard{
+  height:50px !important;
+  padding:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  margin:0 !important;
+  display:flex;align-items:center;
+}
+.ptcard-urgency{
+  width:3px !important;height:50px !important;
+  border-radius:0 !important;
+  flex-shrink:0;
+}
+.ptcard .av{
+  width:24px !important;height:24px !important;
+  font-size:9px !important;
+  border-radius:5px !important;
+  margin:0 8px 0 8px;
+  flex-shrink:0;
+}
+.ptcard .ptn{font-size:12px !important;font-weight:700 !important;display:flex;align-items:center;gap:6px;}
+.ptcard .ptm{font-size:9px !important;margin-top:1px !important;}
+.ptcard.selected{
+  background:rgba(245,85,121,.06) !important;
+  box-shadow:inset 3px 0 0 var(--g) !important;
+}
+.ptcard:hover{background:rgba(255,255,255,.025) !important;}
+
+/* Patient panel: editorial data display */
+#pt-inline-body{padding:24px !important;}
+.pt-inline-header{
+  margin-bottom:20px !important;
+  padding-bottom:16px !important;
+  border-bottom:1px solid var(--b1) !important;
+}
+.pt-inline-name{
+  font-size:20px !important;
+  font-weight:900 !important;
+  letter-spacing:-.04em !important;
+  color:var(--t1) !important;
+  line-height:1 !important;
+}
+.pt-inline-sub{font-size:10px !important;color:var(--t3) !important;margin-top:5px !important;letter-spacing:.02em;}
+.pt-stats-grid{
+  border:1px solid var(--b1) !important;
+  border-radius:6px !important;
+  overflow:hidden;
+  margin-bottom:16px !important;
+  gap:0 !important;
+}
+.pt-stat{
+  border:none !important;
+  border-left:1px solid var(--b1) !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  padding:8px 10px !important;
+  background:transparent !important;
+}
+.pt-stat:nth-child(-n+2){border-bottom:1px solid var(--b1) !important;}
+.pt-stat:nth-child(odd){border-left:none !important;}
+.pt-stat-val{font-size:18px !important;font-weight:900 !important;letter-spacing:-.03em !important;font-variant-numeric:tabular-nums;}
+.pt-stat-lbl{font-size:8px !important;text-transform:uppercase !important;letter-spacing:.07em !important;color:var(--t3) !important;}
+.pt-info-row{
+  padding:6px 0 !important;
+  font-size:12px !important;
+  border-bottom:1px solid rgba(255,255,255,.05) !important;
+}
+.pt-info-lbl{font-size:8px !important;text-transform:uppercase !important;letter-spacing:.07em !important;color:var(--t3) !important;min-width:64px !important;}
+.pt-actions{
+  padding-top:14px !important;
+  border-top:1px solid var(--b1) !important;
+  gap:6px !important;
+}
+
+/* ─── MENU BUILDER: Clean, efficient ─── */
+.menu-sidebar{
+  width:272px !important;
+  background:var(--bg2) !important;
+}
+.menu-sidebar-inner{padding:0 !important;gap:0 !important;}
+.menu-sidebar-inner>*:first-child{
+  padding:10px 14px;
+  border-bottom:1px solid var(--b1);
+}
+.menu-sidebar .date-nav{
+  border:none !important;border-radius:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  padding:0 14px !important;height:38px !important;
+  background:transparent !important;
+}
+.menu-sidebar .card{
+  border:none !important;border-radius:0 !important;
+  padding:12px 14px !important;
+}
+.macrobox{
+  height:60px !important;
+  padding:0 20px !important;
+  border-bottom:1px solid var(--b1) !important;
+  display:flex;align-items:center;gap:16px !important;
+  background:var(--bg2) !important;
+}
+.gauge-wrap{width:44px !important;height:44px !important;}
+.gauge-bg{stroke-width:4 !important;}
+.gauge-arc{stroke-width:4 !important;}
+.gauge-val{font-size:10px !important;letter-spacing:-.02em !important;}
+.gauge-unit{font-size:7px !important;}
+.gauge-info{flex:none;width:100px;}
+.gauge-deficit{font-size:13px !important;font-weight:800 !important;font-variant-numeric:tabular-nums;}
+.mb-rows{flex:1;gap:4px !important;}
+.mb-r{gap:8px !important;}
+.mb-l{font-size:9px !important;width:80px !important;text-transform:uppercase;letter-spacing:.04em;}
+.mb-l span{font-size:11px !important;font-weight:700 !important;}
+.mb-bg{height:2px !important;border-radius:0 !important;}
+.mb-f{border-radius:0 !important;}
+.menu-main{padding:0 !important;}
+.meal-cat-hdr{
+  padding:8px 16px !important;
+  font-size:9px !important;letter-spacing:.1em !important;
+  background:var(--bg2) !important;
+  border-top:1px solid var(--b1) !important;
+  border-bottom:none !important;
+  margin-top:0 !important;
+}
+.frow{
+  padding:8px 16px !important;
+  border:none !important;border-radius:0 !important;
+  border-bottom:1px solid rgba(255,255,255,.05) !important;
+}
+.frow:hover{background:rgba(255,255,255,.02) !important;}
+.fn{font-size:12px !important;}
+.fk{font-size:11px !important;font-weight:800 !important;font-variant-numeric:tabular-nums;}
+
+/* ─── FOODS: Clinical ingredient grid ─── */
+.foods-grid{
+  gap:0 !important;
+  background:var(--b1) !important;
+  border:none !important;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr)) !important;
+}
+.fcard{
+  background:var(--bg2) !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:14px 16px !important;
+}
+.fcard:hover{
+  background:var(--s1) !important;
+  transform:none !important;
+}
+.fcn{font-size:11px !important;font-weight:700 !important;color:var(--t2) !important;margin-bottom:6px !important;}
+.fckcal{font-size:20px !important;font-weight:900 !important;letter-spacing:-.04em !important;margin-bottom:5px !important;}
+.fcm{font-size:8px !important;border-radius:2px !important;}
+
+/* ─── BUTTONS: Authority without drama ─── */
+.btnp{
+  height:32px !important;
+  padding:0 14px !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  border-radius:4px !important;
+  letter-spacing:.02em !important;
+  box-shadow:none !important;
+  background:var(--g) !important;
+  color:#1a0008 !important;
+}
+.btnp:hover{
+  box-shadow:0 0 0 1px rgba(245,85,121,.5) !important;
+  transform:none !important;
+}
+.btns{
+  height:32px !important;
+  padding:0 12px !important;
+  font-size:11px !important;
+  border-radius:4px !important;
+  background:transparent !important;
+  border:1px solid var(--b2) !important;
+  color:var(--t2) !important;
+}
+.btns:hover{border-color:var(--b2) !important;background:rgba(255,255,255,.04) !important;transform:none !important;}
+
+/* ─── ANALYZER: Data-first ─── */
+.an-ctrl{
+  background:var(--bg2) !important;
+  border-right:1px solid var(--b1) !important;
+  padding:0 !important;
+  width:240px !important;
+}
+.an-ctrl .pgtitle{
+  padding:10px 14px !important;font-size:10px !important;
+  font-weight:800 !important;letter-spacing:.08em !important;
+  text-transform:uppercase !important;color:var(--t3) !important;
+  border-bottom:1px solid var(--b1) !important;
+  margin-bottom:0 !important;
+}
+.an-ctrl .fs{
+  border:none !important;border-radius:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  background:transparent !important;
+  height:36px !important;
+  font-size:11px !important;
+  padding:0 12px !important;
+}
+#az-patient-summary{
+  border-top:2px solid var(--g) !important;
+  border-radius:0 !important;
+  padding:12px 14px !important;
+  border-left:none !important;border-right:none !important;border-bottom:none !important;
+}
+.az-pt-name{font-size:12px !important;font-weight:700 !important;}
+.az-pt-row{font-size:10px !important;border-bottom:1px solid rgba(255,255,255,.04) !important;}
+.an-row{height:34px !important;padding:0 16px !important;border-bottom:1px solid rgba(255,255,255,.04) !important;}
+.an-name{font-size:11px !important;}
+.an-val{font-size:12px !important;font-weight:800 !important;}
+.an-pct{font-size:10px !important;font-weight:800 !important;}
+.an-title{
+  padding:8px 16px !important;font-size:9px !important;
+  letter-spacing:.1em !important;text-transform:uppercase !important;
+  background:var(--bg2) !important;border-bottom:1px solid var(--b1) !important;
+  margin-bottom:0 !important;
+}
+.ancard{border:none !important;border-radius:0 !important;padding:0 !important;background:transparent !important;}
+
+/* ─── SETTINGS: Surgical simplicity ─── */
+#pg-settings>.sect{
+  max-width:520px !important;
+  padding:0 !important;
+  margin:24px auto !important;
+}
+#pg-settings .card{
+  border:1px solid var(--b1) !important;
+  border-radius:6px !important;
+  padding:16px !important;
+  background:var(--bg2) !important;
+  margin-bottom:8px !important;
+}
+
+/* ─── REPORTS: Document workspace ─── */
+.rpt-header{
+  background:var(--bg) !important;
+  border-bottom:1px solid var(--b1) !important;
+  padding:0 16px !important;
+  height:44px !important;
+  backdrop-filter:none !important;
+}
+
+/* ─── TOAST: System messages ─── */
+.toast{
+  border-radius:3px !important;
+  border-left:2px solid var(--g) !important;
+  font-size:11px !important;
+  padding:8px 14px !important;
+}
+
+/* ─── MODALS: Clinical dialogs ─── */
+.msheet{
+  border-radius:6px !important;
+  padding:20px !important;
+  border:1px solid var(--b2) !important;
+}
+.mh{font-size:13px !important;font-weight:800 !important;}
+
+/* ─── BADGES: Minimal status ─── */
+.badge{
+  font-size:8px !important;
+  padding:1px 4px !important;
+  border-radius:2px !important;
+  border:none !important;
+  font-weight:800 !important;
+  letter-spacing:.04em !important;
+}
+
+/* ─── INPUTS: Data-entry precision ─── */
+.fi{
+  height:34px !important;
+  font-size:12px !important;
+  border-bottom-color:var(--b2) !important;
+}
+.fs{
+  height:34px !important;
+  font-size:11px !important;
+  border-radius:4px !important;
+}
+.fl{font-size:8px !important;letter-spacing:.07em !important;text-transform:uppercase !important;}
+
+}
+
+@media(min-width:1600px){
+  .bnav{width:56px !important;}
+  .bnav:hover{width:240px !important;}
+  .bnav:hover .nb{width:240px !important;}
+  .bnav:hover #nb-settings{width:240px !important;}
+  .pwrap{margin-right:56px !important;}
+  .hdr{right:56px !important;}
+  .db-sc-val{font-size:28px !important;}
+  .db-stats{height:60px !important;}
+}
+
 </style>
 </head>
 <body>
