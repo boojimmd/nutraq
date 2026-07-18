@@ -1284,6 +1284,772 @@ body{overflow:hidden;height:100dvh;}
   .db-stats{max-width:1500px;margin:0 auto;}
   .foods-grid{max-width:1500px;}
 }
+
+@media(min-width:900px){
+
+/* ══ DASHBOARD v2 ══ */
+
+/* Full viewport, no scroll */
+#pg-dashboard.active{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--ink);height:100%;
+}
+
+/* ── KPI Strip: weighted left-to-right ── */
+.db-stats{
+  display:flex;height:64px;flex-shrink:0;
+  background:var(--ink2);border-bottom:1px solid var(--wire);
+}
+
+/* First cell: dominant — today's patients */
+.db-sc:first-child{
+  min-width:180px;
+  background:rgba(245,85,121,.04) !important;
+  border-left:none !important;
+}
+.db-sc:first-child .db-sc-val{
+  font-size:36px !important;
+  color:var(--brand) !important;
+}
+
+/* Remaining cells: secondary */
+.db-sc{
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 20px;
+  gap:2px;
+  border-left:1px solid var(--wire);
+  cursor:pointer;
+  position:relative;
+  transition:background .1s;
+}
+.db-sc:hover{background:rgba(255,255,255,.025);}
+.db-sc::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:transparent;transition:background .2s;
+}
+.db-sc:hover::after{background:var(--brand);}
+.db-sc-val{
+  font-size:28px;font-weight:900;line-height:1;
+  color:var(--frost);letter-spacing:-.06em;
+  font-variant-numeric:tabular-nums;
+}
+.db-sc-lbl{
+  font-size:8px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--smoke);
+}
+.db-sc-link{display:none;}
+
+/* ── Hero: pure metadata bar ── */
+.db-hero{
+  display:flex;align-items:center;
+  padding:0 20px;height:34px;flex-shrink:0;
+  border-bottom:1px solid var(--wire);
+  background:transparent;gap:16px;
+}
+.db-day{font-size:8px;font-weight:700;color:var(--smoke);text-transform:uppercase;letter-spacing:.12em;}
+.db-brand{display:none;}
+.db-hero-center{
+  display:flex;align-items:center;gap:14px;
+  font-size:10px;color:var(--smoke);margin-right:auto;
+}
+.db-hs span{
+  font-size:13px;font-weight:900;color:var(--frost);
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+}
+.db-sep{width:1px;height:10px;background:var(--wire2);display:inline-block;vertical-align:middle;}
+.db-hero-right{font-size:9px;color:var(--t3);letter-spacing:.03em;font-variant-numeric:tabular-nums;}
+
+/* ── Two zone layout ── */
+.db-main{display:flex;flex:1;min-height:0;overflow:hidden;}
+
+/* LEFT: quick nav — minimal, purposeful */
+.db-col-side{
+  width:196px;flex-shrink:0;
+  border-right:1px solid var(--wire);
+  background:var(--ink2);
+  overflow-y:auto;display:flex;flex-direction:column;
+}
+.db-col-title{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);padding:12px 16px 6px;
+}
+.db-actions{display:flex;flex-direction:column;}
+.db-act-btn{
+  height:32px;padding:0 16px;
+  background:transparent;border:none;border-bottom:1px solid var(--wire);
+  color:var(--ash);font-size:10px;font-weight:600;
+  font-family:Vazirmatn,sans-serif;cursor:pointer;
+  display:flex;align-items:center;gap:8px;width:100%;
+  text-align:right;transition:color .1s;
+}
+.db-act-btn:hover{color:var(--frost);background:rgba(255,255,255,.02);}
+.db-act-btn svg{width:11px !important;height:11px !important;opacity:.35;flex-shrink:0;}
+.db-act-btn:hover svg{opacity:.65;}
+.db-act-btn::after{display:none;}
+
+/* Recent patients section */
+.db-rpt{
+  height:36px;padding:0 14px;
+  border-bottom:1px solid var(--wire);
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;transition:background .1s;
+}
+.db-rpt:hover{background:rgba(255,255,255,.02);}
+.db-rpt .av{width:18px;height:18px;border-radius:4px;font-size:7px;flex-shrink:0;}
+.db-rpt-name{font-size:10px;font-weight:600;color:var(--ash);}
+.db-rpt:hover .db-rpt-name{color:var(--frost);}
+.db-rpt-sub{font-size:8px;color:var(--smoke);}
+
+/* RIGHT: visit feed — the core of the dashboard */
+.db-col-main{
+  flex:1;min-width:0;overflow-y:auto;
+  background:var(--ink);
+}
+
+/* Section header */
+.db-visit-title{
+  position:sticky;top:0;z-index:5;
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);padding:10px 20px 8px;
+  background:var(--ink);border-bottom:1px solid var(--wire);
+  display:flex;align-items:center;gap:8px;margin:0;
+}
+.db-section-hdr{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);padding:8px 20px 4px;margin:0;
+  border-top:1px solid var(--wire);
+}
+
+/* Visit strip — Linear issue-row quality */
+.db-vc{
+  display:flex;align-items:center;
+  height:48px;border-bottom:1px solid var(--wire);
+  cursor:pointer;background:transparent;
+  transition:background .1s;margin:0;padding:0;border-radius:0;
+}
+.db-vc::before{
+  content:'';width:2px;height:100%;flex-shrink:0;background:transparent;
+  transition:background .15s;
+}
+.db-vc.today::before{background:var(--brand);}
+.db-vc:hover{background:rgba(255,255,255,.02);}
+.db-vc .av{
+  width:22px;height:22px;border-radius:5px;font-size:8px;
+  margin:0 12px;flex-shrink:0;
+}
+.db-vc-info{flex:1;min-width:0;}
+.db-vc-name{
+  font-size:12px;font-weight:700;color:var(--frost);
+  display:flex;align-items:center;gap:6px;
+}
+.db-vc-sub{
+  font-size:9px;color:var(--smoke);
+  margin-top:2px;font-variant-numeric:tabular-nums;
+}
+.db-vc-time{
+  font-size:10px;font-weight:600;color:var(--smoke);
+  padding-left:16px;flex-shrink:0;font-variant-numeric:tabular-nums;
+}
+.db-vc.today .db-vc-time{color:var(--brand);}
+
+/* Empty */
+.db-empty{
+  padding:40px 20px;font-size:11px;color:var(--smoke);
+  line-height:1.8;font-style:italic;
+}
+
+}
+
+
+@media(min-width:900px){
+
+/* ══ PATIENTS PAGE v2 ══ */
+
+#pg-patients.active{display:flex;flex-direction:row;overflow:hidden;}
+.pt-layout{display:flex;height:100%;overflow:hidden;width:100%;}
+
+/* ── Patient List: Register view ── */
+.pt-list-col{
+  width:280px;flex-shrink:0;
+  border-right:1px solid var(--wire);
+  background:var(--ink2);
+  display:flex;flex-direction:column;height:100%;
+}
+
+/* Header row */
+.pt-list-col .row-sb{
+  height:44px;padding:0 14px;flex-shrink:0;
+  border-bottom:1px solid var(--wire);
+  display:flex;align-items:center;
+}
+.pt-list-col .pgtitle{
+  font-size:8px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--smoke);
+}
+
+/* Search */
+.pt-list-col .sw{flex-shrink:0;}
+.pt-list-col .sw input{
+  width:100%;height:36px;padding:0 14px;
+  background:transparent;border:none;
+  border-bottom:1px solid var(--wire);border-radius:0;
+  font-size:11px;color:var(--frost);font-family:Vazirmatn,sans-serif;
+  outline:none;transition:border-color .12s;
+}
+.pt-list-col .sw input::placeholder{color:var(--smoke);}
+.pt-list-col .sw input:focus{border-bottom-color:var(--brand);}
+
+/* Patient entries */
+#pt-list{flex:1;overflow-y:auto;}
+.ptcard{
+  height:48px;padding:0;margin:0;border-radius:0;
+  border-bottom:1px solid var(--wire);background:transparent;
+  display:flex;align-items:center;cursor:pointer;
+  transition:background .1s;position:relative;
+}
+.ptcard:hover{background:rgba(255,255,255,.025);}
+.ptcard.selected{
+  background:rgba(245,85,121,.05);
+  box-shadow:inset 3px 0 0 var(--brand);
+}
+.ptcard-urgency{
+  width:2px;height:100%;flex-shrink:0;
+}
+.urgency-today{background:var(--brand);}
+.urgency-soon{background:var(--warn);}
+.urgency-ok{background:transparent;}
+.urgency-none{background:transparent;}
+
+.ptcard .av{
+  width:20px;height:20px;border-radius:4px;
+  font-size:7px;margin:0 8px 0 8px;flex-shrink:0;
+}
+.ptcard .ptinf{flex:1;min-width:0;}
+.ptcard .ptn{
+  font-size:11px;font-weight:700;color:var(--frost);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  display:flex;align-items:center;gap:5px;
+}
+.ptcard .ptn .badge{display:none;}
+.ptcard .ptm{
+  font-size:9px;color:var(--smoke);margin-top:1px;
+  font-variant-numeric:tabular-nums;
+}
+/* Hover actions */
+.ptact{opacity:0;padding-right:8px;transition:opacity .12s;flex-shrink:0;}
+.ptcard:hover .ptact{opacity:1;}
+.pt-hover-nav{display:flex;gap:3px;}
+.pt-qbtn{
+  font-size:8px;font-weight:700;padding:2px 5px;border-radius:2px;
+  background:transparent;border:1px solid rgba(245,85,121,.2);
+  color:var(--brand);cursor:pointer;font-family:Vazirmatn,sans-serif;
+}
+.pt-qbtn:hover{background:var(--brand2);}
+
+/* ── Patient Panel ── */
+.pt-panel{flex:1;min-width:0;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+
+/* Empty: evocative */
+.pt-panel-empty{
+  display:flex;align-items:center;justify-content:center;
+  height:100%;flex-direction:column;gap:10px;
+}
+.pt-panel-empty svg{opacity:.08;width:20px;height:20px;}
+.pt-panel-empty>div{font-size:10px;color:var(--smoke);}
+
+/* Body */
+#pt-inline-body{height:100%;overflow-y:auto;padding:32px 36px;}
+
+/* Header: editorial — name dominates */
+.pt-inline-header{
+  margin-bottom:24px;padding-bottom:0;border:none;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.pt-inline-name{
+  font-size:26px;font-weight:900;color:var(--frost);
+  letter-spacing:-.06em;line-height:1;
+}
+.pt-inline-sub{
+  font-size:9px;color:var(--smoke);margin-top:5px;
+  letter-spacing:.04em;text-transform:uppercase;font-weight:600;
+}
+
+/* Stats: data-forward grid */
+.pt-stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-bottom:24px;
+  border-top:1px solid var(--wire);border-bottom:1px solid var(--wire);
+}
+.pt-stat{
+  padding:12px 0;border-right:1px solid var(--wire);
+  border-radius:0;background:transparent;
+}
+.pt-stat:last-child{border-right:none;}
+.pt-stat-val{
+  font-size:20px;font-weight:900;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;color:var(--frost);
+}
+.pt-stat-lbl{
+  font-size:8px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--smoke);margin-top:4px;
+}
+
+/* Info rows: clean key-value */
+.pt-info-row{
+  display:flex;align-items:baseline;gap:0;
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:11px;
+}
+.pt-info-lbl{
+  font-size:8px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--smoke);width:80px;flex-shrink:0;padding-top:2px;
+}
+.pt-info-val{color:var(--ash);font-weight:500;flex:1;}
+
+/* Last session note */
+.pt-session-note{
+  margin:16px 0;padding:12px 14px;
+  border-right:2px solid var(--brand);
+  background:rgba(245,85,121,.03);
+}
+.pt-session-note-label{
+  font-size:8px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--smoke);margin-bottom:5px;
+}
+.pt-session-note-text{font-size:11px;color:var(--ash);line-height:1.6;}
+
+/* Actions */
+.pt-actions{
+  display:flex;gap:6px;margin-top:24px;padding-top:16px;
+  border-top:1px solid var(--wire);
+}
+.pt-actions .btnp,.pt-actions .btns{flex:1;justify-content:center;}
+
+}
+
+
+@media(min-width:900px){
+
+/* ══ MENU BUILDER v2 ══ */
+
+#pg-menu.active{display:flex;flex-direction:row;overflow:hidden;}
+.menu-layout{display:flex;height:100%;overflow:hidden;width:100%;}
+
+/* ── Sidebar: Input column ── */
+.menu-sidebar{
+  width:256px;flex-shrink:0;
+  background:var(--ink2);border-right:1px solid var(--wire);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.menu-sidebar-inner{
+  flex:1;overflow-y:auto;display:flex;flex-direction:column;
+}
+
+/* Patient selector */
+.menu-sidebar .fs:first-of-type{
+  height:44px;border:none;border-radius:0;
+  border-bottom:1px solid var(--wire);
+  background:transparent;padding:0 14px;
+  font-size:11px;font-weight:600;color:var(--frost);
+  font-family:Vazirmatn,sans-serif;
+}
+
+/* Date nav */
+.date-nav{
+  display:flex;align-items:center;height:38px;
+  border-bottom:1px solid var(--wire);
+  background:transparent;border-radius:0;border-top:none;
+  border-left:none;border-right:none;padding:0;margin:0;
+}
+.dnlbl{
+  font-size:11px;font-weight:700;color:var(--frost);
+  flex:1;text-align:center;letter-spacing:-.01em;
+}
+.dnbtn{
+  width:38px;height:38px;background:transparent;border:none;
+  color:var(--smoke);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .1s;font-family:inherit;border-radius:0;
+}
+.dnbtn:hover{color:var(--frost);}
+
+/* Food search section */
+.menu-sidebar .card{
+  background:transparent;border:none;border-radius:0;
+  padding:12px 14px;
+  border-bottom:1px solid var(--wire);flex-shrink:0;
+}
+.menu-sidebar .card-title{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);margin-bottom:10px;padding:0;border:none;
+}
+.menu-sidebar .fi{
+  background:transparent;border:none;border-radius:0;
+  border-bottom:1px solid var(--wire2);
+  font-size:11px;height:30px;padding:0 0 4px;color:var(--frost);
+}
+.menu-sidebar .fi:focus{border-bottom-color:var(--brand);box-shadow:0 1px 0 var(--brand);}
+.menu-sidebar .fs{
+  height:30px;border-radius:3px;font-size:10px;
+  background:var(--ink3);border:1px solid var(--wire);
+}
+
+/* Tab switcher */
+.tabs{
+  display:flex;background:transparent;border:none;border-radius:0;
+  border-bottom:1px solid var(--wire);padding:0;margin:0;gap:0;
+}
+.tab-btn{
+  flex:1;height:28px;background:transparent;border:none;border-radius:0;
+  border-bottom:2px solid transparent;
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--smoke);cursor:pointer;font-family:Vazirmatn,sans-serif;
+  transition:color .1s;
+}
+.tab-btn.active{
+  color:var(--frost);border-bottom-color:var(--brand);
+  background:transparent;box-shadow:none;
+}
+.tab-btn:hover:not(.active){color:var(--ash);}
+
+/* Qty/unit row */
+.qtyin{
+  background:transparent;border:none;color:var(--frost);
+  font-size:14px;font-weight:900;text-align:center;
+  font-family:Vazirmatn,sans-serif;width:44px;
+  font-variant-numeric:tabular-nums;
+}
+.qtybtn{
+  width:24px;height:24px;background:transparent;
+  border:1px solid var(--wire2);border-radius:3px;
+  color:var(--ash);font-size:14px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .1s,color .1s;
+}
+.qtybtn:hover{border-color:var(--wire3);color:var(--frost);}
+
+/* Sidebar save actions */
+.menu-sidebar .row-sb{padding:0;}
+.menu-sidebar .btnp,.menu-sidebar .btns{flex:1;border-radius:0;height:36px;}
+.menu-sidebar .btnp{border-left:1px solid var(--wire);}
+.menu-sidebar .btns{border:none;border-top:1px solid var(--wire);}
+
+/* Allergy banner */
+#menu-allergy-banner{
+  font-size:9px;font-weight:700;color:var(--danger);
+  padding:5px 14px;border-bottom:1px solid rgba(239,68,68,.12);
+  background:rgba(239,68,68,.04);border-radius:0;
+  display:flex;align-items:center;gap:6px;
+}
+#menu-allergy-banner:empty{display:none;}
+
+/* ── Main: Meal feed ── */
+.menu-main{flex:1;min-width:0;overflow-y:auto;background:var(--ink);}
+
+/* Macrobox: sticky intelligence bar */
+.macrobox{
+  position:sticky;top:0;z-index:10;
+  height:52px;padding:0 20px;
+  background:var(--ink2);border-bottom:1px solid var(--wire);
+  display:flex;align-items:center;gap:20px;
+  margin:0;border-radius:0;
+}
+.gauge-wrap{width:38px;height:38px;flex-shrink:0;}
+.gauge-bg{stroke:var(--ink4);stroke-width:3.5;}
+.gauge-arc{stroke-width:3.5;}
+.gauge-val{font-size:9px;font-weight:800;letter-spacing:-.02em;}
+.gauge-unit{font-size:6px;color:var(--smoke);}
+.gauge-info{flex-shrink:0;}
+.gauge-deficit{font-size:15px;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--frost);}
+.mb-rows{flex:1;gap:5px;}
+.mb-r{gap:10px;}
+.mb-l{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--smoke);width:68px;flex-shrink:0;
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.mb-l span{font-size:10px;font-weight:900;color:var(--frost);font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0;}
+.mb-bg{flex:1;height:2px;background:var(--wire2);border-radius:1px;}
+.mb-f{height:100%;border-radius:1px;transition:width .55s cubic-bezier(.34,1.56,.64,1);}
+
+/* Meal groups */
+.meal-grp{border-bottom:1px solid var(--wire);}
+
+.meal-cat-hdr{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);
+  padding:10px 20px 4px;margin:0;border:none;
+  background:var(--ink);
+  display:flex;align-items:center;gap:8px;
+}
+.meal-cat-hdr::after{
+  content:'';flex:1;height:1px;background:var(--wire);
+}
+
+/* Food rows: precision list */
+.frow{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 20px;
+  border:none;border-radius:0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  background:transparent;
+  transition:background .1s;
+}
+.frow:hover{background:rgba(255,255,255,.025);}
+.fn{font-size:11px;font-weight:600;color:var(--ash);flex:1;}
+.frow:hover .fn{color:var(--frost);}
+.fk{
+  font-size:11px;font-weight:800;
+  color:var(--smoke);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+}
+/* Allergy flag in row */
+.frow.frow-allergen{background:rgba(239,68,68,.03);}
+.frow.frow-allergen .fn{color:var(--danger);}
+
+/* Macrobox states */
+.macrobox.state-low{border-bottom-color:rgba(245,158,11,.3);}
+.macrobox.state-low .gauge-arc{stroke:var(--warn) !important;}
+.macrobox.state-excess{border-bottom-color:rgba(249,115,22,.3);}
+.macrobox.state-excess .gauge-arc{stroke:#f97316 !important;}
+
+}
+
+
+@media(min-width:900px){
+
+/* ══ ANALYZER v2 ══ */
+
+#pg-analyzer.active{display:flex;flex-direction:row;overflow:hidden;}
+.an-ctrl{
+  width:228px;flex-shrink:0;
+  background:var(--ink2);border-right:1px solid var(--wire);
+  display:flex;flex-direction:column;overflow-y:auto;padding:0;
+}
+.an-ctrl .pgtitle{
+  font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);padding:12px 14px 8px;border-bottom:1px solid var(--wire);margin:0;
+}
+.an-ctrl .fl{
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--smoke);padding:10px 14px 0;margin:0;display:block;
+}
+.an-ctrl .fs{
+  border:none;border-radius:0;border-bottom:1px solid var(--wire);
+  height:38px;background:transparent;font-size:11px;padding:0 12px;
+  color:var(--frost);font-family:Vazirmatn,sans-serif;width:100%;
+}
+.an-ctrl .sect{padding:0;}
+.an-ctrl .row-sb{padding:10px 14px 4px;}
+
+/* AI summary */
+#az-patient-summary{
+  border:none;border-radius:0;
+  border-top:2px solid var(--brand);
+  padding:12px 14px;background:transparent;
+}
+.az-pt-name{font-size:11px;font-weight:700;color:var(--frost);margin-bottom:8px;}
+.az-pt-row{
+  font-size:9px;color:var(--ash);
+  padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;justify-content:space-between;
+}
+.az-pt-lbl{color:var(--smoke);}
+
+/* Run button */
+.an-ctrl .btnp{
+  width:calc(100% - 28px);margin:10px 14px;
+  border-radius:3px;
+}
+
+/* Analysis results */
+#pg-analyzer>.sect{flex:1;overflow-y:auto;padding:0;min-width:0;}
+
+.ancard{background:transparent;border:none;border-radius:0;padding:0;margin:0;}
+
+/* Category header */
+.an-title{
+  position:sticky;top:0;z-index:5;
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);padding:8px 20px 6px;
+  background:var(--ink2);border-bottom:1px solid var(--wire);margin:0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+#az-date-range{
+  font-size:8px;font-weight:600;color:var(--smoke);
+  letter-spacing:.04em;text-transform:none;opacity:.7;
+}
+
+/* Column headers */
+.an-header-row{
+  display:grid;
+  grid-template-columns:1fr 80px 80px 64px;
+  padding:6px 20px;border-bottom:1px solid var(--wire);
+  background:var(--ink2);
+}
+.an-header-row span{
+  font-size:8px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--smoke);text-align:center;
+}
+.an-header-row span:first-child{text-align:right;}
+
+/* Data rows */
+.an-row{
+  display:grid;
+  grid-template-columns:1fr 80px 80px 64px;
+  align-items:center;
+  padding:0 20px;height:30px;
+  border-bottom:1px solid rgba(255,255,255,.035);
+  transition:background .1s;
+  background:transparent;gap:0;
+}
+.an-row:hover{background:rgba(255,255,255,.02);}
+.an-row.clinical-flag{background:rgba(245,85,121,.03);}
+.an-row.clinical-flag .an-name{color:var(--frost);font-weight:700;}
+
+.an-name{font-size:11px;color:var(--ash);font-weight:500;text-align:right;}
+.an-val{font-size:11px;font-weight:900;font-variant-numeric:tabular-nums;text-align:center;color:var(--frost);}
+.an-dri{font-size:9px;color:var(--smoke);text-align:center;font-variant-numeric:tabular-nums;}
+.an-pct{font-size:10px;font-weight:800;font-variant-numeric:tabular-nums;text-align:center;padding:1px 6px;border-radius:2px;}
+
+/* Status colors */
+.an-ok{color:var(--ok);}
+.an-lo{color:var(--warn);}
+.an-vlo{color:var(--danger);}
+.an-hi{color:var(--warn);}
+
+/* Row stagger */
+.an-row-reveal{animation:rowReveal .16s cubic-bezier(.32,.72,0,1) both;}
+
+/* ══ FOODS v2 ══ */
+
+#pg-foods.active{display:flex;flex-direction:column;overflow:hidden;}
+#pg-foods>.sect{padding:0;display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;}
+
+/* Toolbar */
+.foods-toolbar{
+  display:flex;align-items:center;height:44px;
+  padding:0 16px;gap:10px;
+  border-bottom:1px solid var(--wire);background:var(--ink2);
+  flex-shrink:0;
+}
+#pg-foods .row-sb{
+  height:44px;padding:0 16px;gap:10px;
+  border-bottom:1px solid var(--wire);background:var(--ink2);
+  flex-shrink:0;display:flex;align-items:center;
+}
+#pg-foods .pgtitle{
+  font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--smoke);
+}
+#pg-foods .sw{flex:1;max-width:320px;}
+#pg-foods .sw input{
+  width:100%;height:26px;
+  background:var(--ink3);border:1px solid var(--wire2);border-radius:3px;
+  padding:0 10px;font-size:11px;color:var(--frost);
+  font-family:Vazirmatn,sans-serif;outline:none;
+  transition:border-color .12s;
+}
+#pg-foods .sw input:focus{border-color:var(--brand);}
+
+/* Category chips */
+.fcat-btn,.cat-chip{
+  height:22px;padding:0 8px;
+  background:transparent;border:1px solid var(--wire);border-radius:3px;
+  font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--smoke);cursor:pointer;font-family:Vazirmatn,sans-serif;
+  white-space:nowrap;transition:border-color .1s,color .1s;
+}
+.fcat-btn.active,.fcat-btn:hover,.cat-chip.active,.cat-chip:hover{
+  border-color:var(--brand);color:var(--brand);background:var(--brand2);
+}
+
+/* Food grid */
+.foods-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr)) !important;
+  gap:1px !important;background:var(--wire) !important;
+  flex:1;overflow-y:auto;padding:0 !important;border:none;
+  align-content:start;
+}
+.fcard{
+  background:var(--ink2) !important;border:none !important;
+  border-radius:0 !important;padding:14px 16px !important;
+  cursor:pointer;position:relative;
+  transition:background .1s;transform:none !important;box-shadow:none !important;
+}
+.fcard:hover{background:var(--ink3) !important;}
+
+/* Food card content */
+.fcn{
+  font-size:10px;font-weight:700;color:var(--smoke);
+  margin-bottom:8px;line-height:1.3;text-transform:uppercase;letter-spacing:.04em;
+}
+.fckcal{
+  font-size:24px;font-weight:900;color:var(--frost);
+  letter-spacing:-.06em;line-height:1;margin-bottom:5px;
+  font-variant-numeric:tabular-nums;
+}
+.fckcal::after{
+  content:' kcal';
+  font-size:8px;font-weight:700;color:var(--smoke);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.fcmacs{display:flex;gap:3px;flex-wrap:wrap;}
+.fcm{
+  font-size:8px;font-weight:700;padding:1px 4px;
+  border-radius:2px;letter-spacing:.03em;
+}
+.fcm-c{background:rgba(245,158,11,.1);color:#FCD34D;}
+.fcm-p{background:rgba(59,130,246,.1);color:#93C5FD;}
+.fcm-f{background:rgba(249,115,22,.1);color:#FED7AA;}
+
+/* Hover: add button appears */
+.fcard-add{
+  position:absolute;bottom:10px;left:10px;
+  opacity:0;transition:opacity .12s;
+  height:20px;padding:0 8px;border-radius:2px;
+  background:var(--brand);color:#1a0008;
+  font-size:8px;font-weight:800;border:none;cursor:pointer;
+  font-family:Vazirmatn,sans-serif;letter-spacing:.04em;
+  display:flex;align-items:center;
+}
+.fcard:hover .fcard-add{opacity:1;}
+
+/* ══ SETTINGS v2 ══ */
+#pg-settings.active{display:flex;flex-direction:column;overflow-y:auto;}
+#pg-settings>.sect{max-width:480px;margin:28px auto;padding:0;}
+#pg-settings .card{
+  background:var(--ink2);border:1px solid var(--wire);border-radius:4px;
+  padding:18px;margin-bottom:8px;
+}
+#pg-settings .card:first-child{
+  border-top:2px solid var(--brand);
+}
+.settings-group-title{
+  font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--smoke);margin-bottom:14px;padding-bottom:8px;
+  border-bottom:1px solid var(--wire);
+}
+
+/* ══ REPORTS v2 ══ */
+.rpt-header{
+  height:44px;padding:0 16px;
+  background:var(--ink2);border-bottom:1px solid var(--wire);
+  display:flex;align-items:center;gap:10px;
+  backdrop-filter:none;flex-shrink:0;
+}
+.rpt-header .fs{width:180px;flex-shrink:0;height:28px;}
+.rpt-header .btnp,.rpt-header .btns{height:26px;font-size:9px;}
+.rpt-header-actions{display:flex;gap:5px;margin-right:auto;}
+.rpt-content{flex:1;overflow-y:auto;padding:20px 24px;}
+
+}
+
 </style>
 </head>
 <body>
