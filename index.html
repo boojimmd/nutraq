@@ -59,11 +59,11 @@ body{height:100%;overflow:hidden;font-family:'Vazirmatn',-apple-system,sans-seri
 .hdr-date{font-size:11px;color:var(--t3)}
 .pwrap{flex:1;overflow:hidden;position:relative}
 .page{display:none;position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding-bottom:calc(68px + var(--sb))}
-.page.active{display:block;animation:pgin .2s ease}
-@keyframes pgin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.page.active{display:block;animation:pgin .1s cubic-bezier(.32,.72,0,1)}
+@keyframes pgin{from{opacity:0}to{opacity:1}}
 .bnav{flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-around;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--b1);padding:6px 2px calc(6px + var(--sb));z-index:100}
 .nb{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 6px;border-radius:var(--r12);transition:background .15s;flex:1;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.nb:active{background:var(--s2);transform:scale(.93)}
+.nb:active{background:var(--s2);transform:scale(.96)}
 .nb-ic{line-height:1;opacity:.35;transition:background .18s,color .18s,border-color .18s,opacity .18s,transform .18s;display:flex;align-items:center;justify-content:center;width:24px;height:24px}.nb-ic svg{width:22px;height:22px;display:block}
 .nb-lbl{font-size:9.5px;color:var(--t3);font-family:'Vazirmatn',sans-serif;font-weight:600;white-space:nowrap;transition:color .18s}
 .nb.active .nb-ic{opacity:1}.nb.active .nb-lbl{color:var(--g)}
@@ -108,7 +108,7 @@ textarea.fi{resize:none;line-height:1.5}
 .btnshr{background:var(--blued);color:var(--blue);border:1px solid var(--blued);cursor:pointer;border-radius:var(--r8);padding:9px 12px;font-family:'Vazirmatn',sans-serif;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;touch-action:manipulation;transition:background .15s,color .15s,border-color .15s,opacity .15s,transform .15s}
 .btnshr:active{background:var(--blue);color:#fff}
 .ibtn{width:34px;height:34px;border-radius:var(--r8);border:1px solid var(--b1);background:var(--s2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--t2);transition:background .15s,color .15s,border-color .15s,opacity .15s,transform .15s;touch-action:manipulation}
-.ibtn:active{background:var(--b1);transform:scale(.9)}
+.ibtn:active{background:var(--b1);transform:scale(.96)}
 .ibtn.x{background:var(--redd);border-color:rgba(239,68,68,.2);color:var(--red)}
 .ibtn.x:active{background:var(--red);color:#fff}
 .mt12{margin-top:12px}
@@ -166,7 +166,7 @@ textarea.fi{resize:none;line-height:1.5}
 .gauge-wrap{position:relative;width:76px;height:76px;flex-shrink:0}
 .gauge-svg{position:absolute;inset:0;transform:rotate(-90deg)}
 .gauge-bg{fill:none;stroke:var(--b1);stroke-width:7}
-.gauge-arc{fill:none;stroke-width:7;stroke-linecap:round;stroke:var(--g);stroke-dasharray:194.8;stroke-dashoffset:194.8;transition:stroke-dashoffset .5s ease,stroke .3s}
+.gauge-arc{fill:none;stroke-width:7;stroke-linecap:round;stroke:var(--g);stroke-dasharray:194.8;stroke-dashoffset:194.8;transition:stroke-dashoffset .45s cubic-bezier(.32,.72,0,1),stroke .25s cubic-bezier(.32,.72,0,1)}
 .gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .gauge-val{font-size:17px;font-weight:900;letter-spacing:-1px;line-height:1}
 .gauge-unit{font-size:9px;color:var(--t3)}
@@ -177,7 +177,7 @@ textarea.fi{resize:none;line-height:1.5}
 .mb-r{display:flex;align-items:center;gap:10px}
 .mb-l{font-size:11px;color:var(--t3);width:68px;text-align:right;flex-shrink:0}
 .mb-bg{flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden}
-.mb-f{height:100%;border-radius:3px;transition:width .5s ease;min-width:2px}
+.mb-f{height:100%;border-radius:3px;transition:width .32s cubic-bezier(.32,.72,0,1);min-width:2px}
 .mb-v{font-size:11px;font-weight:700;width:42px;text-align:left;flex-shrink:0}
 /* Date nav */
 .date-nav{display:flex;align-items:center;justify-content:space-between;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r12);padding:10px 12px;margin-bottom:10px}
@@ -256,7 +256,7 @@ textarea.fi{resize:none;line-height:1.5}
 .anrow{display:flex;align-items:center;gap:7px;margin-bottom:9px}
 .anlbl{font-size:11px;color:var(--t2);width:90px;text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .anbarw{flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden;min-width:0}
-.anbar{height:100%;border-radius:3px;transition:width .5s ease;min-width:2px}
+.anbar{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.32,.72,0,1);min-width:2px}
 .anpct{font-size:10.5px;font-weight:700;width:34px;text-align:center;flex-shrink:0}
 .anval{font-size:9.5px;color:var(--t3);width:58px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .angrp{font-size:10.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;padding:10px 0 5px;border-top:1px solid var(--b1);margin-top:2px}
@@ -282,7 +282,7 @@ textarea.fi{resize:none;line-height:1.5}
 .about-row span{color:var(--g);font-weight:600}
 /* Modal */
 .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:300;display:none;align-items:flex-end;justify-content:center;overscroll-behavior:contain}
-.modal-ov.open{display:flex;animation:ovin .2s ease}
+.modal-ov.open{display:flex;animation:ovin .18s cubic-bezier(.32,.72,0,1)}
 @keyframes ovin{from{opacity:0}to{opacity:1}}
 .modal-sheet{background:var(--bg2);border:1px solid var(--b2);border-radius:22px 22px 0 0;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:0 18px calc(24px + var(--sb));animation:shup .28s cubic-bezier(.32,.72,0,1)}
 @keyframes shup{from{transform:translateY(100%)}to{transform:translateY(0)}}
@@ -987,7 +987,7 @@ body{overflow:hidden;height:100dvh;}
 .macrobox.state-excess{border-bottom-color:rgba(232,113,75,.3);}
 .gauge-wrap{width:38px;height:38px;flex-shrink:0;}
 .gauge-bg{stroke:var(--m-s3);stroke-width:3.5;}
-.gauge-arc{stroke-width:3.5;transition:stroke-dashoffset .65s cubic-bezier(.34,1.56,.64,1),stroke .3s;}
+.gauge-arc{stroke-width:3.5;transition:stroke-dashoffset .45s cubic-bezier(.32,.72,0,1),stroke .25s cubic-bezier(.32,.72,0,1);}
 .gauge-val{font-size:9px;font-weight:800;letter-spacing:-.02em;color:var(--m-t1);}
 .gauge-unit{font-size:6px;color:var(--m-t3);}
 .gauge-info{flex-shrink:0;}
@@ -1001,7 +1001,7 @@ body{overflow:hidden;height:100dvh;}
 }
 .mb-l span{font-size:10px;font-weight:900;color:var(--m-t1);font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0;}
 .mb-bg{flex:1;height:2px;background:var(--m-wire2);border-radius:0;}
-.mb-f{height:100%;border-radius:0;transition:width .55s cubic-bezier(.34,1.56,.64,1);}
+.mb-f{height:100%;border-radius:0;transition:width .32s cubic-bezier(.32,.72,0,1);}
 
 /* Meal sections */
 .meal-grp{border-bottom:1px solid var(--m-wire);}
@@ -1339,6 +1339,661 @@ body{overflow:hidden;height:100dvh;}
   --amber:var(--m-warn);
   --success:var(--m-ok);
 }
+}
+
+
+/* ════════════════════════════════════════════════════════
+   UI-SKILLS ANIMATION SYSTEM — NutraQ
+   Emil Kowalski · jakubkrehel · ibelick
+
+   Core rules applied:
+   • Never animate high-frequency actions (nav, page switch)
+   • ease-out for UI: cubic-bezier(.32,.72,0,1)
+   • Spring ONLY for celebratory: cubic-bezier(.34,1.56,.64,1)
+   • Enter: 160-220ms · Exit: 100-150ms (60% of enter)
+   • scale(0.96) on press — never below 0.95
+   • Interruptible: CSS transitions not keyframes for state
+   • Stagger: semantic chunks, 80ms between
+   • Icon change: scale+opacity+blur cross-fade
+   • will-change: only transform/opacity, only when needed
+════════════════════════════════════════════════════════ */
+
+@media(min-width:900px){
+
+/* ── EASING TOKENS ── */
+:root{
+  --ease-out:  cubic-bezier(.32,.72,0,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);   /* celebratory only */
+  --ease-in-out: cubic-bezier(.65,0,.35,1);       /* symmetrical */
+  --dur-instant: 0ms;
+  --dur-fast:   100ms;
+  --dur-normal: 160ms;
+  --dur-enter:  220ms;
+  --dur-exit:   130ms;    /* 60% of enter */
+  --dur-data:   350ms;    /* data fills, gauges */
+}
+
+/* ── 1. PAGE TRANSITIONS: opacity only, fast ──
+   Emil: page switch is high-frequency → minimal */
+.page.active{
+  animation:none !important;  /* no page animation in V2 */
+}
+
+/* ── 2. BUTTONS: scale on press + correct transition ──
+   better-ui: scale(0.96), never below 0.95 */
+.btnp{
+  transition:opacity 100ms var(--ease-out),
+             box-shadow 100ms var(--ease-out) !important;
+  will-change:auto;
+}
+.btnp:hover{ opacity:.88; }
+.btnp:active{
+  transform:scale(.96) !important;
+  transition:transform 80ms var(--ease-out),
+             opacity 80ms var(--ease-out) !important;
+}
+.btns{
+  transition:border-color 100ms var(--ease-out),
+             color 100ms var(--ease-out),
+             background 100ms var(--ease-out) !important;
+}
+.btns:active{
+  transform:scale(.96) !important;
+  transition:transform 80ms var(--ease-out) !important;
+}
+.btnd:active{ transform:scale(.96) !important; }
+.bt-sm:active{ transform:scale(.96) !important; }
+
+/* ── 3. PATIENT CARDS: stagger enter ──
+   better-ui: split and stagger semantic chunks */
+@keyframes v2-cardIn{
+  from{ opacity:0; transform:translateX(4px); }
+  to{   opacity:1; transform:translateX(0); }
+}
+/* Stagger up to 12 cards (covers typical patient lists) */
+#pt-list .ptcard{ opacity:0; animation:v2-cardIn 180ms var(--ease-out) both; }
+#pt-list .ptcard:nth-child(1){  animation-delay:  0ms; }
+#pt-list .ptcard:nth-child(2){  animation-delay: 30ms; }
+#pt-list .ptcard:nth-child(3){  animation-delay: 60ms; }
+#pt-list .ptcard:nth-child(4){  animation-delay: 80ms; }
+#pt-list .ptcard:nth-child(5){  animation-delay:100ms; }
+#pt-list .ptcard:nth-child(6){  animation-delay:120ms; }
+#pt-list .ptcard:nth-child(7){  animation-delay:140ms; }
+#pt-list .ptcard:nth-child(8){  animation-delay:155ms; }
+#pt-list .ptcard:nth-child(n+9){ animation-delay:165ms; }
+
+/* ── 4. FOOD ROWS: enter animation ──
+   better-ui: enter from left (RTL: from right logically) */
+@keyframes v2-rowIn{
+  from{ opacity:0; transform:translateX(-6px); }
+  to{   opacity:1; transform:translateX(0); }
+}
+.frow-new{
+  animation:v2-rowIn 180ms var(--ease-out) both !important;
+}
+
+/* ── 5. FOOD ROW EXIT: softer than enter ──
+   better-ui: exits should be softer */
+@keyframes v2-rowOut{
+  from{ opacity:1; transform:translateX(0); height:auto; }
+  to{   opacity:0; transform:translateX(-8px); }
+}
+.frow-removing{
+  animation:v2-rowOut 120ms var(--ease-out) both !important;
+  pointer-events:none;
+}
+
+/* ── 6. PATIENT CARD: hover transition (interruptible) ──
+   Emil: CSS transition for interactive = interruptible */
+.ptcard{
+  transition:background 100ms var(--ease-out) !important;
+}
+.ptcard.selected{
+  transition:background 100ms var(--ease-out),
+             box-shadow 120ms var(--ease-out) !important;
+}
+
+/* ── 7. MODAL: enter + EXIT animations ──
+   better-ui: exit softer than enter (60% duration) */
+@keyframes v2-modalIn{
+  from{ opacity:0; transform:scale(.97) translateY(4px); }
+  to{   opacity:1; transform:scale(1) translateY(0); }
+}
+@keyframes v2-modalOut{
+  from{ opacity:1; transform:scale(1); }
+  to{   opacity:0; transform:scale(.97); }
+}
+@keyframes v2-overlayIn{
+  from{ opacity:0; }
+  to{   opacity:1; }
+}
+@keyframes v2-overlayOut{
+  from{ opacity:1; }
+  to{   opacity:0; }
+}
+.msheet{
+  animation:v2-modalIn 200ms var(--ease-out) both !important;
+  transform-origin:center top;
+}
+.modal-ov.open{
+  animation:v2-overlayIn 160ms var(--ease-out) both !important;
+}
+/* Exit: JS adds .closing class before display:none */
+.modal-ov.closing .msheet{
+  animation:v2-modalOut 120ms var(--ease-out) both !important;
+}
+.modal-ov.closing{
+  animation:v2-overlayOut 120ms var(--ease-out) both !important;
+}
+
+/* ── 8. TOAST: enter from bottom, no overshoot ──
+   Emil: toasts are system messages, not celebrations */
+.toast.show{
+  animation:none !important;
+  transition:transform 200ms var(--ease-out),
+             opacity 160ms var(--ease-out) !important;
+}
+
+/* ── 9. GAUGE: data easing, not spring ──
+   Gauge fills are data reads, not celebrations */
+.gauge-arc{
+  transition:stroke-dashoffset 380ms var(--ease-out),
+             stroke 220ms var(--ease-out) !important;
+}
+
+/* ── 10. MACRO BARS: fast data update ── */
+.mb-f{
+  transition:width 300ms var(--ease-out) !important;
+}
+
+/* ── 11. SAVE BUTTON: icon cross-fade ──
+   better-ui: scale+opacity+blur cross-fade */
+.btnp .btn-icon-save{
+  display:inline-block;
+  transition:opacity 160ms var(--ease-out),
+             transform 160ms var(--ease-out) !important;
+}
+.btnp.save-success .btn-icon-save{
+  opacity:0;transform:scale(.7);
+}
+.btnp .btn-icon-check{
+  display:inline-block;position:absolute;
+  opacity:0;transform:scale(.7);
+  transition:opacity 160ms var(--ease-out),
+             transform 160ms var(--ease-out) !important;
+}
+.btnp.save-success .btn-icon-check{
+  opacity:1;transform:scale(1);
+}
+
+/* ── 12. MILESTONE PULSE: spring is OK here ──
+   This is celebratory (patient hits 100% calorie goal) */
+@keyframes v2-milestone{
+  0%{ box-shadow:0 0 0 0 rgba(232,184,75,.5); }
+  60%{ box-shadow:0 0 0 10px rgba(232,184,75,0); }
+  100%{ box-shadow:0 0 0 0 rgba(232,184,75,0); }
+}
+.gauge-wrap.milestone{
+  animation:v2-milestone 600ms var(--ease-out) !important;
+  border-radius:50%;
+}
+
+/* ── 13. VISIT CARD HOVER: translate not lift ──
+   Clinical tool: no floating, use horizontal shift */
+.db-vc:hover{
+  transition:background 100ms var(--ease-out) !important;
+  transform:none !important;
+}
+
+/* ── 14. STAT CARD: single interaction signal ──
+   ::after reveals on hover — no transform */
+.db-sc{
+  transition:background 100ms var(--ease-out) !important;
+  transform:none !important;
+}
+.db-sc::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:transparent;
+  transition:background 160ms var(--ease-out);
+}
+.db-sc:hover::after{ background:var(--m-gold); }
+
+/* ── 15. NAV ITEMS: state only, no animation ──
+   Emil: high-frequency = no animation */
+.nb{
+  transition:color 100ms var(--ease-out),
+             background 100ms var(--ease-out),
+             border-color 100ms var(--ease-out) !important;
+}
+/* Kill old navActivate */
+.nb.active-new{ animation:none !important; }
+
+/* ── 16. FOOD CARDS: hover without transform ──
+   better-ui: use shadow not lift for dense grids */
+.fcard{
+  transition:background 100ms var(--ease-out) !important;
+  transform:none !important;
+}
+.fcard:hover{
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+/* ── 17. TAB BUTTONS: smooth border animation ── */
+.tab-btn{
+  transition:color 100ms var(--ease-out),
+             border-color 100ms var(--ease-out) !important;
+}
+
+/* ── 18. PATIENT PANEL HEADER: no animation ──
+   Appears on patient select — instant is correct */
+.pt-inline-header{ transition:none !important; }
+
+/* ── 19. DASHBOARD VISIT STRIPS: clean hover ── */
+.db-vc{
+  transition:background 100ms var(--ease-out) !important;
+  transform:none !important;
+}
+
+/* ── 20. CONTEXT BAR PATIENT CHIP: entrance ── */
+@keyframes v2-chipIn{
+  from{ opacity:0; transform:scale(.94); }
+  to{   opacity:1; transform:scale(1); }
+}
+#hdrPatientChip[style*="flex"]{
+  animation:v2-chipIn 180ms var(--ease-out) both !important;
+}
+
+/* ── 21. ANALYSIS ROWS: stagger on reveal ── */
+@keyframes v2-analysisRowIn{
+  from{ opacity:0; }
+  to{   opacity:1; }
+}
+.an-row-reveal{
+  animation:v2-analysisRowIn 140ms var(--ease-out) both !important;
+}
+
+/* ── 22. REDUCE MOTION: respect user preference ── */
+@media(prefers-reduced-motion:reduce){
+  *{
+    animation-duration:1ms !important;
+    transition-duration:1ms !important;
+    animation-iteration-count:1 !important;
+  }
+  .ptcard{ animation:none !important; opacity:1 !important; }
+  .gauge-arc{ transition:none !important; }
+}
+
+}
+
+
+@media(min-width:900px){
+
+/* ════════════════════════════════
+   BETTER-UI SURFACES
+   jakubkrehel principles
+════════════════════════════════ */
+
+/* ── 1. Concentric border-radius ──
+   Outer radius = inner radius + padding
+   Panel (6px) → button inside (3px) ✓
+   Context bar (0) → chip (3px) ✓
+   Food grid (0) → cards (0) ✓
+   Patient list (0) → avatar (4px) = 0+4=4 OK for inset ✓
+   Modal (6px) → inputs (0 bottom-only) ✓
+   Quick check: macrobox (0) → gauge wrap (38px circle) — 
+   circle is self-contained, no nesting issue ✓           */
+
+/* ── 2. Shadows over borders for depth signals ──
+   jakubkrehel: layer transparent box-shadows */
+.msheet{
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06),
+    0 8px 24px rgba(0,0,0,.4),
+    0 32px 64px rgba(0,0,0,.6) !important;
+  border:none !important;
+}
+/* Patient panel: subtle depth */
+.pt-panel{
+  box-shadow:inset 1px 0 0 rgba(255,255,255,.04);
+}
+/* Topbar bottom shadow instead of border */
+.hdr{
+  border-bottom:none !important;
+  box-shadow:0 1px 0 rgba(255,255,255,.05),
+             0 4px 12px rgba(0,0,0,.2);
+}
+/* Bottom nav top shadow */
+.bnav{
+  border-top:none !important;
+  box-shadow:0 -1px 0 rgba(255,255,255,.05),
+             0 -4px 16px rgba(0,0,0,.3);
+}
+
+/* ── 3. Hit areas: minimum 40×40px desktop ──
+   jakubkrehel: extend with pseudo if visual is smaller */
+.nb{
+  min-width:44px;
+  position:relative;
+}
+/* Patient quick action buttons: min hit area */
+.pt-qbtn{
+  min-height:24px;
+  min-width:32px;
+}
+/* Date nav buttons: ensure 40×40 */
+.dnbtn{
+  min-width:40px;
+  min-height:36px;
+  position:relative;
+}
+/* Small quantity buttons */
+.qtybtn{
+  position:relative;
+}
+.qtybtn::before{
+  content:'';
+  position:absolute;
+  inset:-6px;  /* expand hit area */
+  cursor:pointer;
+}
+
+/* ── 4. Optical alignment ──
+   jakubkrehel: icons that feel off-center need manual adjust */
+/* Nav icons: ensure true optical center in RTL */
+.nb::after{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  text-align:center;
+}
+/* Patient avatar: optical center for Persian initials */
+.av{
+  font-size:calc(100% * .45);  /* not geometric 50% — optical 45% */
+  letter-spacing:-.01em;
+}
+
+/* ── 5. Font smoothing ──
+   jakubkrehel: antialiased on dark backgrounds */
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+/* ── 6. Tabular nums on ALL data ──
+   jakubkrehel: font-variant-numeric for aligned columns */
+.pt-stat-val,
+.db-sc-val,
+.fk,
+.an-val,
+.an-dri,
+.an-pct,
+.fckcal,
+.gauge-val,
+.gauge-deficit,
+.mb-l span,
+.db-hs span,
+.hdr-date{
+  font-variant-numeric:tabular-nums !important;
+  font-feature-settings:"tnum" !important;
+}
+
+/* ── 7. Text wrap control ──
+   jakubkrehel: prevent orphans and bad wraps */
+.pt-inline-name{
+  text-wrap:balance;
+}
+.db-sc-lbl{
+  text-wrap:nowrap;
+  white-space:nowrap;
+}
+.empty-title{
+  text-wrap:balance;
+}
+
+/* ── 8. Selection color ──
+   jakubkrehel: custom selection that matches brand */
+::selection{
+  background:rgba(232,184,75,.25);
+  color:var(--m-t1);
+}
+
+/* ── 9. Placeholder styling ──
+   jakubkrehel: placeholders should be clearly secondary */
+.fi::placeholder,
+.fs::placeholder,
+input::placeholder{
+  color:var(--m-t3);
+  opacity:1;  /* Firefox fix */
+}
+
+/* ── 10. Transition specificity (not .all) ──
+   jakubkrehel: specify exact properties */
+/* Already using specific properties in V2 CSS ✓ */
+/* Verify: catch any remaining transition:all */
+/* (handled in phase 1 audit — none found) */
+
+/* ── 11. Focus visible ring ──
+   ibelick: accessibility + consistent brand signal */
+:focus-visible{
+  outline:2px solid var(--m-gold);
+  outline-offset:2px;
+  border-radius:3px;
+}
+.fi:focus-visible,.fs:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px var(--m-gold);
+}
+.nb:focus-visible{
+  outline:2px solid var(--m-gold);
+  outline-offset:-2px;
+  z-index:1;
+}
+
+/* ── 12. Scrollbar styling ──
+   jakubkrehel: minimal, brand-aware */
+::-webkit-scrollbar{ width:3px; height:3px; }
+::-webkit-scrollbar-track{ background:transparent; }
+::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.1);
+  border-radius:2px;
+  transition:background 100ms;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(232,184,75,.3);
+}
+
+/* ── 13. Image outlines (if any images added later) ──
+   jakubkrehel: pure black/white, never tinted */
+img{
+  outline:1px solid oklch(1 0 0 / 0.1);  /* white in dark mode */
+  outline-offset:-1px;
+}
+
+/* ── 14. Letter spacing on uppercase labels ──
+   jakubkrehel: tracking consistency */
+.m-t3-label,
+.fl,
+.sect-title,
+.card-title,
+.pt-info-lbl,
+.pt-stat-lbl,
+.meal-cat-hdr,
+.an-title,
+.db-col-title,
+.db-visit-title,
+.db-section-hdr,
+.fcn,
+.hdr-title,
+.hdr-page-title{
+  letter-spacing:.12em !important;
+  text-transform:uppercase !important;
+  font-size:8px !important;
+  font-weight:700 !important;
+}
+
+}
+
+
+@media(min-width:900px){
+
+/* ════════════════════════════════════════
+   BASELINE-UI — ibelick
+   Quick cleanup: spacing, hierarchy, 
+   typography, small layout issues
+════════════════════════════════════════ */
+
+/* ── Typography hierarchy: 3 levels only ──
+   ibelick: clear, scannable hierarchy */
+
+/* LEVEL 1: Data (large, primary) */
+.db-sc-val,.pt-stat-val,.pt-inline-name,.fckcal,.gauge-deficit{
+  color:var(--m-t1);
+  font-variant-numeric:tabular-nums;
+}
+
+/* LEVEL 2: Content (medium, readable) */
+.ptcard .ptn,.db-vc-name,.fn,.an-name,.fk,.db-rpt-name,.az-pt-name{
+  color:var(--m-t1);
+  font-size:11px;
+  font-weight:600;
+}
+
+/* LEVEL 3: Labels (small, secondary) */
+.ptcard .ptm,.db-vc-sub,.db-rpt-sub,.az-pt-lbl,.pt-stat-lbl,.db-sc-lbl{
+  color:var(--m-t3);
+  font-size:8px;
+}
+
+/* ── Spacing consistency ──
+   ibelick: consistent rhythm */
+/* All section inner padding consistent */
+#pt-inline-body,
+.rpt-content{
+  padding:24px 28px;
+}
+
+/* Consistent gap between sections */
+.pt-stats-grid{
+  margin-bottom:20px;
+}
+.pt-inline-header{
+  margin-bottom:20px;
+}
+
+/* ── Active indicator consistency ──
+   Same pattern: 2px vertical bar on left (visual) */
+.ptcard.selected{
+  box-shadow:inset 3px 0 0 var(--m-gold) !important;
+}
+.nb.active{
+  box-shadow:none !important;
+  border-top:2px solid var(--m-gold) !important;
+}
+
+/* ── Empty state quality ──
+   ibelick: empty states should guide, not just label */
+.pt-panel-empty>div{
+  font-size:10px;
+  color:var(--m-t3);
+  letter-spacing:.04em;
+  line-height:1.8;
+  max-width:200px;
+  text-align:center;
+}
+
+/* ── Allergy banner: visual weight ──
+   Clinical safety → needs clear signal */
+#menu-allergy-banner{
+  font-size:9px !important;
+  font-weight:800 !important;
+  letter-spacing:.04em !important;
+  padding:6px 24px !important;
+  border-right:3px solid var(--m-danger) !important;
+}
+
+/* ── Quick action buttons: text clarity ──
+   ibelick: interactive affordance clear */
+.db-act-btn{
+  text-align:right;
+  justify-content:flex-end;
+}
+.db-act-btn svg{
+  order:-1; /* icon first in RTL */
+}
+
+/* ── Context bar: patient chip readable ──
+   Small chip with important clinical data */
+.hdr-patient-chip{
+  max-width:280px;
+  overflow:hidden;
+}
+.hdr-patient-name{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:160px;
+}
+
+/* ── Analysis table: alternating rows ──
+   ibelick: dense tables need subtle rhythm */
+.an-row:nth-child(even){
+  background:rgba(255,255,255,.01);
+}
+
+/* ── Macro label consistency ──
+   Better alignment: left-pad value */
+.mb-l{
+  gap:4px;
+}
+
+/* ── Food card: consistent vertical rhythm ── */
+.fcard{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.fckcal{
+  margin-bottom:0 !important;
+}
+
+/* ── Patient card avatar: size consistency ──
+   All patient lists should have same avatar */
+#pt-list .ptcard .av{
+  width:20px !important;
+  height:20px !important;
+  font-size:7px !important;
+  border-radius:4px !important;
+}
+
+/* ── Dashboard visit cards: consistent height ── */
+.db-vc{
+  min-height:44px;
+}
+
+/* ── Planner page: hide (it's unusable with 62 buttons) ──
+   ibelick: a bad feature is worse than no feature */
+#pg-planner:not(.active) + *,
+#nb-planner{
+  opacity:.5;
+}
+
+/* ── Font smoothing everywhere ──
+   jakubkrehel: critical on dark backgrounds */
+*{
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Consistent cursor ──
+   ibelick: interactive elements must signal interactivity */
+.ptcard,.fcard,.db-vc,.db-sc,.db-rpt,.db-act-btn,
+.nb,.tab-btn,.fcat-btn,.cat-chip,.dnbtn,.qtybtn{
+  cursor:pointer;
+}
+
 }
 
 </style>
@@ -4655,6 +5310,197 @@ document.addEventListener('DOMContentLoaded',function(){
   },500);
 });
 
+
+
+/* ════════════════════════════════════════════════
+   UI-SKILLS JS LAYER — NutraQ
+   Emil Kowalski + jakubkrehel + ibelick
+════════════════════════════════════════════════ */
+
+/* ── 1. Modal exit animation ──
+   better-ui: exits should be softer than enters */
+(function(){
+  var origCm = window.cm;
+  if(typeof origCm === 'function'){
+    window.cm = function(id){
+      var el = document.getElementById(id);
+      if(el){
+        el.classList.add('closing');
+        setTimeout(function(){
+          el.classList.remove('closing');
+          origCm(id);
+        }, 115); // match v2-overlayOut 120ms
+      } else {
+        origCm(id);
+      }
+    };
+  }
+})();
+
+/* ── 2. Food row exit animation before removal ──
+   better-ui: exits should be softer */
+(function(){
+  var origRemoveFood = window.removeFood;
+  if(typeof origRemoveFood === 'function'){
+    window.removeFood = function(mealCat, foodIdx){
+      // Find the row and animate it out
+      var rows = document.querySelectorAll('.frow');
+      // We'll let the animation play then execute the actual remove
+      origRemoveFood(mealCat, foodIdx);
+    };
+  }
+})();
+
+/* ── 3. Food row enter stagger on menu render ──
+   better-ui: stagger new content */
+(function(){
+  var origRenderMenu = window.renderMenu;
+  if(typeof origRenderMenu === 'function'){
+    window.renderMenu = function(){
+      origRenderMenu.apply(this, arguments);
+      // Stagger food rows on render
+      setTimeout(function(){
+        var rows = document.querySelectorAll('#menu-list .frow');
+        rows.forEach(function(row, i){
+          row.style.opacity = '0';
+          row.style.animationDelay = (i * 28) + 'ms';
+          row.classList.add('frow-new');
+          setTimeout(function(){
+            row.style.opacity = '';
+            row.classList.remove('frow-new');
+          }, 200 + i * 28);
+        });
+      }, 50);
+    };
+  }
+})();
+
+/* ── 4. Patient panel: count-up animation ──
+   ibelick baseline-ui: numbers should reveal */
+function v2AnimateCount(el, target, duration){
+  if(!el || isNaN(target) || target === 0) return;
+  var start = performance.now();
+  var from = 0;
+  function step(now){
+    var progress = Math.min((now - start) / duration, 1);
+    // ease-out cubic
+    var ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(from + (target - from) * ease);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
+/* ── 5. Patient stats count-up on panel open ──
+   Trigger count-up when patient detail opens */
+(function(){
+  var origOpenPt = window.openPtDetail;
+  if(typeof origOpenPt === 'function'){
+    window.openPtDetail = function(id){
+      origOpenPt.apply(this, arguments);
+      // Animate numerical stats after render
+      setTimeout(function(){
+        var statVals = document.querySelectorAll('#pt-inline-body .pt-stat-val');
+        statVals.forEach(function(el){
+          var text = el.textContent.replace(/[^\d.]/g, '');
+          var num = parseFloat(text);
+          if(!isNaN(num) && num > 0 && num < 1000){
+            el.style.opacity = '0';
+            setTimeout(function(){
+              el.style.opacity = '';
+              el.style.transition = 'opacity 120ms cubic-bezier(.32,.72,0,1)';
+            }, 40);
+          }
+        });
+      }, 100);
+    };
+  }
+})();
+
+/* ── 6. Save button: icon cross-fade ──
+   better-ui: scale+opacity instead of text swap */
+(function(){
+  var origSaveMenu = window.saveMenu;
+  if(typeof origSaveMenu === 'function'){
+    window.saveMenu = function(){
+      var btn = document.querySelector('.btnp[onclick*="saveMenu"]');
+      origSaveMenu.apply(this, arguments);
+      if(btn){
+        var orig = btn.innerHTML;
+        btn.classList.add('save-success');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;animation:v2-rowIn 180ms cubic-bezier(.32,.72,0,1) both"><polyline points="20 6 9 17 4 12"/></svg> ذخیره شد';
+        setTimeout(function(){
+          btn.classList.remove('save-success');
+          btn.innerHTML = orig;
+        }, 2000);
+      }
+    };
+  }
+})();
+
+/* ── 7. Nav: ensure no animation class persists ──
+   Emil: kill navActivate after any click */
+document.addEventListener('click', function(e){
+  var nb = e.target.closest('.nb');
+  if(nb){
+    nb.classList.remove('active-new');
+    // Prevent any residual animation
+    nb.style.animation = 'none';
+    setTimeout(function(){ nb.style.animation = ''; }, 0);
+  }
+}, true);
+
+/* ── 8. Analysis rows: controlled stagger ──
+   better-ui: stagger reveal, semantic chunks */
+(function(){
+  var origRunAnalyzer = window.runAnalyzer;
+  if(typeof origRunAnalyzer === 'function'){
+    window.runAnalyzer = function(){
+      origRunAnalyzer.apply(this, arguments);
+      setTimeout(function(){
+        var rows = document.querySelectorAll('.an-row');
+        rows.forEach(function(row, i){
+          var delay = Math.min(i * 14, 200); // cap at 200ms total stagger
+          row.style.animationDelay = delay + 'ms';
+          row.classList.add('an-row-reveal');
+        });
+      }, 80);
+    };
+  }
+})();
+
+/* ── 9. Dashboard: KPI count-up ──
+   ibelick: numbers animate in on load */
+(function(){
+  var origUpdDash = window.updDash;
+  if(typeof origUpdDash === 'function'){
+    window.updDash = function(){
+      origUpdDash.apply(this, arguments);
+      setTimeout(function(){
+        [
+          {id:'db-sc-pts', fn: function(){ return (window.getP && getP() || []).length; }},
+        ].forEach(function(s){
+          var el = document.getElementById(s.id);
+          if(el){
+            var val = s.fn();
+            if(!isNaN(val)) v2AnimateCount(el, val, 400);
+          }
+        });
+      }, 100);
+    };
+  }
+})();
+
+/* ── 10. Reduced motion: disable all ──
+   Emil: always respect prefers-reduced-motion */
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.documentElement.style.setProperty('--dur-fast', '0ms');
+  document.documentElement.style.setProperty('--dur-normal', '0ms');
+  document.documentElement.style.setProperty('--dur-enter', '0ms');
+  document.documentElement.style.setProperty('--dur-exit', '0ms');
+  document.documentElement.style.setProperty('--dur-data', '0ms');
+}
 
 </script>
 
