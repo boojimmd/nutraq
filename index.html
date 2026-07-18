@@ -3838,14 +3838,42 @@ span[style*="font-size:0"] svg {
 
 }
 
+
+/* ─── Accessibility: Focus visible ─── */
+.nb:focus-visible,.btnp:focus-visible,.btns:focus-visible,.btnd:focus-visible{
+  outline:2px solid var(--g) !important;
+  outline-offset:2px !important;
+}
+.fi:focus,.fs:focus{
+  outline:none !important;
+}
+.ptcard:focus-visible{
+  outline:2px solid var(--g) !important;
+  outline-offset:1px !important;
+  border-radius:0 !important;
+}
+/* Keyboard shortcut badge in nav */
+.nb-kbd-hint{
+  font-size:9px !important;
+  color:var(--t3) !important;
+  opacity:.5 !important;
+  margin-right:auto !important;
+  font-weight:600 !important;
+}
+
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:fixed;top:-100px;left:20px;z-index:9999;background:var(--g);color:#1a0008;padding:8px 16px;border-radius:6px;font-weight:700;font-size:12px;text-decoration:none;transition:top .2s" onblur="this.style.top='-100px'" onfocus="this.style.top='8px'">رفتن به محتوای اصلی</a>
 <div class="app">
 
-<header class="hdr">
+<header class="hdr" role="banner" aria-label="سرتیتر NutraQ">
   <div class="hdr-brand">
-    <div class="hdr-logo">N</div>
+    <div class="hdr-logo" aria-label="NutraQ">
+  <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+    <path d="M4 16V4l9 12V4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
     <div><div class="hdr-title">NutraQ</div><div class="hdr-sub">سامانه تغذیه بالینی</div></div>
   </div>
   <div class="hdr-center">
@@ -3858,7 +3886,7 @@ span[style*="font-size:0"] svg {
   <div class="hdr-date" id="hdr-date"></div>
 </header>
 
-<div class="pwrap">
+<main class="pwrap">
 
   <!-- DASHBOARD -->
   <div class="page active" id="pg-dashboard">
@@ -3880,7 +3908,7 @@ span[style*="font-size:0"] svg {
   </div>
 
   <!-- ── Stats Row ── -->
-  <div class="db-stats">
+  <div class="db-stats" role="region" aria-label="آمار کلینیک">
     <div class="db-sc" onclick="nav('patients')">
       <span class="db-sc-val" id="db-sc-pts">۰</span>
       <span class="db-sc-lbl">بیمار فعال</span>
@@ -3933,8 +3961,8 @@ span[style*="font-size:0"] svg {
         <div><div class="pgtitle"><span class="ico ico-20"><svg viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> بیماران</div></div>
         <button class="btnp" onclick="openAddPt()"><span class="ico ico-15"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span> بیمار جدید</button>
       </div>
-      <div class="sw mb-14"><input type="text" class="fi sw-i" id="pt-search" placeholder="جستجوی بیمار..." oninput="filterPts()"><span class="ico ico-16" style="position:absolute;left:12px;top:50%;transform:translateY(-50%)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      <div id="pt-list"></div>
+      <div class="sw mb-14"><input type="text" class="fi sw-i" id="pt-search" placeholder="جستجوی بیمار..." aria-label="جستجوی بیمار" role="searchbox" oninput="filterPts()"><span class="ico ico-16" style="position:absolute;left:12px;top:50%;transform:translateY(-50%)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
+      <div id="pt-list" role="list" aria-label="لیست بیماران"></div>
     </div>
   </div>
 
@@ -3985,7 +4013,7 @@ span[style*="font-size:0"] svg {
         </div>
         <div id="tab-raw">
           <div class="ddwrap" style="margin-bottom:8px">
-            <input type="text" class="fi" id="food-q" placeholder="نام ماده غذایی..." oninput="searchFood()" autocomplete="off" style="font-size:.8rem">
+            <input type="text" class="fi" id="food-q" placeholder="نام ماده غذایی..." aria-label="جستجوی ماده غذایی" role="searchbox" aria-autocomplete="list" aria-controls="food-dd" oninput="searchFood()" autocomplete="off" style="font-size:.8rem">
             <div class="food-dd" id="food-dd"></div>
           </div>
           <div class="fg" style="margin-bottom:8px"><label class="fl">وعده</label>
@@ -4195,9 +4223,9 @@ span[style*="font-size:0"] svg {
     </div>
   </div>
 
-  </div><!-- /pwrap -->
+  </main><!-- /pwrap -->
 
-<nav class="bnav">
+<nav class="bnav" role="navigation" aria-label="ناوبری اصلی">
   <button class="nb active" id="nb-dashboard" onclick="nav('dashboard')"><div class="nb-ic" style="font-size:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg></div><div class="nb-lbl">خانه</div></button>
   <button class="nb" id="nb-patients" onclick="nav('patients')"><div class="nb-ic" style="font-size:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c6fd4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="nb-lbl">بیماران</div></button>
   <button class="nb" id="nb-menu" onclick="nav('menu')"><div class="nb-ic" style="font-size:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f55579" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4a4 4 0 01-4 4"/><circle cx="12" cy="16.5" r=".8" fill="#f55579"/></svg></div><div class="nb-lbl">منوساز</div></button>
@@ -4213,7 +4241,7 @@ span[style*="font-size:0"] svg {
 </div>
 
 <!-- PATIENT MODAL -->
-<div class="modal-ov" id="modal-pt">
+<div class="modal-ov" role="dialog" aria-modal="true" id="modal-pt">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-hd"><div class="modal-title" id="pt-modal-title">بیمار جدید</div><button class="modal-x" onclick="cm('modal-pt')">✕</button></div>
@@ -6836,6 +6864,99 @@ function selectFoodForPlan(food) {
 }
 
 
+
+
+/* ─── Keyboard Navigation System ─── */
+document.addEventListener('keydown', function(e){
+  var tag = document.activeElement.tagName;
+  var inInput = ['INPUT','TEXTAREA','SELECT'].includes(tag);
+  
+  // Escape: close any open modal
+  if(e.key === 'Escape'){
+    var openModal = document.querySelector('.modal-ov.open');
+    if(openModal){
+      var id = openModal.id;
+      if(id) cm(id);
+      e.preventDefault();
+      return;
+    }
+  }
+  
+  if(inInput) return; // Don't hijack input fields
+  
+  // Cmd+K or Ctrl+K: Command palette / patient search focus
+  if((e.metaKey||e.ctrlKey) && e.key==='k'){
+    e.preventDefault();
+    var ptSearch = document.getElementById('pt-search');
+    if(ptSearch){
+      window.nav('patients');
+      setTimeout(function(){ptSearch.focus();ptSearch.select();},150);
+    }
+    return;
+  }
+  
+  // Number keys 1-5: Navigate domains
+  if(!e.metaKey && !e.ctrlKey && !e.shiftKey){
+    var domainMap = {'1':'dashboard','2':'patients','3':'menu','4':'analyzer','5':'foods'};
+    if(domainMap[e.key]){
+      e.preventDefault();
+      window.nav(domainMap[e.key]);
+      return;
+    }
+    
+    // J/K: Navigate patient list
+    if((e.key==='j'||e.key==='k') && document.getElementById('pg-patients')?.classList.contains('active')){
+      e.preventDefault();
+      var cards = [...document.querySelectorAll('.ptcard')];
+      var selected = document.querySelector('.ptcard.selected');
+      var idx = selected ? cards.indexOf(selected) : -1;
+      var next = e.key==='j' ? Math.min(idx+1,cards.length-1) : Math.max(idx-1,0);
+      if(cards[next]){
+        cards[next].click();
+        cards[next].scrollIntoView({block:'nearest',behavior:'smooth'});
+      }
+      return;
+    }
+    
+    // Enter in food search: add top result
+    if(e.key==='Enter'){
+      var dd = document.getElementById('food-dd');
+      if(dd && dd.children.length > 0){
+        dd.children[0].click();
+        e.preventDefault();
+        return;
+      }
+    }
+  }
+  
+  // Cmd+S: Save current state
+  if((e.metaKey||e.ctrlKey) && e.key==='s'){
+    e.preventDefault();
+    var active = document.querySelector('.page.active');
+    if(active?.id === 'pg-menu'){
+      if(typeof saveMenu === 'function') saveMenu();
+    } else if(active?.id === 'pg-patients'){
+      // nothing to save in view mode
+    }
+  }
+});
+
+/* ─── Keyboard shortcut hints in nav items ─── */
+document.addEventListener('DOMContentLoaded', function(){
+  var domainMap = [
+    ['nb-dashboard','1'],['nb-patients','2'],['nb-menu','3'],
+    ['nb-analyzer','4'],['nb-foods','5']
+  ];
+  domainMap.forEach(function(pair){
+    var el = document.getElementById(pair[0]);
+    if(el){
+      var hint = document.createElement('span');
+      hint.style.cssText='font-size:9px;color:var(--t3);opacity:.5;margin-right:auto;font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums;';
+      hint.textContent = pair[1];
+      el.appendChild(hint);
+    }
+  });
+});
 
 </script>
 
