@@ -3861,6 +3861,192 @@ span[style*="font-size:0"] svg {
   font-weight:600 !important;
 }
 
+
+/* ════════════════════════════════════════════════
+   NUTRAQ DELIGHT SYSTEM
+   Micro-interactions · Motion · Joy
+   Rule: if it helps you notice a state change, keep it.
+   Rule: if it's just movement, remove it.
+════════════════════════════════════════════════ */
+
+@media(min-width:900px){
+
+/* ── 1. Food row entrance — slides in from right (RTL: from left) ── */
+@keyframes foodRowIn{
+  from{opacity:0;transform:translateX(-8px);}
+  to{opacity:1;transform:translateX(0);}
+}
+.frow-new{
+  animation:foodRowIn .22s cubic-bezier(.32,.72,0,1) both;
+}
+
+/* ── 2. Patient card selection spring ── */
+@keyframes ptSelectSpring{
+  0%{transform:translateX(0);}
+  40%{transform:translateX(-4px);}
+  70%{transform:translateX(2px);}
+  100%{transform:translateX(0);}
+}
+.ptcard.selecting{
+  animation:ptSelectSpring .28s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── 3. Gauge milestone pulse — when hitting 100% ── */
+@keyframes milestonePulse{
+  0%{box-shadow:0 0 0 0 rgba(245,85,121,.5);}
+  50%{box-shadow:0 0 0 12px rgba(245,85,121,0);}
+  100%{box-shadow:0 0 0 0 rgba(245,85,121,0);}
+}
+.gauge-wrap.milestone{
+  animation:milestonePulse .6s cubic-bezier(.32,.72,0,1);
+  border-radius:50%;
+}
+
+/* ── 4. Stat number count-up ── */
+@keyframes numReveal{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.stat-revealing{
+  animation:numReveal .3s cubic-bezier(.32,.72,0,1) both;
+}
+
+/* ── 5. Save button success state ── */
+@keyframes saveSuccess{
+  0%{transform:scale(1);}
+  40%{transform:scale(.95);}
+  70%{transform:scale(1.03);}
+  100%{transform:scale(1);}
+}
+.btnp.save-success{
+  background:linear-gradient(135deg,#10B981,#059669) !important;
+  color:#fff !important;
+  animation:saveSuccess .35s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── 6. Analysis rows stagger reveal ── */
+@keyframes rowReveal{
+  from{opacity:0;transform:translateY(3px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.an-row-reveal{
+  animation:rowReveal .18s cubic-bezier(.32,.72,0,1) both;
+}
+
+/* ── 7. Empty state float ── */
+@keyframes emptyFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
+}
+.empty .ei,.pt-panel-empty svg,.db-empty svg{
+  animation:emptyFloat 3.5s ease-in-out infinite;
+}
+
+/* ── 8. Topbar patient chip entrance ── */
+@keyframes chipIn{
+  from{opacity:0;transform:scale(.92);}
+  to{opacity:1;transform:scale(1);}
+}
+#hdrPatientChip[style*="flex"]{
+  animation:chipIn .2s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── 9. Nutrient status color transition ── */
+.an-row{
+  transition:background .3s ease;
+}
+.an-row.just-changed{
+  background:rgba(245,85,121,.06);
+}
+
+/* ── 10. Nav item active bounce ── */
+@keyframes navActivate{
+  0%{transform:translateX(0);}
+  35%{transform:translateX(-3px);}
+  65%{transform:translateX(1px);}
+  100%{transform:translateX(0);}
+}
+.nb.active-new{
+  animation:navActivate .25s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── 11. Visit card hover lift ── */
+.db-vc:hover{
+  transform:translateX(-2px) !important;
+  transition:transform .15s cubic-bezier(.34,1.56,.64,1),background .12s !important;
+}
+
+/* ── 12. Quick action button arrow animated ── */
+.db-act-btn:hover::after{
+  animation:arrowPulse .4s ease;
+}
+@keyframes arrowPulse{
+  0%{transform:translateX(0);opacity:0;}
+  50%{transform:translateX(-3px);opacity:1;}
+  100%{transform:translateX(0);opacity:1;}
+}
+
+/* ── 13. Macrobox bar color spring on update ── */
+.mb-f{
+  transition:width .55s cubic-bezier(.34,1.56,.64,1) !important;
+}
+
+/* ── 14. Gauge needle spring ── */
+.gauge-arc{
+  transition:stroke-dashoffset .7s cubic-bezier(.34,1.56,.64,1),stroke .35s ease !important;
+}
+
+/* ── 15. Food card hover — subtle parallax tilt ── */
+.fcard{
+  transform-style:preserve-3d;
+  transition:background .12s,transform .15s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.fcard:hover{
+  transform:translateY(-2px) rotate(.3deg) !important;
+}
+
+/* ── 16. Toast: satisfying spring entrance ── */
+.toast.show{
+  animation:toastIn .32s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes toastIn{
+  from{transform:translateY(calc(100% + 20px));opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+
+/* ── 17. Dashboard stat card: subtle glow on hover ── */
+.db-sc:hover{
+  box-shadow:0 0 0 1px rgba(245,85,121,.15) !important;
+}
+
+/* ── 18. Page transition ── */
+.page.active{
+  animation:pageSlide .18s cubic-bezier(.32,.72,0,1) both;
+}
+@keyframes pageSlide{
+  from{opacity:0;transform:translateY(3px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ── 19. Allergy warning entrance (critical, not celebratory) ── */
+@keyframes allergyShake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-3px);}
+  40%{transform:translateX(3px);}
+  60%{transform:translateX(-2px);}
+  80%{transform:translateX(2px);}
+}
+#menu-allergy-banner:not(:empty){
+  animation:allergyShake .5s ease;
+}
+
+/* ── 20. Smart empty state: different per-page ── */
+.db-empty{
+  font-style:italic;
+}
+
+}
+
 </style>
 </head>
 <body>
@@ -6957,6 +7143,224 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+
+
+/* ════════════════════════════════════
+   DELIGHT SYSTEM — JS Hooks
+════════════════════════════════════ */
+
+/* ── Web Audio: micro sound engine ── */
+var _audioCtx=null;
+function _initAudio(){
+  if(!_audioCtx&&window.AudioContext){
+    try{_audioCtx=new AudioContext();}catch(e){}
+  }
+}
+function _playTone(freq,type,duration,volume){
+  _initAudio();
+  if(!_audioCtx||!window.NQ_SOUND_ON) return;
+  try{
+    var osc=_audioCtx.createOscillator();
+    var gain=_audioCtx.createGain();
+    osc.connect(gain);gain.connect(_audioCtx.destination);
+    osc.frequency.value=freq;
+    osc.type=type||'sine';
+    gain.gain.setValueAtTime(volume||0.06,_audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,_audioCtx.currentTime+(duration||0.12));
+    osc.start();osc.stop(_audioCtx.currentTime+(duration||0.12));
+  }catch(e){}
+}
+/* Sound presets */
+function _sndAdd(){_playTone(523.25,'sine',0.08,0.05);}       /* C5 — food added */
+function _sndSave(){_playTone(659.25,'sine',0.15,0.06);setTimeout(function(){_playTone(880,'sine',0.1,0.04);},80);}  /* E5→A5 chord */
+function _sndMilestone(){_playTone(783.99,'sine',0.2,0.07);setTimeout(function(){_playTone(1046.5,'sine',0.15,0.05);},100);} /* G5→C6 */
+window.NQ_SOUND_ON=false; /* Sound off by default */
+
+/* ── Stat counter animation ── */
+function _animateCount(el,target,duration){
+  if(!el||isNaN(target)) return;
+  var start=0,startTime=null;
+  var step=function(ts){
+    if(!startTime)startTime=ts;
+    var progress=Math.min((ts-startTime)/duration,1);
+    var ease=1-Math.pow(1-progress,3); // ease-out cubic
+    el.textContent=Math.round(ease*target);
+    if(progress<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  };
+  el.classList.add('stat-revealing');
+  requestAnimationFrame(step);
+}
+
+/* ── Hook: updDash — animate stat numbers ── */
+var _origUpdDash=window.updDash;
+if(typeof _origUpdDash==='function'){
+  window.updDash=function(){
+    _origUpdDash.apply(this,arguments);
+    // Animate stat counters after render
+    setTimeout(function(){
+      var stats=[
+        {id:'db-sc-pts',get:function(){return getP().length;}},
+        {id:'d-menus',get:function(){return Object.keys(getM()).length;}},
+        {id:'db-sc-week',get:function(){
+          var today=new Date();today.setHours(0,0,0,0);
+          var weekAhead=new Date(today);weekAhead.setDate(today.getDate()+7);
+          return getP().filter(function(p){if(!p.nextVisit)return false;var d=new Date(p.nextVisit);return d>=today&&d<=weekAhead;}).length;
+        }},
+      ];
+      stats.forEach(function(s){
+        var el=document.getElementById(s.id);
+        if(el){_animateCount(el,s.get(),600);}
+      });
+    },100);
+  };
+}
+
+/* ── Hook: nav() — add nav item bounce ── */
+var _origNav=window.nav;
+if(typeof _origNav==='function'){
+  window.nav=function(tab){
+    _origNav.apply(this,arguments);
+    var nb=document.getElementById('nb-'+tab);
+    if(nb){
+      nb.classList.remove('active-new');
+      void nb.offsetWidth; // reflow
+      nb.classList.add('active-new');
+      setTimeout(function(){nb.classList.remove('active-new');},400);
+    }
+  };
+}
+
+/* ── Hook: patient selection spring ── */
+var _origOpenPt=window.openPtDetail;
+if(typeof _origOpenPt==='function'){
+  window.openPtDetail=function(id){
+    // spring animation on selected card
+    var prevSelected=document.querySelector('.ptcard.selected');
+    if(prevSelected)prevSelected.classList.remove('selected');
+    var newCard=document.querySelector('.ptcard[data-pid="'+id+'"]');
+    if(newCard){
+      newCard.classList.add('selecting');
+      setTimeout(function(){newCard.classList.remove('selecting');},350);
+    }
+    _origOpenPt.apply(this,arguments);
+  };
+}
+
+/* ── Hook: food addition ── */
+var _origAddFood=window.addFood;
+if(typeof _origAddFood==='function'){
+  window.addFood=function(){
+    var prevCount=document.querySelectorAll('.frow').length;
+    _origAddFood.apply(this,arguments);
+    // After render, animate new row
+    setTimeout(function(){
+      var rows=document.querySelectorAll('.frow');
+      if(rows.length>prevCount){
+        var newRow=rows[rows.length-1];
+        newRow.classList.add('frow-new');
+        setTimeout(function(){newRow.classList.remove('frow-new');},400);
+        _sndAdd(); // micro sound
+      }
+    },50);
+  };
+}
+
+/* ── Hook: save menu — success state ── */
+var _origSaveMenu=window.saveMenu;
+if(typeof _origSaveMenu==='function'){
+  window.saveMenu=function(){
+    var saveBtn=document.querySelector('.btnp[onclick*="saveMenu"]');
+    _origSaveMenu.apply(this,arguments);
+    if(saveBtn){
+      var origText=saveBtn.innerHTML;
+      saveBtn.classList.add('save-success');
+      saveBtn.innerHTML='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> ذخیره شد';
+      _sndSave();
+      setTimeout(function(){
+        saveBtn.classList.remove('save-success');
+        saveBtn.innerHTML=origText;
+      },2000);
+    }
+  };
+}
+
+/* ── Milestone: 100% calorie gauge ── */
+var _lastMilestonePct=0;
+var _origRenderMenu=window.renderMenu;
+if(typeof _origRenderMenu==='function'){
+  window.renderMenu=function(){
+    _origRenderMenu.apply(this,arguments);
+    // Check for milestone
+    setTimeout(function(){
+      var kcalEl=document.getElementById('m-kcal');
+      var targetEl=document.getElementById('menu-target');
+      if(kcalEl&&targetEl){
+        var kcal=parseInt(kcalEl.textContent)||0;
+        var targetMatch=targetEl.textContent.match(/\d+/);
+        var target=targetMatch?parseInt(targetMatch[0]):0;
+        if(target>0){
+          var pct=kcal/target;
+          if(pct>=0.99&&pct<=1.1&&_lastMilestonePct<0.99){
+            var gw=document.querySelector('.gauge-wrap');
+            if(gw){
+              gw.classList.add('milestone');
+              setTimeout(function(){gw.classList.remove('milestone');},800);
+              _sndMilestone();
+            }
+          }
+          _lastMilestonePct=pct;
+        }
+      }
+    },100);
+  };
+}
+
+/* ── Analysis rows: stagger reveal ── */
+var _origRunAnalyzer=window.runAnalyzer;
+if(typeof _origRunAnalyzer==='function'){
+  window.runAnalyzer=function(){
+    _origRunAnalyzer.apply(this,arguments);
+    setTimeout(function(){
+      var rows=document.querySelectorAll('.an-row');
+      rows.forEach(function(row,i){
+        row.style.animationDelay=(i*16)+'ms';
+        row.classList.add('an-row-reveal');
+      });
+    },100);
+  };
+}
+
+/* ── Sound toggle (accessible) ── */
+function toggleSound(){
+  window.NQ_SOUND_ON=!window.NQ_SOUND_ON;
+  _initAudio();
+  if(window.NQ_SOUND_ON&&_audioCtx&&_audioCtx.state==='suspended'){
+    _audioCtx.resume();
+  }
+  var label=window.NQ_SOUND_ON?'صدا: روشن 🔊':'صدا: خاموش 🔇';
+  if(typeof showToast==='function') showToast(label);
+}
+
+/* ── Thoughtful empty states: time-aware messages ── */
+function _getEmptyVisitMsg(){
+  var h=new Date().getHours();
+  if(h<10) return 'صبح بخیر. هیچ ویزیتی برای امروز ثبت نشده.';
+  if(h<14) return 'هیچ ویزیتی برای امروز. وقت ناهار؟';
+  if(h<18) return 'بعدازظهر آرامی. هیچ ویزیتی باقی نمانده.';
+  return 'روز کاری تمام شد. ویزیتی نداشتید امروز.';
+}
+
+/* Apply time-aware empty state on dashboard */
+document.addEventListener('DOMContentLoaded',function(){
+  setTimeout(function(){
+    var emptyEl=document.querySelector('.db-empty');
+    if(emptyEl&&emptyEl.textContent.includes('هفته')){
+      emptyEl.innerHTML=_getEmptyVisitMsg();
+    }
+  },500);
+});
+
 
 </script>
 
