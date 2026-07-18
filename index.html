@@ -2896,6 +2896,948 @@ span[style*="font-size:0"] svg {
   .db-col-main>.db-vc{max-width:780px;}
   .hdr-center{gap:12px;}
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   NUTRAQ IDENTITY v3.0
+   Signature: Clinical Strip Language
+   Not a dashboard. Not a template. A workspace.
+═══════════════════════════════════════════════════════════ */
+
+@media(min-width:900px){
+
+/* ─────────────────────────────────────────
+   KILL THE FOUR STAT CARDS
+   Replace with: Clinical Status Line
+───────────────────────────────────────── */
+.db-stats{
+  display:flex !important;
+  align-items:center;
+  gap:0;
+  padding:0 0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  height:44px !important;
+  flex-shrink:0;
+  background:var(--bg);
+}
+.db-sc{
+  display:flex !important;
+  align-items:center;
+  gap:0;
+  flex-direction:row !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border:none !important;
+  border-left:1px solid var(--b1) !important;
+  padding:0 20px !important;
+  height:100%;
+  cursor:pointer;
+  position:relative;
+  flex:1;
+  transition:background .12s !important;
+  transform:none !important;
+}
+.db-sc:first-child{border-left:none !important;}
+.db-sc:hover{background:rgba(245,85,121,.04) !important;transform:none !important;}
+.db-sc::after{display:none !important;}
+
+.db-sc-val{
+  font-size:20px !important;
+  font-weight:800 !important;
+  color:var(--t1) !important;
+  line-height:1 !important;
+  letter-spacing:-.04em !important;
+  margin-left:8px;
+}
+.db-sc-lbl{
+  font-size:9px !important;
+  font-weight:700 !important;
+  color:var(--t3) !important;
+  text-transform:uppercase !important;
+  letter-spacing:.09em !important;
+  line-height:1;
+  display:flex;flex-direction:column;
+  margin-top:0 !important;
+}
+.db-sc-link{
+  display:none !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC DASHBOARD HERO
+   Replace with: Minimal clinical date bar
+───────────────────────────────────────── */
+.db-hero{
+  height:44px !important;
+  padding:0 20px !important;
+  border-bottom:1px solid var(--b1) !important;
+  background:transparent !important;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+}
+.db-day{
+  font-size:9px !important;
+  font-weight:700;
+  color:var(--t3);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  line-height:1;
+}
+.db-brand{
+  font-size:12px !important;
+  font-weight:800;
+  color:var(--t1);
+  letter-spacing:-.02em;
+  margin-top:2px !important;
+}
+.db-hero-center{
+  font-size:11px !important;
+  gap:12px !important;
+}
+.db-sep{
+  width:1px;height:12px;
+  background:var(--b2);
+  display:inline-block;
+  vertical-align:middle;
+}
+.db-hero-right{
+  font-size:10px !important;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC VISIT CARDS
+   Replace with: Clinical appointment strips
+───────────────────────────────────────── */
+.db-vc{
+  display:flex !important;
+  align-items:center !important;
+  gap:0 !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid rgba(44,35,71,.4) !important;
+  margin-bottom:0 !important;
+  height:52px;
+  cursor:pointer;
+  transition:background .1s !important;
+  position:relative;
+  transform:none !important;
+}
+.db-vc::before{
+  content:'';
+  width:3px;height:100%;
+  background:transparent;
+  flex-shrink:0;
+  transition:background .12s;
+  margin-left:0;
+}
+.db-vc.today::before{background:var(--g);}
+.db-vc:hover{background:rgba(255,255,255,.025) !important;}
+.db-vc.today{
+  background:transparent !important;
+  border-color:rgba(44,35,71,.4) !important;
+}
+.db-vc .av{
+  border-radius:8px !important;
+  width:30px !important;height:30px !important;
+  font-size:11px !important;
+  margin:0 10px 0 8px;
+}
+.db-vc-name{font-size:13px !important;font-weight:700 !important;}
+.db-vc-sub{
+  font-size:10px !important;
+  font-variant-numeric:tabular-nums;
+  margin-top:2px !important;
+}
+/* Kill the generic badge on visit card */
+.db-vc .badge{display:none !important;}
+
+/* Visit section header strip */
+.db-visit-title{
+  font-size:9px !important;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  margin:0 !important;
+  padding:12px 0 6px !important;
+  border-bottom:1px solid var(--b1);
+  margin-bottom:0 !important;
+}
+.db-section-hdr{
+  font-size:9px !important;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  margin:0 !important;
+  padding:12px 0 6px !important;
+  border-top:none !important;
+  border-bottom:1px solid rgba(44,35,71,.4);
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC QUICK ACTIONS
+   Replace with: Minimal command list
+───────────────────────────────────────── */
+.db-actions{gap:0 !important;margin-bottom:0 !important;}
+.db-act-btn{
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid rgba(44,35,71,.35) !important;
+  border-radius:0 !important;
+  height:38px !important;
+  padding:0 4px !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  color:var(--t2) !important;
+  display:flex;align-items:center;gap:8px !important;
+  width:100%;
+  cursor:pointer;
+  transition:color .12s !important;
+  font-family:inherit;
+}
+.db-act-btn:hover{
+  background:transparent !important;
+  color:var(--t1) !important;
+  border-color:rgba(44,35,71,.35) !important;
+  transform:none;
+}
+.db-act-btn svg{opacity:.4 !important;transition:opacity .12s;}
+.db-act-btn:hover svg{opacity:.8 !important;}
+/* Add arrow indicator on hover */
+.db-act-btn::after{
+  content:'←';
+  font-size:11px;
+  color:var(--g);
+  opacity:0;
+  margin-right:auto;
+  transition:opacity .12s;
+}
+.db-act-btn:hover::after{opacity:1;}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC PATIENT CARDS
+   Replace with: Appointment slot strips
+───────────────────────────────────────── */
+.ptcard{
+  display:flex !important;
+  align-items:center !important;
+  gap:0 !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid rgba(44,35,71,.4) !important;
+  margin-bottom:0 !important;
+  height:54px;
+  cursor:pointer;
+  position:relative;
+  transition:background .1s !important;
+  transform:none !important;
+}
+/* Urgency bar — replaces urgency dot */
+.ptcard-urgency{
+  width:3px !important;
+  height:100% !important;
+  border-radius:0 !important;
+  flex-shrink:0;
+  margin:0 !important;
+  transition:none !important;
+}
+.ptcard:hover .ptcard-urgency{transform:none !important;}
+
+/* Avatar flush with bar */
+.ptcard .av{
+  width:28px !important;height:28px !important;
+  border-radius:6px !important;
+  font-size:10px !important;
+  margin:0 10px 0 8px;
+  flex-shrink:0;
+}
+
+/* Patient info */
+.ptcard .ptinf{flex:1;min-width:0;}
+.ptcard .ptn{
+  font-size:13px !important;
+  font-weight:700 !important;
+  color:var(--t1) !important;
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+/* Kill badge inside name display - handled by urgency bar */
+.ptcard .ptn .badge{display:none !important;}
+.ptcard .ptm{
+  font-size:10px !important;
+  color:var(--t3) !important;
+  margin-top:1px !important;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Selected state: stronger accent bar */
+.ptcard.selected{
+  background:rgba(245,85,121,.05) !important;
+  border-color:rgba(44,35,71,.6) !important;
+  box-shadow:none !important;
+}
+.ptcard.selected .ptcard-urgency{
+  background:var(--g) !important;
+  opacity:1;
+}
+
+/* Hover actions: minimal, inline */
+.ptact{
+  padding-left:8px;
+  padding-right:6px;
+}
+.pt-hover-nav{
+  flex-direction:row !important;
+  gap:2px !important;
+  margin-top:0 !important;
+  display:flex;
+}
+.pt-qbtn{
+  font-size:9px !important;
+  padding:2px 6px !important;
+  border-radius:3px !important;
+  background:transparent !important;
+  border:1px solid rgba(245,85,121,.2) !important;
+  color:var(--g) !important;
+  font-weight:700 !important;
+}
+.pt-qbtn:hover{
+  background:rgba(245,85,121,.1) !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC SIDEBAR NAV ITEMS
+   Replace with: Clinical workspace rail
+───────────────────────────────────────── */
+.nb{
+  height:38px !important;
+  padding:0 14px !important;
+  margin:1px 0 !important;
+  border-radius:0 !important;
+  font-size:12px !important;
+  font-weight:500 !important;
+  letter-spacing:-.005em;
+  gap:9px !important;
+  width:100% !important;
+  color:var(--t3) !important;
+  transition:color .1s,background .1s !important;
+}
+.nb:hover{
+  background:rgba(255,255,255,.03) !important;
+  color:var(--t2) !important;
+  transform:none !important;
+}
+.nb.active{
+  background:rgba(245,85,121,.06) !important;
+  color:var(--t1) !important;
+  font-weight:700 !important;
+  box-shadow:inset 3px 0 0 var(--g) !important;
+}
+.nb svg,.nb .ico svg{
+  width:14px !important;height:14px !important;
+  opacity:.5;
+}
+.nb:hover svg{opacity:.7;}
+.nb.active svg{opacity:1;}
+.nb-lbl,.nb span:not(.ico):not(.nic){
+  font-size:12px !important;
+}
+#nb-settings{
+  height:44px !important;
+  margin:0 !important;
+  border-top:1px solid var(--b1) !important;
+  color:var(--t3) !important;
+}
+
+/* Sidebar brand — distinctive treatment */
+.bnav::before{
+  font-size:11px !important;
+  font-weight:800 !important;
+  letter-spacing:.12em !important;
+  text-transform:uppercase !important;
+  color:var(--t3) !important;
+  height:44px !important;
+  padding:0 16px !important;
+  border-bottom:1px solid var(--b1) !important;
+  background:transparent !important;
+  display:flex;align-items:center;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC MACROBOX
+   Replace: Numbers dominant, bars structural
+───────────────────────────────────────── */
+.macrobox{
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-radius:0 !important;
+  padding:12px 20px !important;
+  margin-bottom:0 !important;
+  display:flex;align-items:center;gap:24px;
+}
+/* Gauge: same but in context of stripped design */
+.gauge-wrap{
+  width:64px !important;height:64px !important;
+}
+.gauge-bg{stroke-width:5 !important;}
+.gauge-arc{stroke-width:5 !important;}
+.gauge-val{font-size:13px !important;}
+/* Macro bars: label top, bar below */
+.mb-rows{gap:5px !important;}
+.mb-r{gap:8px !important;}
+.mb-l{
+  width:100px !important;
+  font-size:10px !important;
+  font-weight:600;
+  color:var(--t3);
+}
+.mb-l span{
+  font-size:12px !important;
+  font-weight:700 !important;
+  color:var(--t1) !important;
+}
+.mb-bg{height:3px !important;border-radius:0 !important;}
+.mb-f{border-radius:0 !important;}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC FOOD CARDS
+   Replace with: Clinical ingredient entries
+───────────────────────────────────────── */
+.foods-grid{
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr)) !important;
+  gap:1px !important;
+  background:var(--b1) !important;
+  border-top:1px solid var(--b1);
+  border-right:1px solid var(--b1);
+  padding:0 !important;
+}
+.fcard{
+  background:var(--bg2) !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:12px 14px !important;
+  transition:background .1s !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+.fcard:hover{
+  background:var(--s1) !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+.fcn{
+  font-size:12px !important;
+  font-weight:700 !important;
+  color:var(--t1) !important;
+  margin-bottom:8px !important;
+  line-height:1.3;
+}
+.fckcal{
+  font-size:18px !important;
+  font-weight:800 !important;
+  color:var(--t1) !important;
+  letter-spacing:-.03em !important;
+  margin-bottom:5px !important;
+  display:flex;align-items:baseline;gap:3px;
+}
+.fckcal::after{
+  content:'kcal';
+  font-size:9px;font-weight:600;
+  color:var(--t3);text-transform:uppercase;letter-spacing:.05em;
+  display:inline;
+}
+.fcmacs{
+  gap:3px !important;
+}
+.fcm{
+  font-size:9px !important;
+  padding:1px 5px !important;
+  border-radius:2px !important;
+  font-weight:700 !important;
+  letter-spacing:.02em;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC BADGES
+   Replace with: Clinical inline indicators
+───────────────────────────────────────── */
+/* Default badge → small colored label, no pill shape */
+.badge{
+  display:inline-flex !important;align-items:center !important;
+  gap:3px !important;
+  padding:1px 5px !important;
+  border-radius:2px !important;
+  font-size:9px !important;font-weight:700 !important;
+  letter-spacing:.04em !important;
+  text-transform:uppercase !important;
+  line-height:1.5 !important;
+  border:none !important;
+}
+/* Status badge — no border, color only */
+.bg-r{background:rgba(239,68,68,.15) !important;color:#FCA5A5 !important;border:none !important;}
+.bg-g{background:rgba(16,185,129,.15) !important;color:#6EE7B7 !important;border:none !important;}
+.bg-a{background:rgba(245,158,11,.15) !important;color:#FCD34D !important;border:none !important;}
+.bg-b{background:rgba(59,130,246,.15) !important;color:#93C5FD !important;border:none !important;}
+.bg-p{background:rgba(168,85,247,.15) !important;color:#D8B4FE !important;border:none !important;}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC FORM INPUTS
+   Replace with: Clinical data entry style
+───────────────────────────────────────── */
+.fi{
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid var(--b2) !important;
+  border-radius:0 !important;
+  padding:8px 2px !important;
+  font-size:13px !important;
+  height:36px !important;
+  transition:border-color .12s !important;
+}
+.fi::placeholder{color:var(--t3) !important;font-size:12px !important;}
+.fi:hover{border-bottom-color:var(--b3) !important;}
+.fi:focus{
+  border-bottom-color:var(--g) !important;
+  box-shadow:0 1px 0 var(--g) !important;
+  outline:none !important;
+}
+
+/* Select: keep full border (dropdowns need visual container) */
+.fs{
+  height:36px !important;
+  border-radius:6px !important;
+  font-size:12px !important;
+  padding-left:8px !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC BUTTONS
+   Replace with: Clinical action language
+───────────────────────────────────────── */
+.btnp{
+  background:var(--g) !important;
+  background:linear-gradient(135deg,#F55579,#D43060) !important;
+  border-radius:6px !important;
+  font-size:12px !important;
+  height:34px !important;
+  letter-spacing:.01em !important;
+  box-shadow:none !important;
+  color:#1a0008 !important;
+}
+.btnp:hover{
+  box-shadow:0 0 0 1px rgba(245,85,121,.4) !important;
+  transform:none !important;
+}
+.btns{
+  background:transparent !important;
+  border:1px solid var(--b2) !important;
+  border-radius:6px !important;
+  font-size:12px !important;
+  height:34px !important;
+  color:var(--t2) !important;
+}
+.btns:hover{
+  border-color:var(--b3) !important;
+  background:rgba(255,255,255,.03) !important;
+  transform:none !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC CARD CONTAINERS
+   Replace with: Content zones (no border boxes)
+───────────────────────────────────────── */
+.card{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:0 !important;
+}
+.card-title{
+  font-size:9px !important;
+  font-weight:700 !important;
+  letter-spacing:.1em !important;
+  color:var(--t3) !important;
+  text-transform:uppercase !important;
+  margin-bottom:10px !important;
+  padding-bottom:8px !important;
+  border-bottom:1px solid var(--b1) !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC EMPTY STATES
+   Replace with: Clinical prompts
+───────────────────────────────────────── */
+.pt-panel-empty{
+  color:var(--t3);
+}
+.pt-panel-empty svg{
+  width:20px !important;height:20px !important;
+  opacity:.15 !important;
+}
+/* Override generic text */
+.pt-panel-empty>div:last-child{
+  font-size:11px !important;
+  color:var(--t3) !important;
+  letter-spacing:.03em;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC TOPBAR
+   Replace with: Clinical workspace header
+───────────────────────────────────────── */
+.hdr{
+  border-bottom:1px solid var(--b1) !important;
+  background:var(--bg) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  height:44px !important;
+}
+.pwrap{margin-top:44px !important;height:calc(100dvh - 44px) !important;}
+.hdr-logo{
+  width:24px !important;height:24px !important;
+  border-radius:5px !important;
+  font-size:11px !important;
+  box-shadow:none !important;
+}
+.hdr-title{font-size:11px !important;font-weight:800 !important;letter-spacing:.04em !important;text-transform:uppercase !important;}
+.hdr-sub{display:none !important;}
+.hdr-page-title{
+  font-size:10px !important;
+  color:var(--t3) !important;
+  letter-spacing:.07em !important;
+  text-transform:uppercase !important;
+}
+.hdr-date{
+  font-size:10px !important;
+  font-variant-numeric:tabular-nums;
+  color:var(--t3) !important;
+  letter-spacing:.02em;
+}
+.hdr-patient-chip{
+  height:24px !important;
+  padding:0 8px !important;
+  border-radius:3px !important;
+}
+.hdr-patient-name{font-size:11px !important;}
+.hdr-patient-cond{font-size:9px !important;}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC SIDEBAR HEADER
+───────────────────────────────────────── */
+.bnav{
+  border-left:1px solid var(--b1) !important;
+}
+.bnav::before{
+  height:44px !important;
+  padding:0 16px !important;
+  font-size:10px !important;
+  letter-spacing:.12em !important;
+  text-transform:uppercase !important;
+  color:var(--t3) !important;
+  background:transparent !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC MODAL
+   Replace with: Clinical dialog
+───────────────────────────────────────── */
+.msheet{
+  border-radius:8px !important;
+  border:1px solid var(--b2) !important;
+  box-shadow:0 32px 64px rgba(0,0,0,.6) !important;
+  padding:22px !important;
+}
+.modal-ov{
+  background:rgba(7,5,14,.85) !important;
+  backdrop-filter:blur(8px) !important;
+}
+.mh{
+  font-size:14px !important;
+  font-weight:800 !important;
+  letter-spacing:-.025em !important;
+  margin-bottom:14px !important;
+}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC TOAST
+   Replace with: System status strip
+───────────────────────────────────────── */
+.toast{
+  background:var(--bg2) !important;
+  border:1px solid var(--b2) !important;
+  border-radius:4px !important;
+  font-size:12px !important;
+  padding:8px 14px !important;
+  box-shadow:0 4px 24px rgba(0,0,0,.4) !important;
+  border-left:3px solid var(--g) !important;
+  left:16px !important;bottom:16px !important;
+}
+.toast.ok{border-left-color:var(--success,#10B981) !important;}
+.toast.err{border-left-color:var(--red) !important;}
+
+/* ─────────────────────────────────────────
+   KILL GENERIC SECTION TITLES
+   Replace with: Clinical zone labels
+───────────────────────────────────────── */
+.sect-title,.db-col-title,.meal-cat-hdr,.an-title{
+  font-size:9px !important;
+  font-weight:700 !important;
+  letter-spacing:.1em !important;
+  text-transform:uppercase !important;
+  color:var(--t3) !important;
+  border-bottom:1px solid var(--b1) !important;
+  padding-bottom:6px !important;
+  margin-bottom:8px !important;
+}
+
+/* ─────────────────────────────────────────
+   ANALYSIS TABLE: Clinical monitor rows
+───────────────────────────────────────── */
+.an-row{
+  border-bottom:1px solid rgba(44,35,71,.35) !important;
+  padding:5px 0 !important;
+  height:36px !important;
+}
+.an-name{font-size:12px !important;}
+.an-val{
+  font-size:13px !important;font-weight:700 !important;
+  font-variant-numeric:tabular-nums;
+}
+.an-pct{font-size:11px !important;font-weight:700 !important;}
+
+/* Analyzer AI summary box */
+#az-patient-summary{
+  background:transparent !important;
+  border:none !important;
+  border-top:2px solid var(--g) !important;
+  border-radius:0 !important;
+  padding:10px 0 !important;
+}
+
+/* ─────────────────────────────────────────
+   MEAL ROWS: Food entry strips
+───────────────────────────────────────── */
+.frow{
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid rgba(44,35,71,.35) !important;
+  border-radius:0 !important;
+  padding:8px 0 !important;
+  transition:background .1s !important;
+}
+.frow:hover{background:rgba(255,255,255,.02) !important;}
+.frow.frow-allergen{
+  background:rgba(239,68,68,.04) !important;
+  border-bottom-color:rgba(239,68,68,.3) !important;
+}
+
+/* ─────────────────────────────────────────
+   TABS: Clinical section switcher
+───────────────────────────────────────── */
+.tabs{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  gap:0 !important;
+  margin-bottom:12px !important;
+}
+.tab-btn{
+  background:transparent !important;
+  border-radius:0 !important;
+  font-size:11px !important;
+  height:32px !important;
+  border-bottom:2px solid transparent;
+  color:var(--t3) !important;
+  font-weight:600 !important;
+  transition:color .12s !important;
+}
+.tab-btn.active{
+  background:transparent !important;
+  color:var(--t1) !important;
+  border-bottom-color:var(--g) !important;
+  box-shadow:none !important;
+}
+.tab-btn:hover:not(.active){color:var(--t2) !important;}
+
+/* ─────────────────────────────────────────
+   PATIENT PANEL: Clinical record view
+───────────────────────────────────────── */
+.pt-inline-header{
+  border-bottom:1px solid var(--b1) !important;
+  padding-bottom:14px !important;
+  margin-bottom:14px !important;
+}
+.pt-inline-name{
+  font-size:16px !important;
+  font-weight:800 !important;
+  letter-spacing:-.03em !important;
+}
+.pt-stats-grid{
+  gap:0 !important;
+  border-top:1px solid var(--b1);
+  border-right:1px solid var(--b1);
+  margin-bottom:14px !important;
+}
+.pt-stat{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  border-left:1px solid var(--b1);
+  border-bottom:1px solid var(--b1);
+  padding:10px 12px !important;
+}
+.pt-stat-val{
+  font-size:16px !important;
+  font-weight:800 !important;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.pt-stat-lbl{
+  font-size:9px !important;
+  letter-spacing:.07em !important;
+  color:var(--t3) !important;
+  margin-top:3px !important;
+}
+.pt-info-row{
+  border-bottom:1px solid rgba(44,35,71,.4) !important;
+  padding:7px 0 !important;
+}
+.pt-info-lbl{
+  font-size:9px !important;
+  letter-spacing:.06em !important;
+  text-transform:uppercase !important;
+  min-width:72px !important;
+}
+.pt-actions{
+  gap:6px !important;
+  margin-top:16px !important;
+  padding-top:14px;
+  border-top:1px solid var(--b1);
+}
+
+/* ─────────────────────────────────────────
+   RECENT PATIENTS IN SIDEBAR
+───────────────────────────────────────── */
+.db-rpt{
+  padding:7px 0 !important;
+  border-radius:0 !important;
+  border-bottom:1px solid rgba(44,35,71,.35) !important;
+  margin-bottom:0 !important;
+  gap:8px !important;
+}
+.db-rpt:hover{background:rgba(255,255,255,.025) !important;}
+.db-rpt-name{font-size:12px !important;font-weight:600 !important;}
+.db-rpt-sub{font-size:9px !important;color:var(--t3) !important;}
+
+/* ─────────────────────────────────────────
+   REPORT PAGE: Clinical document header
+───────────────────────────────────────── */
+.rpt-header{
+  border-bottom:1px solid var(--b1) !important;
+  background:var(--bg) !important;
+  padding:10px 20px !important;
+  backdrop-filter:none !important;
+}
+
+/* ─────────────────────────────────────────
+   DATE NAV STRIPS
+───────────────────────────────────────── */
+.date-nav{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  border-top:1px solid var(--b1) !important;
+  padding:4px 0 !important;
+  margin-bottom:8px !important;
+}
+.dnlbl{
+  font-size:12px !important;
+  font-weight:700 !important;
+  letter-spacing:-.01em !important;
+}
+.dnbtn{
+  border-radius:0 !important;
+  width:24px !important;height:24px !important;
+}
+
+/* ─────────────────────────────────────────
+   SETTINGS: Clinical configuration
+───────────────────────────────────────── */
+#pg-settings .card{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  border-bottom:1px solid var(--b1) !important;
+  padding:16px 0 !important;
+}
+#pg-settings .card:first-child{
+  border-top:1px solid var(--b1) !important;
+}
+
+/* Category filter buttons */
+.fcat-btn,.cat-chip{
+  height:28px !important;
+  padding:0 10px !important;
+  border-radius:3px !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+  letter-spacing:.04em !important;
+  text-transform:uppercase !important;
+  background:transparent !important;
+  border:1px solid var(--b1) !important;
+  color:var(--t3) !important;
+}
+.fcat-btn.active,.fcat-btn:hover,.cat-chip.active,.cat-chip:hover{
+  background:rgba(245,85,121,.08) !important;
+  border-color:rgba(245,85,121,.3) !important;
+  color:var(--g) !important;
+}
+
+/* ─────────────────────────────────────────
+   MENU SIDEBAR: No card chrome
+───────────────────────────────────────── */
+.menu-sidebar{
+  background:var(--bg) !important;
+  border-right:1px solid var(--b1) !important;
+}
+.menu-sidebar-inner{
+  padding:12px 14px !important;
+  gap:0 !important;
+}
+.menu-sidebar .card{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:0 !important;
+}
+
+/* Allergy banner: clinical warning strip */
+#menu-allergy-banner{
+  border-radius:0 !important;
+  border-left:none !important;
+  border-right:3px solid var(--red) !important;
+  border-top:none !important;
+  border-bottom:none !important;
+  border:none !important;
+  border-right:3px solid var(--red) !important;
+  padding:6px 10px !important;
+  background:rgba(239,68,68,.06) !important;
+  font-size:11px !important;
+}
+
+}
+
 </style>
 </head>
 <body>
