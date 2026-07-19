@@ -44,8 +44,8 @@
   --fs-2xl:1.6rem;
   --bg:#0d0a16;--bg2:#120e1f;--bg3:#171225;
   --s1:#1c1730;--s2:#221c3a;--s3:#2a2247;
-  --b1:#2c2347;--b2:#382c5a;
-  --t1:#f5f0ff;--t2:#9c8fc0;--t3:#5d4f80;
+  --b1:rgba(255,255,255,.06);--b2:#382c5a;
+  --t1:#f5f0ff;--t2:#9c8fc0;--t3:#6B604A;
   --r8:8px;--r12:12px;--r16:16px;--r20:20px;
   --sb:env(safe-area-inset-bottom,0px);
   --st:env(safe-area-inset-top,0px);
@@ -623,7 +623,7 @@ body{overflow:hidden;height:100dvh;}
   flex-shrink:0;gap:0;
 }
 .db-sc{
-  flex:none;padding:0 28px 0 0;margin-right:0;
+  flex:1;padding:0 28px 0 0;margin-right:0;
   display:flex;flex-direction:column;gap:2px;
   border:none !important;background:transparent !important;
   cursor:pointer;
@@ -2370,6 +2370,261 @@ s cubic-bezier(.34,1.56,.64,1) !important;
 /* Vazirmatn fallback stack for Iran network resilience */
 :root{--font-sans:'Vazirmatn','Tahoma','Arial Unicode MS','DejaVu Sans',sans-serif;}
 body,input,select,textarea,button{font-family:var(--font-sans);}
+
+@media(min-width:900px){
+/* ── DASHBOARD RTL LAYOUT FIX ──
+   db-col-side must be on RIGHT (logical start) in RTL
+   db-col-main on LEFT (logical end)
+   Use flex order to enforce this */
+.db-col-side{ order:-1; }   /* logical END in RTL = visual LEFT — actually this reverses */
+.db-col-main{ order:0; }    /* default */
+
+/* Fix KPI cells: equal flex, no flex:none */
+.db-sc{
+  flex:1 !important;
+  min-width:0 !important;
+  padding:0 20px !important;
+  margin:0 !important;
+}
+/* First KPI cell: larger value color only */
+.db-sc:first-child .db-sc-val{
+  color:var(--m-gold) !important;
+  font-size:32px !important;
+}
+.db-sc .db-sc-val{
+  font-size:26px;
+}
+
+/* Fix KPI strip height */
+.db-stats{
+  height:60px !important;
+  align-items:center !important;
+}
+
+/* Remove separators that break with flex:1 */
+.db-stats .db-sc:not(:first-child){
+  border-right:none !important;
+  border-left:1px solid var(--m-wire) !important;
+  padding-right:0 !important;
+  margin-right:0 !important;
+}
+}
+
+@media(min-width:900px){
+.page.active{
+  position:relative !important;
+  flex:1 !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+}
+
+@media(min-width:900px){
+.db-hero{
+  height:34px !important;
+  padding:0 20px !important;
+  flex-shrink:0 !important;
+}
+.db-hero .db-hs span{
+  font-size:24px !important;
+}
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CRITICAL OVERRIDES — High specificity
+   These FIX the remaining visual bugs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media(min-width:900px){
+
+/* 1. HERO: Kill the massive padding */
+html body .app .pwrap .page.active .db-hero{
+  height:36px !important;
+  min-height:36px !important;
+  max-height:36px !important;
+  padding:0 20px !important;
+  flex-shrink:0 !important;
+  align-items:center !important;
+  box-sizing:border-box !important;
+}
+
+/* 2. KPI STRIP: Force proper layout */
+html body .app .pwrap .page.active .db-stats{
+  height:56px !important;
+  min-height:56px !important;
+  max-height:56px !important;
+  display:flex !important;
+  align-items:center !important;
+  flex-shrink:0 !important;
+}
+html body .app .pwrap .page.active .db-sc{
+  flex:1 1 0 !important;
+  min-width:0 !important;
+  max-width:none !important;
+  width:auto !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  padding:0 20px !important;
+  gap:4px !important;
+  border:none !important;
+  border-left:1px solid rgba(255,255,255,.06) !important;
+  cursor:pointer;
+}
+html body .app .pwrap .page.active .db-sc:last-child{
+  border-left:none !important;
+}
+html body .app .pwrap .page.active .db-sc-val{
+  font-size:28px !important;
+  font-weight:900 !important;
+  color:var(--m-t1) !important;
+  letter-spacing:-.06em !important;
+  line-height:1 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+html body .app .pwrap .page.active .db-sc:last-child .db-sc-val{
+  color:var(--m-gold) !important;
+}
+html body .app .pwrap .page.active .db-sc-lbl{
+  font-size:8px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.12em !important;
+  color:var(--m-t3) !important;
+  white-space:nowrap !important;
+}
+
+/* 3. DASHBOARD MAIN: Proper layout */
+html body .app .pwrap .page.active .db-main{
+  display:flex !important;
+  flex:1 !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+html body .app .pwrap .page.active .db-col-side{
+  width:220px !important;
+  flex-shrink:0 !important;
+  border-right:1px solid rgba(255,255,255,.06) !important;
+  background:var(--m-s1) !important;
+  overflow-y:auto !important;
+  order:0 !important;
+}
+html body .app .pwrap .page.active .db-col-main{
+  flex:1 !important;
+  min-width:0 !important;
+  overflow-y:auto !important;
+  order:0 !important;
+}
+
+/* 4. VISIT CARDS: Must be visible */
+html body .app .pwrap .page.active .db-vc{
+  display:flex !important;
+  min-height:44px !important;
+  height:auto !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  align-items:center !important;
+  cursor:pointer !important;
+  opacity:1 !important;
+  animation:none !important;
+}
+
+/* 5. PATIENT LIST: Force proper widths */
+html body .app .pwrap .page.active .pt-list-col{
+  width:260px !important;
+  flex-shrink:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  height:100% !important;
+  overflow:hidden !important;
+}
+html body .app .pwrap .page.active .pt-panel{
+  flex:1 !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+/* 6. MENU SIDEBAR: Force visible */
+html body .app .pwrap .page.active .menu-sidebar{
+  width:248px !important;
+  flex-shrink:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+}
+html body .app .pwrap .page.active .menu-main{
+  flex:1 !important;
+  min-width:0 !important;
+  overflow-y:auto !important;
+}
+
+/* 7. BOTTOM NAV: Clean layout */
+html body .app .bnav{
+  position:fixed !important;
+  bottom:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:40px !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:stretch !important;
+  z-index:100 !important;
+  background:var(--m-s1) !important;
+  border-top:1px solid rgba(255,255,255,.06) !important;
+}
+html body .app .bnav .nb{
+  height:40px !important;
+  min-height:40px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex:1 !important;
+  border-top:2px solid transparent !important;
+  font-size:10px !important;
+  font-weight:600 !important;
+  color:var(--m-t3) !important;
+  cursor:pointer !important;
+  border-radius:0 !important;
+}
+html body .app .bnav .nb.active{
+  color:var(--m-gold) !important;
+  border-top-color:var(--m-gold) !important;
+  background:rgba(232,184,75,.04) !important;
+}
+html body .app .bnav .nb::after{
+  content:attr(data-label) !important;
+  font-size:10px !important;
+  font-weight:inherit !important;
+  color:inherit !important;
+}
+
+/* 8. TOPBAR: Correct height */
+html body .app .pwrap .hdr{
+  height:36px !important;
+  min-height:36px !important;
+  max-height:36px !important;
+  flex-shrink:0 !important;
+}
+
+/* 9. PAGE: Fill remaining space */
+html body .app .pwrap .page.active{
+  flex:1 !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+
+/* 10. PWRAP: Column flex, margin for bottom nav */
+html body .app .pwrap{
+  flex:1 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  height:calc(100dvh - 40px) !important;
+  overflow:hidden !important;
+  margin-bottom:40px !important;
+}
+
+}
 </style>
 </head>
 <body>
