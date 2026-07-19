@@ -2279,6 +2279,773 @@ body{
 }
 
 }
+
+/* ═══════════════════════════════════════════
+   ANALYZER v2 — آنالیز ریزمغذی
+   Grid: 240px controls | 1fr results
+═══════════════════════════════════════════ */
+@media(min-width:900px){
+
+#pg-analyzer.active{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  min-height:calc(100dvh - 44px);
+  overflow:hidden;
+}
+
+/* ══════════════════════════════
+   CONTROLS PANEL (RIGHT, 240px)
+══════════════════════════════ */
+.an-ctrl{
+  background:var(--s1);
+  border-left:1px solid var(--w);
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  padding:0;
+}
+
+.an-ctrl .pgtitle{
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  padding:14px 16px 10px;
+  border-bottom:1px solid var(--w);
+  margin:0 !important;
+  display:block;
+}
+.an-ctrl .pgtitle .ico{ display:none !important; }
+.an-ctrl .pgtitle::before{ content:'آنالیز ریزمغذی'; }
+.an-ctrl .pgtitle *{ display:none; }
+
+/* Selectors */
+.an-ctrl .fs{
+  width:100%;
+  height:40px;
+  border:none;
+  border-radius:0;
+  border-bottom:1px solid var(--w);
+  background:transparent;
+  padding:0 30px 0 10px;
+  font-size:10px;
+  color:var(--t1);
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  margin:0 !important;
+}
+.an-ctrl .fs:first-of-type{
+  border-top:none;
+}
+
+/* Label before each selector */
+.an-ctrl select[id="az-pt"]::before{
+  content:'بیمار';
+}
+
+/* Run button */
+.an-ctrl .btnp,
+.an-ctrl button[onclick*="runAnalyzer"]{
+  width:calc(100% - 28px);
+  margin:12px 14px;
+  height:34px;
+  font-size:11px;
+}
+
+/* Deficiency summary box */
+#az-patient-summary{
+  border-top:2px solid var(--a);
+  padding:14px 16px;
+  background:transparent;
+  margin:0;
+}
+.az-pt-name{
+  font-size:11px;
+  font-weight:700;
+  color:var(--t1);
+  margin-bottom:10px;
+}
+.az-pt-row{
+  font-size:9px;
+  color:var(--t2);
+  padding:4px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;
+  justify-content:space-between;
+}
+.az-pt-lbl{ color:var(--t3); }
+
+/* ══════════════════════════════
+   RESULTS AREA (LEFT, 1fr)
+══════════════════════════════ */
+.an-ctrl ~ .sect{
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:0;
+}
+
+#az-body{
+  flex:1;
+}
+
+/* Summary stats strip */
+.anstats{
+  display:flex;
+  height:64px;
+  flex-shrink:0;
+  border-bottom:1px solid var(--w);
+  background:var(--s1);
+}
+.ansc{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 20px;
+  gap:3px;
+  border-left:1px solid var(--w);
+  cursor:default;
+}
+.ansc:last-child{ border-left:none; }
+.asv{
+  font-size:28px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-.06em;
+  font-variant-numeric:tabular-nums;
+  color:var(--t1);
+}
+.asl{
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+}
+.asp{
+  font-size:8px;
+  color:var(--t3);
+  font-variant-numeric:tabular-nums;
+  margin-top:1px;
+}
+.ansc.r .asv{ color:var(--err); }
+.ansc.g .asv{ color:var(--ok); }
+.ansc.b .asv{ color:var(--prot,#4A8FE8); }
+
+/* Results card */
+.ancard{
+  background:transparent;
+  border:none;
+  padding:0;
+  margin:0;
+}
+.ancardtitle{
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  padding:10px 20px;
+  border-bottom:1px solid var(--w);
+  background:var(--s1);
+  position:sticky;
+  top:0;
+  z-index:6;
+  line-height:1.5;
+}
+.ancardtitle span{
+  text-transform:none;
+  font-weight:400;
+  letter-spacing:0;
+  font-size:8px;
+}
+.ancardtitle br{ display:none; }
+
+/* Group headers */
+.angrp{
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  padding:10px 20px 5px;
+  border-top:1px solid var(--w);
+  border-bottom:1px solid var(--w);
+  background:var(--s2);
+  position:sticky;
+  top:36px;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.angrp::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--w);
+}
+
+/* Nutrient rows */
+.anrow{
+  display:grid;
+  grid-template-columns:1fr 180px 56px 96px;
+  align-items:center;
+  height:32px;
+  padding:0 20px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  transition:background .1s;
+}
+.anrow:nth-child(even){ background:rgba(255,255,255,.01); }
+.anrow:hover{ background:rgba(255,255,255,.03); }
+
+.anlbl{
+  font-size:11px;
+  color:var(--t2);
+  font-weight:400;
+  text-align:right;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.anrow:hover .anlbl{ color:var(--t1); }
+
+/* Progress bar */
+.anbarw{
+  height:3px;
+  background:rgba(255,255,255,.08);
+  border-radius:2px;
+  overflow:hidden;
+  margin:0 8px;
+}
+.anbar{
+  height:100%;
+  border-radius:2px;
+  transition:width .4s cubic-bezier(.32,.72,0,1);
+}
+
+.anpct{
+  font-size:10px;
+  font-weight:800;
+  text-align:center;
+  font-variant-numeric:tabular-nums;
+}
+
+.anval{
+  font-size:9px;
+  font-weight:500;
+  text-align:left;
+  color:var(--t3);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+
+/* Column header row */
+.an-col-hdr{
+  display:grid;
+  grid-template-columns:1fr 180px 56px 96px;
+  align-items:center;
+  height:28px;
+  padding:0 20px;
+  border-bottom:1px solid var(--w);
+  position:sticky;
+  top:70px;
+  z-index:4;
+  background:var(--s1);
+}
+.an-col-hdr span{
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  text-align:center;
+}
+.an-col-hdr span:first-child{ text-align:right; }
+
+/* Empty state */
+#az-body .empty{
+  padding:60px 40px;
+  text-align:center;
+}
+#az-body .empty .ei .ico{ opacity:.07; }
+#az-body .empty .et{
+  font-size:12px;
+  color:var(--t3);
+  margin-top:12px;
+}
+#az-body .empty > div:last-child{
+  font-size:10px !important;
+  color:var(--t3) !important;
+  margin-top:6px;
+}
+
+}
+
+/* ═══════════════════════════════════════════
+   FOODS v2 — بانک غذایی
+   Full width. Header bar + grid.
+═══════════════════════════════════════════ */
+@media(min-width:900px){
+
+#pg-foods.active{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  min-height:calc(100dvh - 44px);
+}
+
+#pg-foods .sect{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  overflow:hidden;
+  padding:0;
+}
+
+/* ── Header bar: title + search + filters in one row ── */
+#pg-foods .row-sb{
+  height:48px;
+  flex-shrink:0;
+  padding:0 20px;
+  gap:12px;
+  background:var(--s1);
+  border-bottom:1px solid var(--w);
+  display:flex;
+  align-items:center;
+  margin:0 !important;
+}
+#pg-foods .pgtitle{
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+#pg-foods .pgtitle .ico{ display:none !important; }
+#pg-foods .pgtitle::before{ content:'بانک غذایی'; }
+#pg-foods .pgtitle *{ display:none; }
+
+/* Move search + category into header row */
+#pg-foods .sw{
+  flex:1;
+  max-width:340px;
+  position:relative;
+  margin:0 !important;
+  display:flex;
+  align-items:center;
+}
+#pg-foods .sw .fi.sw-i,
+#pg-foods #foods-q{
+  width:100%;
+  height:28px;
+  border:1px solid var(--w2);
+  border-radius:4px;
+  background:var(--s2);
+  padding:0 32px 0 10px;
+  font-size:11px;
+  color:var(--t1);
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  outline:none;
+  transition:border-color .12s;
+}
+#pg-foods #foods-q:focus{ border-color:var(--a); }
+#pg-foods .sw .sw-ic,
+#pg-foods .sw .ico{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--t3);
+  pointer-events:none;
+  display:flex !important;
+  font-size:0;
+}
+
+/* Category select */
+#pg-foods #foods-cat{
+  height:28px;
+  border-radius:4px;
+  font-size:9px;
+  flex-shrink:0;
+  min-width:100px;
+  background:var(--s2);
+  border:1px solid var(--w);
+  padding:0 24px 0 8px;
+  color:var(--t2);
+  font-family:Vazirmatn,Tahoma,sans-serif;
+}
+#pg-foods #foods-cat option{ background:var(--s2); }
+
+/* "+ ماده سفارشی" button */
+#pg-foods .btnp{
+  height:28px;
+  padding:0 12px;
+  font-size:9px;
+  margin-right:auto;
+  flex-shrink:0;
+}
+#pg-foods .btnp .ico{ display:none !important; }
+
+/* ── Food grid ── */
+#foods-grid,
+.foods-grid,
+#pg-foods .fgrid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(196px,1fr)) !important;
+  gap:1px !important;
+  background:var(--w) !important;
+  flex:1 !important;
+  overflow-y:auto !important;
+  padding:0 !important;
+  align-content:start !important;
+  margin:0 !important;
+}
+
+/* Food cards */
+.fcard{
+  background:var(--s1) !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:16px 18px !important;
+  cursor:pointer !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:7px !important;
+  transition:background .1s !important;
+  margin:0 !important;
+  box-shadow:none !important;
+}
+.fcard:hover{ background:var(--s2) !important; }
+.fcard:active{ background:var(--s3,#252016) !important; }
+
+/* Card content */
+.fcn{
+  font-size:8px;
+  font-weight:700;
+  color:var(--t3);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.fckcal{
+  font-size:24px;
+  font-weight:900;
+  color:var(--t1);
+  letter-spacing:-.06em;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.fckcal::after{
+  content:' kcal';
+  font-size:8px;
+  font-weight:700;
+  color:var(--t3);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.fcname{
+  font-size:11px;
+  font-weight:600;
+  color:var(--t2);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.fcard:hover .fcname{ color:var(--t1); }
+
+.fcmacs{
+  display:flex;
+  gap:4px;
+  flex-wrap:wrap;
+}
+.fcm{
+  font-size:8px;
+  font-weight:700;
+  padding:2px 5px;
+  border-radius:2px;
+  letter-spacing:.03em;
+}
+.fcm.c{ background:rgba(232,162,58,.1); color:var(--warn); }
+.fcm.p{ background:rgba(74,142,232,.1); color:#4A8FE8; }
+.fcm.f{ background:rgba(232,113,75,.1); color:#E8714B; }
+
+/* Custom food badge */
+.fcard .badge{ display:none; }
+
+/* Count badge in header */
+#foods-count{
+  font-size:9px;
+  color:var(--t3);
+  font-variant-numeric:tabular-nums;
+  flex-shrink:0;
+}
+
+}
+
+/* ═══════════════════════════════════════════
+   SETTINGS v2 — تنظیمات
+   Centered, single column, no sidebar
+═══════════════════════════════════════════ */
+@media(min-width:900px){
+
+#pg-settings.active{
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  min-height:calc(100dvh - 44px);
+  background:var(--bg);
+}
+
+#pg-settings .sect{
+  width:100%;
+  max-width:540px;
+  margin:32px auto;
+  padding:0 24px;
+}
+
+#pg-settings .pgtitle{
+  font-size:11px;
+  font-weight:800;
+  color:var(--t1);
+  margin-bottom:24px !important;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  letter-spacing:-.01em;
+}
+#pg-settings .pgtitle .ico{ display:none !important; }
+#pg-settings .pgtitle::before{
+  content:'تنظیمات';
+  font-size:14px;
+  font-weight:900;
+  color:var(--t1);
+}
+#pg-settings .pgtitle *{ display:none; }
+
+/* Cards */
+#pg-settings .card{
+  background:var(--s1);
+  border:1px solid var(--w);
+  border-radius:6px;
+  padding:20px;
+  margin-bottom:12px;
+}
+#pg-settings .card:first-of-type{
+  border-top:2px solid var(--a);
+}
+
+/* Card titles */
+#pg-settings .card-title,
+.card-title{
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  margin-bottom:16px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--w);
+}
+
+/* Form fields within settings */
+#pg-settings .fg{
+  margin-bottom:16px;
+}
+#pg-settings .fg:last-of-type{
+  margin-bottom:20px;
+}
+#pg-settings .fl{
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  display:block;
+  margin-bottom:6px;
+}
+#pg-settings .fi{
+  height:34px;
+  font-size:12px;
+  border-bottom-width:1px;
+  border-bottom-style:solid;
+  border-bottom-color:var(--w2);
+}
+#pg-settings .fi:focus{
+  border-bottom-color:var(--a);
+  box-shadow:0 1px 0 var(--a);
+}
+
+/* Theme toggle area */
+#theme-toggle{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  min-height:32px;
+}
+.theme-btn{
+  height:30px;
+  padding:0 12px;
+  background:transparent;
+  border:1px solid var(--w2);
+  border-radius:4px;
+  font-size:10px;
+  font-weight:600;
+  color:var(--t3);
+  cursor:pointer;
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  transition:all .1s;
+}
+.theme-btn:hover{ color:var(--t1); border-color:var(--w2); }
+.theme-btn.active{
+  background:var(--am);
+  color:var(--a);
+  border-color:rgba(232,184,75,.3);
+}
+
+/* Color palette */
+#palette-picker{ gap:8px; flex-wrap:wrap; }
+.pal-dot{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .1s, border-color .1s;
+}
+.pal-dot:hover{ transform:scale(1.1); }
+.pal-dot.active{ border-color:var(--t1); transform:scale(1.1); }
+
+/* Save button */
+#pg-settings .btnp{
+  height:34px;
+  font-size:11px;
+  padding:0 20px;
+}
+
+/* Data management section */
+.settings-danger-zone{
+  border-color:rgba(232,75,75,.2) !important;
+  border-top:2px solid var(--err) !important;
+}
+.settings-danger-zone .card-title{
+  color:var(--err) !important;
+}
+
+}
+
+/* ═══════════════════════════════════════════
+   REPORTS v2 — گزارش بالینی
+   Full width, header bar + content
+═══════════════════════════════════════════ */
+@media(min-width:900px){
+
+#pg-reports.active{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  min-height:calc(100dvh - 44px);
+}
+
+/* Header bar */
+.rpt-header{
+  height:48px;
+  flex-shrink:0;
+  padding:0 20px;
+  gap:12px;
+  background:var(--s1);
+  border-bottom:1px solid var(--w);
+  display:flex;
+  align-items:center;
+}
+.rpt-header > span:first-child{
+  font-size:8px !important;
+  font-weight:800 !important;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3) !important;
+  flex-shrink:0;
+}
+.rpt-header .fs{
+  flex:1;
+  max-width:280px;
+  height:28px;
+  font-size:10px;
+  border-radius:4px;
+}
+.rpt-header-actions{
+  display:flex;
+  gap:6px;
+  margin-right:auto;
+}
+.rpt-header-actions .btns{
+  height:28px;
+  font-size:9px !important;
+  padding:0 10px !important;
+}
+.rpt-header-actions .btnp{
+  height:28px;
+  font-size:9px !important;
+  padding:0 10px !important;
+}
+
+/* Report content */
+.rpt-content{
+  flex:1;
+  overflow-y:auto;
+  padding:28px 32px;
+  max-width:900px;
+}
+
+/* Report body sections */
+#rpt-body .rpt-section{
+  margin-bottom:24px;
+  border:1px solid var(--w);
+  border-radius:4px;
+}
+#rpt-body .rpt-section-title{
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  padding:10px 16px;
+  border-bottom:1px solid var(--w);
+  background:var(--s1);
+}
+#rpt-body table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:11px;
+}
+#rpt-body td,#rpt-body th{
+  padding:7px 16px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  text-align:right;
+}
+#rpt-body th{
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--t3);
+  background:var(--s2);
+}
+#rpt-body td{ color:var(--t2); }
+
+/* Empty state */
+#rpt-body .empty{
+  padding:60px 40px;
+  text-align:center;
+  color:var(--t3);
+}
+
+}
 </style>
 </head>
 <body>
