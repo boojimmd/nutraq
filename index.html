@@ -977,6 +977,301 @@ body{
   .db-sc:last-child .db-sc-val{ font-size:44px; }
   .pt-inline-name{ font-size:48px; }
 }
+
+/* ═══════════════════════════════════════════════
+   DASHBOARD v2 — صفحه اصلی
+   Full-width schedule. Big numbers. No dead space.
+═══════════════════════════════════════════════ */
+@media(min-width:900px){
+
+/* ── 1. Shell: show correct layout ── */
+#pg-dashboard.active{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  min-height:calc(100dvh - 44px);
+}
+
+/* ── 2. Hide KPI boxes — number is in hero ── */
+.db-stats{
+  display:none !important;
+}
+
+/* ── 3. Hero: Big today count + stats inline ── */
+.db-hero{
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:28px 28px 24px;
+  border-bottom:1px solid var(--w);
+  flex-shrink:0;
+  background:transparent;
+  height:auto;
+}
+.db-hero-left{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-left:32px;
+}
+.db-day{
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+}
+.db-brand{
+  font-size:11px;
+  color:var(--t3);
+  font-weight:400;
+}
+.db-hero-center{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  position:static;
+  transform:none;
+  flex:none;
+  margin-right:0;
+}
+/* The big count number */
+.db-hero-center .db-hs:first-child{
+  font-size:48px;
+  font-weight:900;
+  color:var(--a);
+  letter-spacing:-.08em;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.db-hero-center .db-hs:first-child span{
+  font-size:inherit;
+  font-weight:inherit;
+  color:inherit;
+}
+/* Label after big number */
+.db-hero-center .db-hs:first-child::after{
+  content:' ویزیت امروز';
+  font-size:13px;
+  font-weight:600;
+  color:var(--t3);
+  letter-spacing:0;
+}
+/* Secondary stats */
+.db-sep{
+  font-size:14px;
+  color:var(--w2);
+  font-weight:300;
+  margin:0 8px;
+  line-height:1;
+  align-self:center;
+}
+/* فردا / کل */
+.db-hero-center .db-hs:not(:first-child){
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+}
+.db-hero-center .db-hs:not(:first-child) span{
+  font-size:20px;
+  font-weight:900;
+  color:var(--t1);
+  letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+}
+/* Right side: date */
+.db-hero-right{
+  margin-right:auto;
+  font-size:9px;
+  color:var(--t3);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+}
+
+/* ── 4. Main: Full width, no dead sidebar ── */
+.db-main{
+  display:flex;
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+}
+.db-col-side{
+  display:none !important;
+}
+.db-col-main{
+  flex:1;
+  min-width:0;
+  overflow-y:auto;
+}
+
+/* ── 5. Section headers: label + line ── */
+.db-visit-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:20px 28px 10px;
+  border-bottom:1px solid var(--w);
+  background:var(--s1);
+  position:sticky;
+  top:0;
+  z-index:5;
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+}
+.db-visit-title .badge{
+  font-size:9px;
+  padding:2px 7px;
+  border-radius:3px;
+}
+.db-visit-title::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--w);
+}
+
+.db-section-hdr{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 28px 8px;
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  border-top:1px solid var(--w);
+}
+.db-section-hdr::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--w);
+}
+
+/* ── 6. Visit cards: Today = 64px prominent ── */
+.db-vc{
+  display:flex;
+  align-items:center;
+  min-height:48px;
+  border-bottom:1px solid var(--w);
+  cursor:pointer;
+  background:transparent;
+  transition:background .1s;
+  position:relative;
+  gap:0;
+}
+.db-vc:hover{
+  background:rgba(255,255,255,.025);
+}
+/* Left border indicator */
+.db-vc::before{
+  content:'';
+  width:3px;
+  align-self:stretch;
+  flex-shrink:0;
+  background:transparent;
+  transition:background .15s;
+}
+.db-vc.today{
+  min-height:64px;
+  background:rgba(232,184,75,.025);
+}
+.db-vc.today::before{
+  background:var(--a);
+}
+.db-vc.today:hover{
+  background:rgba(232,184,75,.04);
+}
+
+/* Avatar: override inline style proportions */
+.db-vc .av{
+  width:28px !important;
+  height:28px !important;
+  border-radius:6px !important;
+  font-size:10px !important;
+  margin:0 16px !important;
+  flex-shrink:0;
+}
+.db-vc.today .av{
+  width:34px !important;
+  height:34px !important;
+  border-radius:8px !important;
+  font-size:12px !important;
+}
+
+/* Name + sub */
+.db-vc-name{
+  font-size:12px;
+  font-weight:600;
+  color:var(--t2);
+}
+.db-vc.today .db-vc-name{
+  font-size:13px;
+  font-weight:700;
+  color:var(--t1);
+}
+.db-vc-sub{
+  font-size:9px;
+  color:var(--t3);
+  margin-top:2px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Badge: push to end */
+.db-vc .badge{
+  margin-left:16px;
+  flex-shrink:0;
+  font-size:8px;
+  padding:2px 6px;
+}
+/* Hover quick actions: inserted by JS */
+.db-vc-actions{
+  display:none;
+  gap:5px;
+  margin-left:10px;
+}
+.db-vc:hover .db-vc-actions{
+  display:flex;
+}
+.db-vc-actions button{
+  height:24px;
+  padding:0 8px;
+  background:var(--am);
+  border:1px solid rgba(232,184,75,.25);
+  border-radius:4px;
+  color:var(--a);
+  font-size:9px;
+  font-weight:700;
+  cursor:pointer;
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  white-space:nowrap;
+  transition:background .1s;
+}
+.db-vc-actions button:hover{
+  background:var(--a2);
+}
+
+/* Empty state */
+.db-empty{
+  padding:48px 28px;
+  font-size:11px;
+  color:var(--t3);
+  line-height:1.8;
+  text-align:center;
+}
+
+/* Recent patients (in sidebar - hidden but keep for mobile) */
+.db-rpt{ display:none; }
+.db-act-btn{ display:none; }
+.db-col-title{ display:none; }
+
+}
 </style>
 </head>
 <body>
@@ -4916,6 +5211,32 @@ function _esc(s){
     };
   }
   ['renderPtList','rendPts','filterPts','showPts'].forEach(hookPtRender);
+})();
+
+
+/* ── Dashboard: inject quick-action buttons on today's cards ── */
+(function(){
+  var origUpdDash=window.updDash;
+  if(typeof origUpdDash!=='function') return;
+  window.updDash=function(){
+    origUpdDash.apply(this,arguments);
+    // After render, add action buttons to today's cards
+    setTimeout(function(){
+      document.querySelectorAll('#db-visits-col .db-vc.today[data-pid]').forEach(function(el){
+        if(el.querySelector('.db-vc-actions')) return; // already added
+        var pid=el.dataset.pid;
+        var actions=document.createElement('div');
+        actions.className='db-vc-actions';
+        actions.innerHTML=
+          '<button onclick="event.stopPropagation();nav(\'menu\');setTimeout(function(){var s=document.getElementById(\'menu-pt\');if(s){s.value=\''+pid+'\';s.dispatchEvent(new Event(\'change\'));}},80)">→ منو</button>'+
+          '<button onclick="event.stopPropagation();nav(\'analyzer\');setTimeout(function(){var s=document.getElementById(\'az-pt\');if(s){s.value=\''+pid+'\';s.dispatchEvent(new Event(\'change\'));}},80)">→ آنالیز</button>';
+        // Insert before badge
+        var badge=el.querySelector('.badge');
+        if(badge) el.insertBefore(actions,badge);
+        else el.appendChild(actions);
+      });
+    },100);
+  };
 })();
 
 </script>
