@@ -1090,19 +1090,25 @@ body{
   letter-spacing:.04em;
 }
 
-/* ── 4. Main: Full width, no dead sidebar ── */
+/* ── 4. Main: Two-column — feed | side panel ── */
 .db-main{
-  display:flex;
+  display:grid;
+  grid-template-columns:1fr 240px;
   flex:1;
   min-height:0;
   overflow:hidden;
 }
-.db-col-side{
-  display:none !important;
-}
+/* Visit feed: main column (RIGHT in RTL) */
 .db-col-main{
-  flex:1;
+  overflow-y:auto;
   min-width:0;
+}
+/* Side panel: LEFT in RTL — stats + quick actions */
+.db-col-side{
+  display:flex !important;
+  flex-direction:column;
+  background:var(--s1);
+  border-right:1px solid var(--w);
   overflow-y:auto;
 }
 
@@ -1270,6 +1276,84 @@ body{
 .db-rpt{ display:none; }
 .db-act-btn{ display:none; }
 .db-col-title{ display:none; }
+
+}
+
+@media(min-width:900px){
+
+/* ── Side panel content ── */
+.db-col-title{
+  display:block !important;
+  font-size:8px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  padding:14px 16px 8px;
+  border-bottom:1px solid var(--w);
+}
+
+/* Quick action buttons */
+.db-act-btn{
+  display:flex !important;
+  height:36px;
+  padding:0 14px;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--w);
+  color:var(--t3);
+  font-size:10px;
+  font-weight:600;
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  cursor:pointer;
+  align-items:center;
+  gap:8px;
+  text-align:right;
+  width:100%;
+  transition:color .1s,background .1s;
+}
+.db-act-btn:hover{
+  color:var(--t1);
+  background:rgba(255,255,255,.02);
+}
+.db-act-btn svg{
+  width:11px !important;
+  height:11px !important;
+  opacity:.4;
+  flex-shrink:0;
+}
+.db-act-btn:hover svg{ opacity:.7; }
+
+/* Recent patients */
+.db-rpt{
+  display:flex !important;
+  height:40px;
+  padding:0 14px;
+  border-bottom:1px solid var(--w);
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  transition:background .1s;
+}
+.db-rpt:hover{ background:rgba(255,255,255,.02); }
+.db-rpt .av{
+  width:20px;
+  height:20px;
+  border-radius:4px;
+  font-size:7px;
+  flex-shrink:0;
+}
+.db-rpt-name{
+  font-size:10px;
+  font-weight:600;
+  color:var(--t3);
+  flex:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.db-rpt:hover .db-rpt-name{ color:var(--t1); }
+.db-rpt-sub{ font-size:8px; color:var(--t3); flex-shrink:0; }
 
 }
 </style>
