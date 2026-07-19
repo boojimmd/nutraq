@@ -850,16 +850,8 @@ body{
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    PAGE 4: ANALYZER — grid
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#pg-analyzer.active{
-  display:grid;
-  grid-template-columns:1fr 240px;
-  min-height:calc(100dvh - 44px);
-}
-.an-ctrl{
-  grid-column:2; background:var(--s1); border-left:1px solid var(--w);
-  display:flex; flex-direction:column; overflow-y:auto;
-  height:calc(100dvh - 44px); position:sticky; top:44px;
-}
+/* removed */
+/* removed */
 .an-ctrl .pgtitle{ font-size:8px; font-weight:800; text-transform:uppercase; letter-spacing:.14em; color:var(--t3); padding:12px 14px 8px; border-bottom:1px solid var(--w); margin:0; }
 .an-ctrl .fl{ font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--t3); padding:10px 14px 0; margin:0; display:block; }
 .an-ctrl .fs{ border:none; border-radius:0; border-bottom:1px solid var(--w); height:40px; background:transparent; font-size:11px; padding:0 14px; color:var(--t1); font-family:Vazirmatn,Tahoma,sans-serif; width:100%; }
@@ -3043,6 +3035,506 @@ body{
   padding:60px 40px;
   text-align:center;
   color:var(--t3);
+}
+
+}
+
+/* ═══════════════════════════════════════════════════════
+   THREE PAGES FIX — همون pattern دقیق Patients/Menu
+   -------------------------------------------------------
+   ANALYZER:  260px controls (RIGHT) | 1fr results (LEFT)
+   FOODS:     full-width header bar  | auto-fill card grid
+   SETTINGS:  full-width, centered 520px content
+═══════════════════════════════════════════════════════ */
+@media(min-width:900px){
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANALYZER — دقیقاً مثل Patients
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#pg-analyzer.active{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  flex:1;
+  min-height:calc(100dvh - 44px);
+  overflow:hidden;
+}
+
+/* Controls: force to first column (RIGHT in RTL) */
+.an-ctrl{
+  grid-column:1 !important;
+  background:var(--s1);
+  border-left:1px solid var(--w);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  height:100%;
+}
+.an-ctrl-inner{
+  flex:1;
+  overflow-y:auto;
+}
+
+/* Analyzer header */
+.an-ctrl-hdr{
+  height:48px;
+  padding:0 16px;
+  border-bottom:1px solid var(--w);
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+.an-ctrl-title{
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--t3);
+  flex:1;
+}
+
+/* Patient title override */
+.an-ctrl .pgtitle{
+  font-size:8px !important;
+  font-weight:800 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.14em !important;
+  color:var(--t3) !important;
+  padding:14px 16px 10px !important;
+  border-bottom:1px solid var(--w) !important;
+  margin:0 !important;
+  display:block !important;
+}
+.an-ctrl .pgtitle .ico,
+.an-ctrl .pgtitle svg{ display:none !important; }
+
+/* Selects */
+.an-ctrl .fs{
+  width:100% !important;
+  height:40px !important;
+  border:none !important;
+  border-radius:0 !important;
+  border-bottom:1px solid var(--w) !important;
+  background:transparent !important;
+  padding:0 30px 0 12px !important;
+  font-size:10px !important;
+  color:var(--t1) !important;
+  font-family:Vazirmatn,Tahoma,sans-serif !important;
+  margin:0 !important;
+  margin-top:0 !important;
+}
+
+/* Results: force to second column (LEFT in RTL) */
+#pg-analyzer .sect{
+  grid-column:2 !important;
+  overflow-y:auto !important;
+  display:flex !important;
+  flex-direction:column !important;
+  min-width:0 !important;
+  padding:0 !important;
+  height:100% !important;
+}
+
+/* Summary stats: same pattern as KPI strip on dashboard */
+.anstats{
+  display:flex !important;
+  height:64px !important;
+  flex-shrink:0 !important;
+  border-bottom:1px solid var(--w) !important;
+  background:var(--s1) !important;
+}
+.ansc{
+  flex:1 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  padding:0 20px !important;
+  gap:3px !important;
+  border-left:1px solid var(--w) !important;
+  cursor:default !important;
+}
+.ansc:last-child{ border-left:none !important; }
+.asv{
+  font-size:28px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  letter-spacing:-.06em !important;
+  font-variant-numeric:tabular-nums !important;
+  color:var(--t1) !important;
+}
+.asl{
+  font-size:8px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.1em !important;
+  color:var(--t3) !important;
+}
+.ansc.r .asv{ color:var(--err) !important; }
+.ansc.g .asv{ color:var(--ok) !important; }
+
+/* Results card */
+.ancard{
+  background:transparent !important;
+  border:none !important;
+  padding:0 !important;
+  margin:0 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+}
+.ancardtitle{
+  font-size:9px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.1em !important;
+  color:var(--t3) !important;
+  padding:10px 20px !important;
+  border-bottom:1px solid var(--w) !important;
+  background:var(--s1) !important;
+  position:sticky !important;
+  top:0 !important;
+  z-index:6 !important;
+  line-height:1.5 !important;
+}
+.ancardtitle br{ display:none; }
+.ancardtitle span{
+  font-size:8px !important;
+  font-weight:400 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+
+/* Group headers */
+.angrp{
+  font-size:8px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.14em !important;
+  color:var(--t3) !important;
+  padding:8px 20px 5px !important;
+  border-top:1px solid var(--w) !important;
+  border-bottom:1px solid var(--w) !important;
+  background:var(--s2) !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  margin:0 !important;
+}
+.angrp::after{
+  content:'' !important;
+  flex:1 !important;
+  height:1px !important;
+  background:var(--w) !important;
+}
+
+/* Nutrient rows */
+.anrow{
+  display:grid !important;
+  grid-template-columns:1fr 180px 56px 96px !important;
+  align-items:center !important;
+  height:32px !important;
+  padding:0 20px !important;
+  border-bottom:1px solid rgba(255,255,255,.04) !important;
+  transition:background .1s !important;
+  margin:0 !important;
+}
+.anrow:nth-child(even){ background:rgba(255,255,255,.01) !important; }
+.anrow:hover{ background:rgba(255,255,255,.03) !important; }
+
+.anlbl{
+  font-size:11px !important;
+  color:var(--t2) !important;
+  font-weight:400 !important;
+  text-align:right !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+.anbarw{
+  height:3px !important;
+  background:rgba(255,255,255,.08) !important;
+  border-radius:2px !important;
+  overflow:hidden !important;
+  margin:0 8px !important;
+}
+.anbar{
+  height:100% !important;
+  border-radius:2px !important;
+  transition:width .4s cubic-bezier(.32,.72,0,1) !important;
+}
+.anpct{
+  font-size:10px !important;
+  font-weight:800 !important;
+  text-align:center !important;
+  font-variant-numeric:tabular-nums !important;
+}
+.anval{
+  font-size:9px !important;
+  text-align:left !important;
+  color:var(--t3) !important;
+  font-variant-numeric:tabular-nums !important;
+  white-space:nowrap !important;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOODS — full-width, header + grid
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#pg-foods.active{
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  min-height:calc(100dvh - 44px) !important;
+}
+
+#pg-foods .sect{
+  display:flex !important;
+  flex-direction:column !important;
+  flex:1 !important;
+  overflow:hidden !important;
+  padding:0 !important;
+}
+
+/* Header: everything in ONE 48px bar */
+#pg-foods .row-sb{
+  height:48px !important;
+  flex-shrink:0 !important;
+  padding:0 20px !important;
+  gap:10px !important;
+  background:var(--s1) !important;
+  border-bottom:1px solid var(--w) !important;
+  display:flex !important;
+  align-items:center !important;
+  margin:0 !important;
+}
+#pg-foods .pgtitle{
+  font-size:8px !important;
+  font-weight:800 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.14em !important;
+  color:var(--t3) !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:0 !important;
+  flex-shrink:0 !important;
+}
+#pg-foods .pgtitle .ico{ display:none !important; }
+#pg-foods .btnp{
+  height:28px !important;
+  padding:0 12px !important;
+  font-size:9px !important;
+  margin-right:auto !important;
+  flex-shrink:0 !important;
+}
+#pg-foods .btnp .ico{ display:none !important; }
+
+/* Search — reflow into header bar */
+#pg-foods .sw{
+  flex:1 !important;
+  max-width:320px !important;
+  position:relative !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  /* Hide from normal flow: we'll use position trick */
+}
+#pg-foods #foods-q{
+  width:100% !important;
+  height:28px !important;
+  border:1px solid var(--w2) !important;
+  border-radius:4px !important;
+  background:var(--s2) !important;
+  padding:0 32px 0 10px !important;
+  font-size:11px !important;
+  color:var(--t1) !important;
+  font-family:Vazirmatn,Tahoma,sans-serif !important;
+  outline:none !important;
+}
+#pg-foods #foods-q:focus{ border-color:var(--a) !important; }
+#pg-foods .sw .sw-ic{ display:none !important; }
+
+/* Category select inline */
+#pg-foods #foods-cat{
+  height:28px !important;
+  border-radius:4px !important;
+  font-size:9px !important;
+  flex-shrink:0 !important;
+  background:var(--s2) !important;
+  border:1px solid var(--w) !important;
+  padding:0 24px 0 8px !important;
+  color:var(--t2) !important;
+  font-family:Vazirmatn,Tahoma,sans-serif !important;
+  -webkit-appearance:none !important;
+  margin:0 !important;
+}
+
+/* Move search + select into the header row area */
+#pg-foods .sw,
+#pg-foods #foods-cat{
+  order:0;
+}
+/* Make .sect a flex column but keep row-sb on top */
+/* Search and select appear AFTER row-sb in DOM so they need to be pulled up */
+/* JS fix: append them into the row-sb */
+
+/* ── Food grid ── */
+#foods-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(196px,1fr)) !important;
+  gap:1px !important;
+  background:var(--w) !important;
+  flex:1 !important;
+  overflow-y:auto !important;
+  padding:0 !important;
+  align-content:start !important;
+}
+
+.fcard{
+  background:var(--s1) !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:16px 18px !important;
+  cursor:pointer !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:7px !important;
+  transition:background .1s !important;
+  margin:0 !important;
+  box-shadow:none !important;
+}
+.fcard:hover{ background:var(--s2) !important; }
+.fcn{
+  font-size:8px !important;
+  font-weight:700 !important;
+  color:var(--t3) !important;
+  text-transform:uppercase !important;
+  letter-spacing:.06em !important;
+}
+.fckcal{
+  font-size:24px !important;
+  font-weight:900 !important;
+  color:var(--t1) !important;
+  letter-spacing:-.06em !important;
+  line-height:1 !important;
+  font-variant-numeric:tabular-nums !important;
+}
+.fckcal::after{
+  content:' kcal' !important;
+  font-size:8px !important;
+  font-weight:700 !important;
+  color:var(--t3) !important;
+  text-transform:uppercase !important;
+  letter-spacing:.06em !important;
+}
+.fcname{
+  font-size:11px !important;
+  font-weight:600 !important;
+  color:var(--t2) !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+.fcard:hover .fcname{ color:var(--t1) !important; }
+.fcmacs{
+  display:flex !important;
+  gap:4px !important;
+  flex-wrap:wrap !important;
+}
+.fcm{
+  font-size:8px !important;
+  font-weight:700 !important;
+  padding:2px 5px !important;
+  border-radius:2px !important;
+}
+.fcm.c{ background:rgba(232,162,58,.1) !important; color:var(--warn) !important; }
+.fcm.p{ background:rgba(74,142,232,.1) !important; color:#4A8FE8 !important; }
+.fcm.f{ background:rgba(232,113,75,.1) !important; color:#E8714B !important; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SETTINGS — centered, clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#pg-settings.active{
+  display:flex !important;
+  flex-direction:column !important;
+  overflow-y:auto !important;
+  min-height:calc(100dvh - 44px) !important;
+  background:var(--bg) !important;
+  align-items:center !important;
+}
+
+#pg-settings .sect{
+  width:100% !important;
+  max-width:520px !important;
+  padding:32px 0 48px !important;
+  margin:0 !important;
+}
+
+#pg-settings .pgtitle{
+  font-size:14px !important;
+  font-weight:900 !important;
+  color:var(--t1) !important;
+  letter-spacing:-.02em !important;
+  margin-bottom:28px !important;
+  padding:0 !important;
+  border:none !important;
+  display:flex !important;
+  align-items:center !important;
+}
+#pg-settings .pgtitle .ico{ display:none !important; }
+#pg-settings .pgtitle::before{ content:'تنظیمات'; }
+#pg-settings .pgtitle *{ display:none; }
+
+/* Setting cards */
+#pg-settings .card{
+  background:var(--s1) !important;
+  border:1px solid var(--w) !important;
+  border-radius:6px !important;
+  padding:20px 22px !important;
+  margin-bottom:12px !important;
+  box-shadow:none !important;
+}
+#pg-settings .card:first-of-type{
+  border-top:2px solid var(--a) !important;
+}
+.card-title{
+  font-size:8px !important;
+  font-weight:800 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.14em !important;
+  color:var(--t3) !important;
+  margin-bottom:16px !important;
+  padding-bottom:12px !important;
+  border-bottom:1px solid var(--w) !important;
+  display:block !important;
+}
+
+/* Form fields */
+#pg-settings .fg{
+  margin-bottom:18px !important;
+}
+#pg-settings .fl{
+  font-size:8px !important;
+  font-weight:700 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.1em !important;
+  color:var(--t3) !important;
+  display:block !important;
+  margin-bottom:6px !important;
+}
+#pg-settings .fi{
+  height:34px !important;
+  font-size:12px !important;
+}
+#pg-settings .btnp{
+  height:34px !important;
+  font-size:11px !important;
+  padding:0 20px !important;
+  margin-top:4px !important;
+}
+
+/* Theme buttons */
+#theme-toggle{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:6px !important;
+  margin-bottom:4px !important;
 }
 
 }
@@ -7011,6 +7503,20 @@ function _esc(s){
       });
     },100);
   };
+})();
+
+
+/* ── Foods: move search+cat into header bar ── */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var rowSb = document.querySelector('#pg-foods .row-sb');
+    var sw    = document.querySelector('#pg-foods .sw');
+    var cat   = document.getElementById('foods-cat');
+    if(rowSb && sw && cat){
+      rowSb.appendChild(sw);
+      rowSb.appendChild(cat);
+    }
+  });
 })();
 
 </script>
